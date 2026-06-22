@@ -35,7 +35,7 @@ for dir in "${BASE_DIRS[@]}"; do
         sed -i 's/(i%32)==0/(i%64)==0/g' "$cu_file"
         
         # 3. Run hipify-perl and output to the new .hip file
-        if hipify-perl "$cu_file" > "$hip_file"; then
+        if hipify-perl "$cu_file" --print-stat > "$hip_file"; then
             echo "Converted & Scaled: $cu_file -> $hip_file"
         else
             echo "Failed to convert: $cu_file"
