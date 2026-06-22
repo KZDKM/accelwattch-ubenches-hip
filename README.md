@@ -10,6 +10,10 @@ Makefile as needed. Note that the `convert-to-hip.sh` script assumes that the
 sizing is for the MI300X (where there are 304CUs total, you should adjust the
 sizing depending on the GPU you're running your programs on).
 
+If you want to run all of these on the AMD HPCFund (or a similar HPC system),
+you should look at `launch_scripts/` for a sbatch submission script.
+Note that `run-accelwattch-ubenches` does rely on [rocprofwrap-lt](https://github.com/hal-uw/rocprofwrap) for power measurements.
+
 ## TODO
 The `.hip` microbenchmarks found in these directories are currently very
 roughly ported using `hipify`. To more accurately port the benchmarks over,
