@@ -1,8 +1,10 @@
 # Compiler definitions
 HIPCC = hipcc
 
+ARCH = gfx942
+
 # Baseline flags translated from Accelwattch-ubench suite for MI300X
-HIPCC_FLAGS = -O3 -std=c++14 --offload-arch=gfx942 --gcc-install-dir=/usr/bin/../lib/gcc/x86_64-linux-gnu/13
+HIPCC_FLAGS = -O3 -std=c++14 --offload-arch=$(ARCH) #--gcc-install-dir=/usr/bin/../lib/gcc/x86_64-linux-gnu/13
 
 # Source directories containing the benchmarks
 DIRS = branching_benchmarks functional_benchmarks
@@ -32,7 +34,7 @@ $(BIN_DIR):
 # Rule to build each executable from its corresponding .hip file
 # The '| $(BIN_DIR)' is an order-only prerequisite so it doesn't rebuild if the folder timestamp changes
 $(BIN_DIR)/%: %.hip | $(BIN_DIR)
-	@echo "Compiling $< for gfx942..."
+	@echo "Compiling $< for $(ARCH)..."
 	$(HIPCC) $(HIPCC_FLAGS) $< -o $@
 
 # Clean up the bin directory

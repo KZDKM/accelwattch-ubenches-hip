@@ -1,4 +1,3 @@
-#include "hip/hip_runtime.h"
 // Copyright (c) 2018-2021, Vijay Kandiah, Junrui Pan, Mahmoud Khairy, Scott Peverelle, Timothy Rogers, Tor M. Aamodt, Nikos Hardavellas
 // Northwestern University, Purdue University, The University of British Columbia
 // All rights reserved.
@@ -76,7 +75,7 @@ inline void __checkCudaErrors(hipError_t err, const char *file, const int line )
   }
 }
 
-// This will output the proper error string when calling hipGetLastError
+// This will output the proper error string when calling cudaGetLastError
 #define getLastCudaError(msg)      __getLastCudaError (msg, __FILE__, __LINE__)
 
 inline void __getLastCudaError(const char *errorMessage, const char *file, const int line )
@@ -108,15 +107,15 @@ __global__ void PowerKernal2(const unsigned* A, const unsigned* B, unsigned* C, 
     for(unsigned k=0; k<N;k++) {
     // BLOCK-0 (For instruction size of 16 bytes for Volta
       __asm volatile (
-          "\n\tmov.u32 %0, %3;"
-          "\n\tmov.u32 %1, %4;"
-          "\n\tmov.u32 %2, %1;"
-          "\n\tmov.u32 %1, %0;"
-          "\n\tmov.u32 %0, %2;"
-          "\n\tmov.u32 %1, %2;"
-          "\n\tmov.u32 %3, %1;"
-          "\n\tmov.u32 %4, %0;"
-          : "+r"(Value1), "+r"(Value2), "+r"(Value3) : "r"(I1), "r"(I2)
+          "\n\tv_mov_b32 %0, %3;"
+          "\n\tv_mov_b32 %1, %4;"
+          "\n\tv_mov_b32 %2, %1;"
+          "\n\tv_mov_b32 %1, %0;"
+          "\n\tv_mov_b32 %0, %2;"
+          "\n\tv_mov_b32 %1, %2;"
+          "\n\tv_mov_b32 %3, %1;"
+          "\n\tv_mov_b32 %4, %0;"
+          : "+v"(Value1), "+v"(Value2), "+v"(Value3) : "v"(I1), "v"(I2)
           );
     }
     C[i]=Value3;
@@ -189,20 +188,20 @@ profileKernel("BE_SP_INT_ADD", "PowerKernal2");
 for (int i = 0; i < 1000; i++)
 {
 	PowerKernal2<<<dimGrid,dimBlock>>>(d_A, d_B, d_C, N);
-	CUDA_SAFE_CALL( hipDeviceSynchronize() );
+	CUDA_SAFE_CALL( cudaThreadSynchronize() ); // or should we do hipDeviceSynchronize??? compiles either way
 }
 haltProfiling();
 printf("execution time = %f\n", cutGetTimerValue(my_timer));
 
 getLastCudaError("kernel launch failure");
-CUDA_SAFE_CALL( hipDeviceSynchronize() );
+CUDA_SAFE_CALL( cudaThreadSynchronize() );
 CUT_SAFE_CALL(cutStopTimer(my_timer));
 TurnOffDAQ(taskhandle, cutGetTimerValue(my_timer));
 printf("execution time = %f\n", cutGetTimerValue(my_timer));
 CUT_SAFE_CALL(cutDeleteTimer(my_timer)); 
 
 #ifdef _DEBUG
- checkCudaErrors( hipDeviceSynchronize() );
+ checkCudaErrors( cudaThreadSynchronize() );
 #endif*/
 
  // Copy result from device memory to host memory
