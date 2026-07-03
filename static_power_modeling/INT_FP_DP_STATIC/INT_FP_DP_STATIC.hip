@@ -57,22 +57,24 @@ __global__ void power_microbench(float *data1, double *data2, uint32_t *data3, u
   register double Value3=0;
 
   // synchronize all threads
-  asm volatile ("bar.sync 0;");
+  //asm volatile ("bar.sync 0;");
+  __syncthreads();
 
   if((gid%32)<div){
   //ROI
     #pragma unroll 100
     for (unsigned j=0 ; j<iterations ; ++j) {
-      asm volatile ("{\t\n"
-          "add.f32 %0, %1, %0;\n\t"
-          "add.f64 %4, %5, %4;\n\t"
-          "add.u32 %2, %3, %2;\n\t"
-          "add.u32 %2, %3, %2;\n\t"
-          "fma.rn.f32 %1, %1, %1 , %0;\n\t"
-          "fma.rn.f64 %5, %5, %5 , %4;\n\t"
-          "mad.lo.u32 %3, %3, %3 , %2;\n\t"
-          "}" : "+f"(Value1),"+f"(s1),"+r"(Value2),"+r"(s3),"+d"(Value3),"+d"(s2)
-      );
+      asm volatile(
+            "v_add_f32 %0, %1, %0\n\t"
+            "v_add_f64 %4, %5, %4\n\t"
+            "v_add_u32 %2, %3, %2\n\t"
+            "v_add_u32 %2, %3, %2\n\t"
+            "v_fma_f32 %1, %1, %1, %0\n\t"
+            "v_fma_f64 %5, %5, %5, %4\n\t"
+            "v_mul_lo_u32 %3, %3, %3\n\t"
+            "v_add_u32 %3, %3, %2\n\t"
+            : "+v"(Value1), "+v"(s1), "+v"(Value2), "+v"(s3), "+v"(Value3), "+v"(s2)
+        );
       // result=s1+s2;
       // Value2=s1-s2;
       // result+=Value1;
@@ -83,7 +85,8 @@ __global__ void power_microbench(float *data1, double *data2, uint32_t *data3, u
   }
 
   // synchronize all threads
-  asm volatile("bar.sync 0;");
+  //asm volatile("bar.sync 0;");
+  __syncthreads();
 
   // write data back to memory
   res[gid] = (float)Value1 + (float)Value2 + (float)Value3;

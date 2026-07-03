@@ -47,27 +47,27 @@ template <class T>
 __global__ void power_microbench(T *data1, T *data2, T *res, int div, uint64_t iterations) {
 
   int gid = blockIdx.x*blockDim.x + threadIdx.x;
-  register T s1 = data1[gid];
-  register T s2 = data2[gid];
-  register T result = 0;
-  register T Value1=0;
-  register T Value2=0;
+  T s1 = data1[gid];
+  T s2 = data2[gid];
+  T result = 0;
+  T Value1=0;
+  T Value2=0;
 
   // synchronize all threads
-  asm volatile ("bar.sync 0;");
+  //asm volatile ("bar.sync 0;");
+  __syncthreads();
 
   if((gid%32)<div){
   //ROI
     #pragma unroll 100
     for (uint64_t j=0 ; j<iterations ; ++j) {
-      asm volatile ("{\t\n"
-          "add.u32 %0, %2, %0;\n\t"
-          "add.u32 %0, %1, %0;\n\t"
-          // "add.u32 %2, %2, %0;\n\t"
-          // "mul.lo.u32 %1, %0, %2;\n\t"
-          "mad.lo.u32 %2, %2, %2 , %0;\n\t"
-          "}" : "+r"(result),"+r"(s1),"+r"(s2)
-      );
+        asm volatile(
+            "v_add_u32     %0, %2, %0\n\t"
+            "v_add_u32     %0, %1, %0\n\t"
+            "v_mul_lo_u32  %2, %2, %2\n\t"
+            "v_add_u32     %2, %2, %0\n\t"
+            : "+v"(result), "+v"(s1), "+v"(s2)
+        );
       // result=s1+s2;
       // Value2=s1-s2;
       // result+=Value1;
@@ -78,7 +78,8 @@ __global__ void power_microbench(T *data1, T *data2, T *res, int div, uint64_t i
   }
 
   // synchronize all threads
-  asm volatile("bar.sync 0;");
+  //asm volatile("bar.sync 0;");
+  __syncthreads();
 
   // write data back to memory
   res[gid] = result;

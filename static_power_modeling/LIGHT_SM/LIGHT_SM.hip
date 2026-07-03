@@ -98,7 +98,11 @@ __global__ void PowerKernal2(const float* A, const float* B, float* C, int N, un
     if((i%32)<div){
       #pragma unroll 100
       for(unsigned i=0; i<iterations; ++i) {	
-  		  asm volatile ("nanosleep.u32 1000;");
+          // NOTE: NOT A PROPER PORT
+          // no nanosleep equivalent found for AMD
+          // assume each cycle takes 64ns, this is a placeholder
+          asm volatile ("s_sleep 33;");
+  		  //asm volatile ("nanosleep.u32 1000;");
   	  }
     }
     __syncthreads();

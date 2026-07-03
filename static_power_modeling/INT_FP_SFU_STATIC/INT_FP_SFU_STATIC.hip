@@ -47,36 +47,35 @@ inline void gpuAssert(hipError_t code, const char *file, int line, bool abort=tr
 __global__ void power_microbench(float *data1, float *data2, uint32_t *data3, uint32_t *data4, float *res, int div, unsigned iterations) {
 
   int gid = blockIdx.x*blockDim.x + threadIdx.x;
-  register float s1 = data1[gid];
-  register float s2 = data2[gid];
-  register uint32_t s3 = data3[gid];
-  register uint32_t s4 = data4[gid];
-  register float result = 0;
-  register float Value1=0;
-  register uint32_t Value2=0;
-  register float Value3=0;
+  float s1 = data1[gid];
+  float s2 = data2[gid];
+  uint32_t s3 = data3[gid];
+  uint32_t s4 = data4[gid];
+  float result = 0;
+  float Value1=0;
+  uint32_t Value2=0;
+  float Value3=0;
   // synchronize all threads
-  asm volatile ("bar.sync 0;");
+  //asm volatile ("bar.sync 0;");
+  __syncthreads();
 
   if((gid%32)<div){
   //ROI
     #pragma unroll 100
     for (unsigned j=0 ; j<iterations ; ++j) {
-      asm volatile ("{\t\n"
-          "add.f32 %0, %1, %0;\n\t"
-          "add.u32 %2, %3, %2;\n\t"
-          "add.u32 %2, %3, %2;\n\t"
-          // "add.u32 %2, %2, %0;\n\t"
-          // "mul.lo.u32 %1, %0, %2;\n\t"
-          "sin.approx.f32 %4, %5;\n\t"
-          "lg2.approx.f32 %5, %4;\n\t"
-          "sqrt.rn.f32 %5, %5;\n\t"
-          "ex2.approx.f32 %5, %5;\n\t"
-
-          "fma.rn.f32 %1, %1, %1 , %0;\n\t"
-          "mad.lo.u32 %3, %3, %3 , %2;\n\t"
-          "}" : "+f"(Value1),"+f"(s1),"+r"(s3),"+r"(Value2),"+f"(Value3),"+f"(s2)
-      );
+      asm volatile(
+            "v_add_f32 %0, %1, %0\n\t"
+            "v_add_u32 %2, %3, %2\n\t"
+            "v_add_u32 %2, %3, %2\n\t"
+            "v_sin_f32 %4, %5\n\t" // NV expects rad, AMD expects revolutions
+            "v_log_f32 %5, %4\n\t"
+            "v_sqrt_f32 %5, %5\n\t" // NV has rounded sqrt, AMD gives approximate (not correctly rounded
+            "v_exp_f32 %5, %5\n\t"
+            "v_fma_f32 %1, %1, %1, %0\n\t"
+            "v_mul_lo_u32 %3, %3, %3\n\t"
+            "v_add_u32 %3, %3, %2\n\t"
+            : "+v"(Value1), "+v"(s1), "+v"(s3), "+v"(Value2), "+v"(Value3), "+v"(s2)
+        );
       // result=s1+s2;
       // Value2=s1-s2;
       // result+=Value1;
@@ -87,7 +86,8 @@ __global__ void power_microbench(float *data1, float *data2, uint32_t *data3, ui
   }
 
   // synchronize all threads
-  asm volatile("bar.sync 0;");
+  //asm volatile("bar.sync 0;");
+  __syncthreads();
 
   // write data back to memory
   res[gid] = Value1 + (float)Value2 + Value3;
