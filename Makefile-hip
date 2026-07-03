@@ -4,10 +4,11 @@ HIPCC = hipcc
 ARCH = gfx942
 
 # Baseline flags translated from Accelwattch-ubench suite for MI300X
-HIPCC_FLAGS = -O3 -std=c++14 --offload-arch=$(ARCH) #--gcc-install-dir=/usr/bin/../lib/gcc/x86_64-linux-gnu/13
+STD = -std=c++14
+HIPCC_FLAGS = -O3 --offload-arch=$(ARCH) #--gcc-install-dir=/usr/bin/../lib/gcc/x86_64-linux-gnu/13
 
 # Source directories containing the benchmarks
-DIRS = branching_benchmarks functional_benchmarks
+DIRS = static_power_modeling
 
 # Define the output directory (defaults to "bin" if not specified)
 BIN_DIR ?= bin
@@ -24,6 +25,9 @@ vpath %.hip $(sort $(dir $(HIP_SRCS)))
 # 2. $(patsubst ...) prefixes it with the bin directory and strips .hip (-> bin/bench)
 EXECS = $(patsubst %.hip, $(BIN_DIR)/%, $(notdir $(HIP_SRCS)))
 
+TENSOR_EXECS = $(foreach e,$(EXECS),$(if $(findstring TENSOR,$(e)),$(e))) # tensor std fix
+$(TENSOR_EXECS): STD = -std=c++17
+
 # Default target builds all executables
 all: $(EXECS)
 
@@ -35,7 +39,7 @@ $(BIN_DIR):
 # The '| $(BIN_DIR)' is an order-only prerequisite so it doesn't rebuild if the folder timestamp changes
 $(BIN_DIR)/%: %.hip | $(BIN_DIR)
 	@echo "Compiling $< for $(ARCH)..."
-	$(HIPCC) $(HIPCC_FLAGS) $< -o $@
+	$(HIPCC) $(HIPCC_FLAGS) $(STD) $< -o $@
 
 # Clean up the bin directory
 clean:

@@ -2,7 +2,7 @@
 # its a temporary hipify-clang version that only works with shell.nix generating the envvars
 
 # Define the base directories from the accelwattch-ubench collection
-BASE_DIRS=("static_power_modeling")
+BASE_DIRS=("memories_benchmarks")
 
 echo "Starting CUDA to HIP conversion and scaling for MI300X..."
 for dir in "${BASE_DIRS[@]}"; do
