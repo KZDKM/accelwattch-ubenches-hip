@@ -20,8 +20,8 @@
 
 #define THREADS_PER_BLOCK 1024
 #define DATA_TYPE float
-#include <mma.h>
-using namespace nvcuda;
+#include <rocwmma/rocwmma.hpp>
+using namespace rocwmma; // hipify-clang failed to handle this
 
 // Must be multiples of 16 for wmma code to work
 #define MATRIX_M 1024
@@ -69,48 +69,56 @@ void curandErrCheck_(hiprandStatus_t stat, const char *file, int line) {
 
 
 
-__global__ void power_microbench(float *data1, float *data2, uint32_t *data3, uint32_t *data4, float *res, int div, unsigned iterations, half *a, half *b, float *c, int M, int N, int K) {
+__global__ void power_microbench(float *data1, float *data2, uint32_t *data3, uint32_t *data4, float *res, int div, unsigned iterations, rocwmma::float16_t *a, rocwmma::float16_t *b, float *c, int M, int N, int K) {
 
   int gid = blockIdx.x*blockDim.x + threadIdx.x;
-  register float s1 = data1[gid];
-  register float s2 = data2[gid];
-  register uint32_t s3 = data3[gid];
-  register uint32_t s4 = data4[gid];
-  register float result = 0;
-  register float Value1=0;
-  register uint32_t Value2=0;
+  float s1 = data1[gid];
+  float s2 = data2[gid];
+  uint32_t s3 = data3[gid];
+  uint32_t s4 = data4[gid];
+  float result = 0;
+  float Value1=0;
+  uint32_t Value2=0;
    // Leading dimensions. Packed with no transpositions.
   int lda = M;
   int ldb = K;
   int ldc = M;
   // Declare the fragments
-  wmma::fragment<wmma::matrix_a, WMMA_M, WMMA_N, WMMA_K, half, wmma::col_major> a_frag;
-  wmma::fragment<wmma::matrix_b, WMMA_M, WMMA_N, WMMA_K, half, wmma::col_major> b_frag;
-  wmma::fragment<wmma::accumulator, WMMA_M, WMMA_N, WMMA_K, float> c_frag;
-  wmma::load_matrix_sync(a_frag, a , lda);
-  wmma::load_matrix_sync(b_frag, b , ldb);
-  wmma::load_matrix_sync(c_frag, c , ldc, wmma::mem_col_major);
+  //wmma::fragment<wmma::matrix_a, WMMA_M, WMMA_N, WMMA_K, half, wmma::col_major> a_frag;
+  //wmma::fragment<wmma::matrix_b, WMMA_M, WMMA_N, WMMA_K, half, wmma::col_major> b_frag;
+  //wmma::fragment<wmma::accumulator, WMMA_M, WMMA_N, WMMA_K, float> c_frag;
+  //wmma::load_matrix_sync(a_frag, a , lda);
+  //wmma::load_matrix_sync(b_frag, b , ldb);
+  //wmma::load_matrix_sync(c_frag, c , ldc, wmma::mem_col_major);
+  rocwmma::fragment<rocwmma::matrix_a, WMMA_M, WMMA_N, WMMA_K, rocwmma::float16_t, rocwmma::col_major> a_frag;
+  rocwmma::fragment<rocwmma::matrix_b, WMMA_M, WMMA_N, WMMA_K, rocwmma::float16_t, rocwmma::col_major> b_frag;
+  rocwmma::fragment<rocwmma::accumulator, WMMA_M, WMMA_N, WMMA_K, rocwmma::float32_t> c_frag;
+  rocwmma::load_matrix_sync(a_frag, a, lda);
+  rocwmma::load_matrix_sync(b_frag, b, ldb);
+  rocwmma::load_matrix_sync(c_frag, c, ldc, rocwmma::mem_col_major);
 
   // synchronize all threads
-  asm volatile ("bar.sync 0;");
+  //asm volatile ("bar.sync 0;");
+  __syncthreads();
 
   
   //ROI
   #pragma unroll 100
   for (unsigned j=0 ; j<iterations ; ++j) {
     if((gid%32)<div){
+        // same block as before
       asm volatile ("{\t\n"
-          "add.f32 %0, %1, %0;\n\t"
-          "add.u32 %2, %3, %2;\n\t"
-          "add.u32 %2, %3, %2;\n\t"
-          // "add.u32 %2, %2, %0;\n\t"
-          // "mul.lo.u32 %1, %0, %2;\n\t"
-          "fma.rn.f32 %1, %1, %1 , %0;\n\t"
-          "mad.lo.u32 %3, %3, %3 , %2;\n\t"
-          "}" : "+f"(Value1),"+f"(s1),"+r"(s3),"+r"(Value2)
+          "v_add_f32 %0, %1, %0;\n\t"
+          "v_add_f32 %2, %3, %2;\n\t"
+          "v_add_u32 %2, %3, %2;\n\t"
+          "v_fma_f32 %1, %1, %1, %0;\n\t"
+          "v_mul_lo_u32 %3, %3, %3;\n\t" // mad.lo.u32 splits into two parts here
+          "v_add_u32 %3, %3, %2;\n\t"
+          "}" : "+v"(Value1),"+v"(s1),"+v"(s3),"+v"(Value2)
       );
     }
-    wmma::mma_sync(c_frag, a_frag, b_frag, c_frag);
+    //wmma::mma_sync(c_frag, a_frag, b_frag, c_frag);
+    rocwmma::mma_sync(c_frag, a_frag, b_frag, c_frag);
     // result=s1+s2;
     // Value2=s1-s2;
     // result+=Value1;
@@ -121,14 +129,16 @@ __global__ void power_microbench(float *data1, float *data2, uint32_t *data3, ui
   
 
   // synchronize all threads
-  asm volatile("bar.sync 0;");
-  wmma::store_matrix_sync(c, c_frag, ldc, wmma::mem_col_major);
+  //asm volatile("bar.sync 0;");
+  __syncthreads();
+  //wmma::store_matrix_sync(c, c_frag, ldc, wmma::mem_col_major);
+  rocwmma::store_matrix_sync(c, c_frag, ldc, rocwmma::mem_col_major);
   // write data back to memory
   res[gid] = Value1 + (float)Value2;
 }
 
 
-__global__ void convertFp32ToFp16 (half *out, float *in, int n) {
+__global__ void convertFp32ToFp16 (rocwmma::float16_t *out, float *in, int n) {
    int idx = blockDim.x * blockIdx.x + threadIdx.x;
    if (idx < n) {
       out[idx] = in[idx];
@@ -204,8 +214,8 @@ int main(int argc, char** argv){
 
   float *a_fp32;
   float *b_fp32;
-  half *a_fp16;
-  half *b_fp16;
+  rocwmma::float16_t *a_fp16;
+  rocwmma::float16_t *b_fp16;
 
   float *c;
   float *c_wmma;
@@ -216,8 +226,8 @@ int main(int argc, char** argv){
   
   cudaErrCheck(hipMalloc((void**)&a_fp32, MATRIX_M * MATRIX_K * sizeof(float)));
   cudaErrCheck(hipMalloc((void**)&b_fp32, MATRIX_K * MATRIX_N * sizeof(float)));
-  cudaErrCheck(hipMalloc((void**)&a_fp16, MATRIX_M * MATRIX_K * sizeof(half)));
-  cudaErrCheck(hipMalloc((void**)&b_fp16, MATRIX_K * MATRIX_N * sizeof(half)));
+  cudaErrCheck(hipMalloc((void**)&a_fp16, MATRIX_M * MATRIX_K * sizeof(rocwmma::float16_t)));
+  cudaErrCheck(hipMalloc((void**)&b_fp16, MATRIX_K * MATRIX_N * sizeof(rocwmma::float16_t)));
 
   cudaErrCheck(hipMalloc((void**)&c, MATRIX_M * MATRIX_N * sizeof(float)));
   cudaErrCheck(hipMalloc((void**)&c_wmma, MATRIX_M * MATRIX_N * sizeof(float)));
