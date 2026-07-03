@@ -35,7 +35,7 @@
 #include <cuda_runtime.h>
 
 #define THREADS_PER_BLOCK 256
-#define NUM_OF_BLOCKS 640
+#define NUM_OF_BLOCKS (304 * 1024)
 #define LINE_SIZE 	128
 #define SETS		4
 #define ASSOC		256

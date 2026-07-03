@@ -39,7 +39,7 @@
 
 
 #define THREADS_PER_BLOCK 256
-#define NUM_OF_BLOCKS 640
+#define NUM_OF_BLOCKS (304 * 1024)
 #define max_tid THREADS_PER_BLOCK*NUM_OF_BLOCKS    
 #define LINE_SIZE 4
 // Variables

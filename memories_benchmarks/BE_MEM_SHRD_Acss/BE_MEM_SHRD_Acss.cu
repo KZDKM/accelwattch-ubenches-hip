@@ -43,7 +43,7 @@
 #include <cuda_runtime.h>
 
 #define THREADS_PER_BLOCK 1024
-#define NUM_OF_BLOCKS 160
+#define NUM_OF_BLOCKS (304 * 1024)
 
 // Variables
 unsigned* h_A;

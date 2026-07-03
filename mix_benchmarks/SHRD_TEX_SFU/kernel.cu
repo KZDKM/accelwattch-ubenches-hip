@@ -35,7 +35,7 @@
 #include <cuda_runtime.h>
 
 #define THREADS_PER_BLOCK 256
-#define NUM_OF_BLOCKS 640
+#define NUM_OF_BLOCKS (304 * 1024)
 
 // Variables
 
@@ -89,8 +89,8 @@ __global__ void PowerKernal1(float *A, float *B, int N, int iterations)
 	int tid = blockIdx.x*blockIdx.x + threadIdx.x;
     float Value1=0;
     float Value2=0;
-   __device__ __shared__ float I1[THREADS_PER_BLOCK];
-   __device__  __shared__ float I2[THREADS_PER_BLOCK];
+   __shared__ float I1[THREADS_PER_BLOCK];
+   __shared__ float I2[THREADS_PER_BLOCK];
 
    I1[tid%THREADS_PER_BLOCK] = A[tid];
    I2[tid%THREADS_PER_BLOCK] = B[tid];

@@ -43,7 +43,7 @@
 #include <cuda_runtime.h>
 
 #define THREADS_PER_BLOCK 2048
-#define NUM_OF_BLOCKS 80
+#define NUM_OF_BLOCKS (304 * 1024)
 #define NUM_SM 80
 #define LINE_SIZE 	128
 #define SETS		4

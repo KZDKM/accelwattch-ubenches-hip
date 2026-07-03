@@ -105,14 +105,14 @@ texture<float,1,cudaReadModeElementType> texmem8;
 __global__ void power_microbench(float *data1, float *data2, uint32_t *data3, uint32_t *data4, float *res, int div, unsigned iterations, float* out, unsigned size) {
 
   int gid = blockIdx.x*blockDim.x + threadIdx.x;
-  register float s1 = data1[gid];
-  register float s2 = data2[gid];
-  register uint32_t s3 = data3[gid];
-  register uint32_t s4 = data4[gid];
-  register float result = 0;
-  register float Value1=0;
-  register uint32_t Value2=0;
-  register float Value3=0;
+  float s1 = data1[gid];
+  float s2 = data2[gid];
+  uint32_t s3 = data3[gid];
+  uint32_t s4 = data4[gid];
+  float result = 0;
+  float Value1=0;
+  uint32_t Value2=0;
+  float Value3=0;
   // synchronize all threads
   asm volatile ("bar.sync 0;");
 

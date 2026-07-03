@@ -39,7 +39,7 @@
 
 
 #define THREADS_PER_BLOCK 256
-#define NUM_OF_BLOCKS 640
+#define NUM_OF_BLOCKS (304 * 1024)
 
 __constant__ unsigned ConstArray1[THREADS_PER_BLOCK];
 __constant__ unsigned ConstArray2[THREADS_PER_BLOCK];
