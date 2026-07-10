@@ -8,7 +8,7 @@ STD = -std=c++14
 HIPCC_FLAGS = -O3 --offload-arch=$(ARCH) #--gcc-install-dir=/usr/bin/../lib/gcc/x86_64-linux-gnu/13
 
 # Source directories containing the benchmarks
-DIRS = static_power_modeling
+DIRS = memories_benchmarks
 
 # Define the output directory (defaults to "bin" if not specified)
 BIN_DIR ?= bin

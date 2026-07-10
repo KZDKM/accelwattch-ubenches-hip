@@ -1,0 +1,191 @@
+make: Entering directory '/home1/kzdkm/rocprofwrap/rocprofwrap_lt'
+make: Nothing to be done for 'all'.
+make: Leaving directory '/home1/kzdkm/rocprofwrap/rocprofwrap_lt'
+make: Entering directory '/home1/kzdkm/accelwattch-ubenches-hip'
+Compiling static_power_modeling/DP_MUL/DP_MUL.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++14 static_power_modeling/DP_MUL/DP_MUL.hip -o bin/DP_MUL
+Compiling static_power_modeling/DP_MAD/DP_MAD.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++14 static_power_modeling/DP_MAD/DP_MAD.hip -o bin/DP_MAD
+Compiling static_power_modeling/FP_ADD/BE_SP_FP_ADD.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++14 static_power_modeling/FP_ADD/BE_SP_FP_ADD.hip -o bin/BE_SP_FP_ADD
+Compiling static_power_modeling/DP_ADD/DP_ADD.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++14 static_power_modeling/DP_ADD/DP_ADD.hip -o bin/DP_ADD
+static_power_modeling/DP_ADD/DP_ADD.hip:135:55: warning: format specifies type 'unsigned long' but the argument has type 'unsigned int' [-Wformat]
+  135 |  printf("Power Microbenchmarks with iterations %lu\n",iterations);
+      |                                                ~~~    ^~~~~~~~~~
+      |                                                %u
+1 warning generated when compiling for gfx942.
+static_power_modeling/DP_ADD/DP_ADD.hip:135:55: warning: format specifies type 'unsigned long' but the argument has type 'unsigned int' [-Wformat]
+  135 |  printf("Power Microbenchmarks with iterations %lu\n",iterations);
+      |                                                ~~~    ^~~~~~~~~~
+      |                                                %u
+1 warning generated when compiling for host.
+Compiling static_power_modeling/INT_FP_STATIC/INT_FP_STATIC.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++14 static_power_modeling/INT_FP_STATIC/INT_FP_STATIC.hip -o bin/INT_FP_STATIC
+static_power_modeling/INT_FP_STATIC/INT_FP_STATIC.hip:50:3: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+   50 |   register float s1 = data1[gid];
+      |   ^~~~~~~~
+static_power_modeling/INT_FP_STATIC/INT_FP_STATIC.hip:51:3: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+   51 |   register float s2 = data2[gid];
+      |   ^~~~~~~~
+static_power_modeling/INT_FP_STATIC/INT_FP_STATIC.hip:52:3: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+   52 |   register uint32_t s3 = data3[gid];
+      |   ^~~~~~~~
+static_power_modeling/INT_FP_STATIC/INT_FP_STATIC.hip:53:3: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+   53 |   register uint32_t s4 = data4[gid];
+      |   ^~~~~~~~
+static_power_modeling/INT_FP_STATIC/INT_FP_STATIC.hip:54:3: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+   54 |   register float result = 0;
+      |   ^~~~~~~~
+static_power_modeling/INT_FP_STATIC/INT_FP_STATIC.hip:55:3: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+   55 |   register float Value1=0;
+      |   ^~~~~~~~
+static_power_modeling/INT_FP_STATIC/INT_FP_STATIC.hip:56:3: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+   56 |   register uint32_t Value2=0;
+      |   ^~~~~~~~
+static_power_modeling/INT_FP_STATIC/INT_FP_STATIC.hip:129:35: warning: implicit conversion from 'int' to 'float' changes value from 2147483647 to 2147483648 [-Wimplicit-const-int-float-conversion]
+  129 |   data1[i] = (DATA_TYPE) rand() / RAND_MAX;
+      |                                 ~ ^~~~~~~~
+/usr/include/stdlib.h:86:18: note: expanded from macro 'RAND_MAX'
+   86 | #define RAND_MAX        2147483647
+      |                         ^~~~~~~~~~
+static_power_modeling/INT_FP_STATIC/INT_FP_STATIC.hip:131:35: warning: implicit conversion from 'int' to 'float' changes value from 2147483647 to 2147483648 [-Wimplicit-const-int-float-conversion]
+  131 |   data2[i] = (DATA_TYPE) rand() / RAND_MAX;
+      |                                 ~ ^~~~~~~~
+/usr/include/stdlib.h:86:18: note: expanded from macro 'RAND_MAX'
+   86 | #define RAND_MAX        2147483647
+      |                         ^~~~~~~~~~
+static_power_modeling/INT_FP_STATIC/INT_FP_STATIC.hip:47:17: warning: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering [-Wpass-failed=transform-warning]
+   47 | __global__ void power_microbench(float *data1, float *data2, uint32_t *data3, uint32_t *data4, float *res, int div, unsigned iterations) {
+      |                 ^
+10 warnings generated when compiling for gfx942.
+static_power_modeling/INT_FP_STATIC/INT_FP_STATIC.hip:50:3: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+   50 |   register float s1 = data1[gid];
+      |   ^~~~~~~~
+static_power_modeling/INT_FP_STATIC/INT_FP_STATIC.hip:51:3: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+   51 |   register float s2 = data2[gid];
+      |   ^~~~~~~~
+static_power_modeling/INT_FP_STATIC/INT_FP_STATIC.hip:52:3: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+   52 |   register uint32_t s3 = data3[gid];
+      |   ^~~~~~~~
+static_power_modeling/INT_FP_STATIC/INT_FP_STATIC.hip:53:3: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+   53 |   register uint32_t s4 = data4[gid];
+      |   ^~~~~~~~
+static_power_modeling/INT_FP_STATIC/INT_FP_STATIC.hip:54:3: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+   54 |   register float result = 0;
+      |   ^~~~~~~~
+static_power_modeling/INT_FP_STATIC/INT_FP_STATIC.hip:55:3: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+   55 |   register float Value1=0;
+      |   ^~~~~~~~
+static_power_modeling/INT_FP_STATIC/INT_FP_STATIC.hip:56:3: warning: 'register' storage class specifier is deprecated and incompatible with C++17 [-Wdeprecated-register]
+   56 |   register uint32_t Value2=0;
+      |   ^~~~~~~~
+static_power_modeling/INT_FP_STATIC/INT_FP_STATIC.hip:129:35: warning: implicit conversion from 'int' to 'float' changes value from 2147483647 to 2147483648 [-Wimplicit-const-int-float-conversion]
+  129 |   data1[i] = (DATA_TYPE) rand() / RAND_MAX;
+      |                                 ~ ^~~~~~~~
+/usr/include/stdlib.h:86:18: note: expanded from macro 'RAND_MAX'
+   86 | #define RAND_MAX        2147483647
+      |                         ^~~~~~~~~~
+static_power_modeling/INT_FP_STATIC/INT_FP_STATIC.hip:131:35: warning: implicit conversion from 'int' to 'float' changes value from 2147483647 to 2147483648 [-Wimplicit-const-int-float-conversion]
+  131 |   data2[i] = (DATA_TYPE) rand() / RAND_MAX;
+      |                                 ~ ^~~~~~~~
+/usr/include/stdlib.h:86:18: note: expanded from macro 'RAND_MAX'
+   86 | #define RAND_MAX        2147483647
+      |                         ^~~~~~~~~~
+9 warnings generated when compiling for host.
+Compiling static_power_modeling/ACT_CORE2/INT_MUL_l1.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++14 static_power_modeling/ACT_CORE2/INT_MUL_l1.hip -o bin/INT_MUL_l1
+static_power_modeling/ACT_CORE2/INT_MUL_l1.hip:133:58: warning: format specifies type 'unsigned long long' but the argument has type 'uint64_t' (aka 'unsigned long') [-Wformat]
+  133 |  printf("Power Microbenchmarks with %llu iterations \n", iterations);
+      |                                     ~~~~                 ^~~~~~~~~~
+      |                                     %lu
+1 warning generated when compiling for gfx942.
+static_power_modeling/ACT_CORE2/INT_MUL_l1.hip:133:58: warning: format specifies type 'unsigned long long' but the argument has type 'uint64_t' (aka 'unsigned long') [-Wformat]
+  133 |  printf("Power Microbenchmarks with %llu iterations \n", iterations);
+      |                                     ~~~~                 ^~~~~~~~~~
+      |                                     %lu
+1 warning generated when compiling for host.
+Compiling static_power_modeling/INT_FP_SFU_STATIC/INT_FP_SFU_STATIC.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++14 static_power_modeling/INT_FP_SFU_STATIC/INT_FP_SFU_STATIC.hip -o bin/INT_FP_SFU_STATIC
+static_power_modeling/INT_FP_SFU_STATIC/INT_FP_SFU_STATIC.hip:110:55: warning: format specifies type 'unsigned long' but the argument has type 'unsigned int' [-Wformat]
+  110 |  printf("Power Microbenchmarks with iterations %lu\n",iterations);
+      |                                                ~~~    ^~~~~~~~~~
+      |                                                %u
+static_power_modeling/INT_FP_SFU_STATIC/INT_FP_SFU_STATIC.hip:133:35: warning: implicit conversion from 'int' to 'float' changes value from 2147483647 to 2147483648 [-Wimplicit-const-int-float-conversion]
+  133 |   data1[i] = (DATA_TYPE) rand() / RAND_MAX;
+      |                                 ~ ^~~~~~~~
+/usr/include/stdlib.h:86:18: note: expanded from macro 'RAND_MAX'
+   86 | #define RAND_MAX        2147483647
+      |                         ^~~~~~~~~~
+static_power_modeling/INT_FP_SFU_STATIC/INT_FP_SFU_STATIC.hip:135:35: warning: implicit conversion from 'int' to 'float' changes value from 2147483647 to 2147483648 [-Wimplicit-const-int-float-conversion]
+  135 |   data2[i] = (DATA_TYPE) rand() / RAND_MAX;
+      |                                 ~ ^~~~~~~~
+/usr/include/stdlib.h:86:18: note: expanded from macro 'RAND_MAX'
+   86 | #define RAND_MAX        2147483647
+      |                         ^~~~~~~~~~
+static_power_modeling/INT_FP_SFU_STATIC/INT_FP_SFU_STATIC.hip:47:17: warning: loop not unrolled: the optimizer was unable to perform the requested transformation; the transformation might be disabled or specified as part of an unsupported transformation ordering [-Wpass-failed=transform-warning]
+   47 | __global__ void power_microbench(float *data1, float *data2, uint32_t *data3, uint32_t *data4, float *res, int div, unsigned iterations) {
+      |                 ^
+4 warnings generated when compiling for gfx942.
+static_power_modeling/INT_FP_SFU_STATIC/INT_FP_SFU_STATIC.hip:110:55: warning: format specifies type 'unsigned long' but the argument has type 'unsigned int' [-Wformat]
+  110 |  printf("Power Microbenchmarks with iterations %lu\n",iterations);
+      |                                                ~~~    ^~~~~~~~~~
+      |                                                %u
+static_power_modeling/INT_FP_SFU_STATIC/INT_FP_SFU_STATIC.hip:133:35: warning: implicit conversion from 'int' to 'float' changes value from 2147483647 to 2147483648 [-Wimplicit-const-int-float-conversion]
+  133 |   data1[i] = (DATA_TYPE) rand() / RAND_MAX;
+      |                                 ~ ^~~~~~~~
+/usr/include/stdlib.h:86:18: note: expanded from macro 'RAND_MAX'
+   86 | #define RAND_MAX        2147483647
+      |                         ^~~~~~~~~~
+static_power_modeling/INT_FP_SFU_STATIC/INT_FP_SFU_STATIC.hip:135:35: warning: implicit conversion from 'int' to 'float' changes value from 2147483647 to 2147483648 [-Wimplicit-const-int-float-conversion]
+  135 |   data2[i] = (DATA_TYPE) rand() / RAND_MAX;
+      |                                 ~ ^~~~~~~~
+/usr/include/stdlib.h:86:18: note: expanded from macro 'RAND_MAX'
+   86 | #define RAND_MAX        2147483647
+      |                         ^~~~~~~~~~
+3 warnings generated when compiling for host.
+Compiling static_power_modeling/ACT_CORE1/INT_ADD_l1.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++14 static_power_modeling/ACT_CORE1/INT_ADD_l1.hip -o bin/INT_ADD_l1
+static_power_modeling/ACT_CORE1/INT_ADD_l1.hip:152:56: warning: format specifies type 'unsigned long long' but the argument has type 'unsigned int' [-Wformat]
+  152 |  printf("Power Microbenchmarks with iterations %llu\n",iterations);
+      |                                                ~~~~    ^~~~~~~~~~
+      |                                                %u
+1 warning generated when compiling for gfx942.
+static_power_modeling/ACT_CORE1/INT_ADD_l1.hip:152:56: warning: format specifies type 'unsigned long long' but the argument has type 'unsigned int' [-Wformat]
+  152 |  printf("Power Microbenchmarks with iterations %llu\n",iterations);
+      |                                                ~~~~    ^~~~~~~~~~
+      |                                                %u
+1 warning generated when compiling for host.
+Compiling static_power_modeling/INT_FP_TENSOR_STATIC/INT_FP_TENSOR.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 static_power_modeling/INT_FP_TENSOR_STATIC/INT_FP_TENSOR.hip -o bin/INT_FP_TENSOR
+static_power_modeling/INT_FP_TENSOR_STATIC/INT_FP_TENSOR.hip:19:10: fatal error: 'hipblas.h' file not found
+   19 | #include <hipblas.h>
+      |          ^~~~~~~~~~~
+1 error generated when compiling for gfx942.
+failed to execute:/opt/rocm-7.2.0/lib/llvm/bin/clang++  --offload-arch=gfx942 --driver-mode=g++ --hip-link  -O3 -std=c++17 -x hip static_power_modeling/INT_FP_TENSOR_STATIC/INT_FP_TENSOR.hip -o "bin/INT_FP_TENSOR"
+make: *** [Makefile-hip:42: bin/INT_FP_TENSOR] Error 1
+make: Leaving directory '/home1/kzdkm/accelwattch-ubenches-hip'
+usage: /home1/kzdkm/accelwattch-ubenches-hip/bin/BE_SP_FP_ADD #iterations #cores
+--- Profiling failed with exit code 1 ---
+Output to /home1/kzdkm/accelwattch_ubench_results/BE_SP_FP_ADD_profiled.csv
+usage: /home1/kzdkm/accelwattch-ubenches-hip/bin/DP_ADD #iterations #cores
+--- Profiling failed with exit code 1 ---
+Output to /home1/kzdkm/accelwattch_ubench_results/DP_ADD_profiled.csv
+usage: /home1/kzdkm/accelwattch-ubenches-hip/bin/DP_MAD #iterations #cores
+--- Profiling failed with exit code 1 ---
+Output to /home1/kzdkm/accelwattch_ubench_results/DP_MAD_profiled.csv
+usage: /home1/kzdkm/accelwattch-ubenches-hip/bin/DP_MUL #iterations #cores
+--- Profiling failed with exit code 1 ---
+Output to /home1/kzdkm/accelwattch_ubench_results/DP_MUL_profiled.csv
+usage: /home1/kzdkm/accelwattch-ubenches-hip/bin/INT_ADD_l1 #iterations #cores
+--- Profiling failed with exit code 1 ---
+Output to /home1/kzdkm/accelwattch_ubench_results/INT_ADD_l1_profiled.csv
+usage: /home1/kzdkm/accelwattch-ubenches-hip/bin/INT_FP_SFU_STATIC #iterations #cores #ActiveThreadsperWarp
+--- Profiling failed with exit code 1 ---
+Output to /home1/kzdkm/accelwattch_ubench_results/INT_FP_SFU_STATIC_profiled.csv
+usage: /home1/kzdkm/accelwattch-ubenches-hip/bin/INT_FP_STATIC #iterations #cores #ActiveThreadsperWarp
+--- Profiling failed with exit code 1 ---
+Output to /home1/kzdkm/accelwattch_ubench_results/INT_FP_STATIC_profiled.csv
+usage: /home1/kzdkm/accelwattch-ubenches-hip/bin/INT_MUL_l1 #iterations #cores
+--- Profiling failed with exit code 1 ---
+Output to /home1/kzdkm/accelwattch_ubench_results/INT_MUL_l1_profiled.csv

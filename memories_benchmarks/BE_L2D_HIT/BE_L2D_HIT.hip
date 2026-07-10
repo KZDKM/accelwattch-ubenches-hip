@@ -78,20 +78,21 @@ __global__ void l2_stress(uint64_t *posArray, uint64_t *dsink, unsigned iteratio
   // initialize the thread pointer with the start address of the array
   // use cg modifier to cache the in L1
   asm volatile ("{\t\n"
-    "ld.global.cg.u64 %0, [%1];\n\t"
-    "}" : "=l"(ptr1) : "l"(ptr) : "memory"
+    "global_load_dwordx2 %0, %1, off;\n\t"
+    "}" : "=v"(ptr1) : "v"(ptr) : "memory"
   );
 
   // synchronize all threads
-  asm volatile ("bar.sync 0;");
+  //asm volatile ("bar.sync 0;");
+  __syncthreads();
 
   // pointer-chasing iterations times
   // use cg modifier to cache the load in L1
   #pragma unroll 100
   for(unsigned i=0; i<iterations; ++i) { 
     asm volatile ("{\t\n"
-      "ld.global.cg.u64 %0, [%1];\n\t"
-      "}" : "=l"(ptr0) : "l"((uint64_t*)ptr1) : "memory"
+      "global_load_dwordx2 %0, %1, off;\n\t"
+      "}" : "=v"(ptr0) : "v"((uint64_t*)ptr1) : "memory"
     );
     ptr1 = ptr0;    //swap the register for the next load
 

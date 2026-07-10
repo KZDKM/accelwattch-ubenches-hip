@@ -1,0 +1,61 @@
+make: Entering directory '/home1/kzdkm/rocprofwrap/rocprofwrap_lt'
+make: Nothing to be done for 'all'.
+make: Leaving directory '/home1/kzdkm/rocprofwrap/rocprofwrap_lt'
+make: Entering directory '/home1/kzdkm/accelwattch-ubenches-hip'
+Compiling static_power_modeling/DP_ADD/DP_ADD.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++14 static_power_modeling/DP_ADD/DP_ADD.hip -o bin/DP_ADD
+static_power_modeling/DP_ADD/DP_ADD.hip:137:55: warning: format specifies type 'unsigned long' but the argument has type 'unsigned int' [-Wformat]
+  137 |  printf("Power Microbenchmarks with iterations %lu\n",iterations);
+      |                                                ~~~    ^~~~~~~~~~
+      |                                                %u
+1 warning generated when compiling for gfx942.
+static_power_modeling/DP_ADD/DP_ADD.hip:137:55: warning: format specifies type 'unsigned long' but the argument has type 'unsigned int' [-Wformat]
+  137 |  printf("Power Microbenchmarks with iterations %lu\n",iterations);
+      |                                                ~~~    ^~~~~~~~~~
+      |                                                %u
+1 warning generated when compiling for host.
+Compiling static_power_modeling/INT_FP_TENSOR_STATIC/INT_FP_TENSOR.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 static_power_modeling/INT_FP_TENSOR_STATIC/INT_FP_TENSOR.hip -o bin/INT_FP_TENSOR
+static_power_modeling/INT_FP_TENSOR_STATIC/INT_FP_TENSOR.hip:19:10: fatal error: 'hipblas.h' file not found
+   19 | #include <hipblas.h>
+      |          ^~~~~~~~~~~
+1 error generated when compiling for gfx942.
+failed to execute:/opt/rocm-7.2.0/lib/llvm/bin/clang++  --offload-arch=gfx942 --driver-mode=g++ --hip-link  -O3 -std=c++17 -x hip static_power_modeling/INT_FP_TENSOR_STATIC/INT_FP_TENSOR.hip -o "bin/INT_FP_TENSOR"
+make: *** [Makefile-hip:42: bin/INT_FP_TENSOR] Error 1
+make: Leaving directory '/home1/kzdkm/accelwattch-ubenches-hip'
+Power Microbenchmarks with iterations 1000000
+before
+after
+execution time = 0.03 s
+Executing python3 /home1/kzdkm/rocprofwrap/rocprofwrap_lt/wrapper.py --devices 0 --prefix=BE_SP_FP_ADD_profiled.csv -- /home1/kzdkm/accelwattch-ubenches-hip/bin/BE_SP_FP_ADD 1000000 608
+Output to /home1/kzdkm/accelwattch_ubench_results/BE_SP_FP_ADD_profiled.csv
+Power Microbenchmarks with iterations 1000000
+before
+after
+execution time = 0.06 s
+Executing python3 /home1/kzdkm/rocprofwrap/rocprofwrap_lt/wrapper.py --devices 0 --prefix=DP_ADD_profiled.csv -- /home1/kzdkm/accelwattch-ubenches-hip/bin/DP_ADD 1000000 608
+Output to /home1/kzdkm/accelwattch_ubench_results/DP_ADD_profiled.csv
+Power Microbenchmarks with iterations 1000000
+before
+after
+execution time = 0.10 s
+Executing python3 /home1/kzdkm/rocprofwrap/rocprofwrap_lt/wrapper.py --devices 0 --prefix=DP_MAD_profiled.csv -- /home1/kzdkm/accelwattch-ubenches-hip/bin/DP_MAD 1000000 608
+Output to /home1/kzdkm/accelwattch_ubench_results/DP_MAD_profiled.csv
+Power Microbenchmarks with iterations 1000000
+before
+after
+execution time = 0.03 s
+Executing python3 /home1/kzdkm/rocprofwrap/rocprofwrap_lt/wrapper.py --devices 0 --prefix=DP_MUL_profiled.csv -- /home1/kzdkm/accelwattch-ubenches-hip/bin/DP_MUL 1000000 608
+Output to /home1/kzdkm/accelwattch_ubench_results/DP_MUL_profiled.csv
+usage: /home1/kzdkm/accelwattch-ubenches-hip/bin/INT_ADD_l1 #iterations #cores
+--- Profiling failed with exit code 1 ---
+Output to /home1/kzdkm/accelwattch_ubench_results/INT_ADD_l1_profiled.csv
+usage: /home1/kzdkm/accelwattch-ubenches-hip/bin/INT_FP_SFU_STATIC #iterations #cores #ActiveThreadsperWarp
+--- Profiling failed with exit code 1 ---
+Output to /home1/kzdkm/accelwattch_ubench_results/INT_FP_SFU_STATIC_profiled.csv
+usage: /home1/kzdkm/accelwattch-ubenches-hip/bin/INT_FP_STATIC #iterations #cores #ActiveThreadsperWarp
+--- Profiling failed with exit code 1 ---
+Output to /home1/kzdkm/accelwattch_ubench_results/INT_FP_STATIC_profiled.csv
+usage: /home1/kzdkm/accelwattch-ubenches-hip/bin/INT_MUL_l1 #iterations #cores
+--- Profiling failed with exit code 1 ---
+Output to /home1/kzdkm/accelwattch_ubench_results/INT_MUL_l1_profiled.csv

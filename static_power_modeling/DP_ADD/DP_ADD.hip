@@ -111,6 +111,8 @@ __global__ void PowerKernal1(const double* A, const double* B, double* C, unsign
     	Value1+=Value2;
     	Value2=Value3-Value1;
     	Value1=Value2+Value3;
+	I1 = Value1;
+	I2 = Value3;
     }
     __syncthreads();
 

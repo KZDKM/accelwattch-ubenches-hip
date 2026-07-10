@@ -35,7 +35,7 @@
 #include <hip/hip_runtime.h>
 
 //includes project
-#include<repeat.h>
+#include "repeat.h"
 
 #define THREADS_PER_BLOCK 256
 #define NUM_OF_BLOCKS (304 * 1024)
@@ -94,30 +94,23 @@ __global__ void PowerKernal(const unsigned* A,unsigned* C, int iterations)
     //Excessive Logical Unit access
     for(unsigned k=0; k<iterations;k++) {
     // BLOCK-0 (For instruction size of 16 bytes)
-    	__asm volatile (	
-    	"B0: bra.uni B1;\n\t"
-    	repeat767("add.u32   %0, %1, 1;\n\t")
-
-    	"B1: bra.uni B2;\n\t"
-    	repeat767("add.u32   %0, %1, 1;\n\t")
-    			
-    	"B2: bra.uni B3;\n\t"
-    	repeat767("add.u32   %0, %1, 1;\n\t")
-
-    	"B3: bra.uni B4;\n\t"
-    	repeat767("add.u32   %0, %1, 1;\n\t")
-
-    	"B4: bra.uni B5;\n\t"
-    	repeat767("add.u32   %0, %1, 1;\n\t")
-
-    	"B5: bra.uni B6;\n\t"
-    	repeat767("add.u32   %0, %1, 1;\n\t")
-    	
-    	"B6: bra.uni LOOP;\n\t"
-    	repeat767("add.u32   %0, %1, 1;\n\t")
-        
-    	"LOOP:"
-    	: "=r"(I1) : "r"(I1));
+	__asm volatile (
+        "B0: s_branch B1;\n\t"
+        repeat767("v_add_u32   %0, %1, 1;\n\t")
+        "B1: s_branch B2;\n\t"
+        repeat767("v_add_u32   %0, %1, 1;\n\t")
+        "B2: s_branch B3;\n\t"
+        repeat767("v_add_u32   %0, %1, 1;\n\t")
+        "B3: s_branch B4;\n\t"
+        repeat767("v_add_u32   %0, %1, 1;\n\t")
+        "B4: s_branch B5;\n\t"
+        repeat767("v_add_u32   %0, %1, 1;\n\t")
+        "B5: s_branch B6;\n\t"
+        repeat767("v_add_u32   %0, %1, 1;\n\t")
+        "B6: s_branch LOOP;\n\t"
+        repeat767("v_add_u32   %0, %1, 1;\n\t")
+        "LOOP:"
+        : "=v"(I1) : "v"(I1));
     	
     }
     C[i]=I1;
