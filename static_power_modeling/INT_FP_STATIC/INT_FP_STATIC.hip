@@ -47,13 +47,14 @@ inline void gpuAssert(hipError_t code, const char *file, int line, bool abort=tr
 __global__ void power_microbench(float *data1, float *data2, uint32_t *data3, uint32_t *data4, float *res, int div, unsigned iterations) {
 
   int gid = blockIdx.x*blockDim.x + threadIdx.x;
-  register float s1 = data1[gid];
-  register float s2 = data2[gid];
-  register uint32_t s3 = data3[gid];
-  register uint32_t s4 = data4[gid];
-  register float result = 0;
-  register float Value1=0;
-  register uint32_t Value2=0;
+  float s1 = data1[gid];
+  float s2 = data2[gid];
+  uint32_t s3 = data3[gid];
+  uint32_t s4 = data4[gid];
+  float result = 0;
+  float Value1=0;
+  uint32_t Value2=0;
+  uint64_t s3_64 = s3;
 
   // synchronize all threads
   //asm volatile ("bar.sync 0;");
@@ -63,14 +64,16 @@ __global__ void power_microbench(float *data1, float *data2, uint32_t *data3, ui
   //ROI
     #pragma unroll 100
     for (unsigned j=0 ; j<iterations ; ++j) {
-      asm volatile ("{\t\n"
+      uint64_t val2_64 = Value2;
+      uint64_t sdst = 0; // scalar destination
+      asm volatile (
           "v_add_f32 %0, %1, %0;\n\t"
-          "v_add_f32 %2, %3, %2;\n\t"
+          "v_add_u32 %2, %3, %2;\n\t"
           "v_add_u32 %2, %3, %2;\n\t"
           "v_fma_f32 %1, %1, %1, %0;\n\t"
-          "v_mul_lo_u32 %3, %3, %3;\n\t" // mad.lo.u32 splits into two parts here
-          "v_add_u32 %3, %3, %2;\n\t"
-          "}" : "+v"(Value1),"+v"(s1),"+v"(s3),"+v"(Value2)
+          "v_mad_u64_u32 %4, %5, %3, %3, %6\n\t"
+          : "+v"(Value1),"+v"(s1),"+v"(s3),"+v"(Value2), "=v"(val2_64), "=s"(sdst)
+          : "v"(s3_64)
       );
       // result=s1+s2;
       // Value2=s1-s2;

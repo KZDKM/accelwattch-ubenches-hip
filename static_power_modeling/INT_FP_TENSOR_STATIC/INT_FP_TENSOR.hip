@@ -16,7 +16,7 @@
 #include <stdlib.h> 
 #include <hip/hip_runtime.h>
 #include <hiprand/hiprand.h>
-#include <hipblas.h>
+#include <hipblas/hipblas.h>
 
 #define THREADS_PER_BLOCK 1024
 #define DATA_TYPE float
@@ -79,6 +79,7 @@ __global__ void power_microbench(float *data1, float *data2, uint32_t *data3, ui
   float result = 0;
   float Value1=0;
   uint32_t Value2=0;
+  uint64_t s3_64 = s3;
    // Leading dimensions. Packed with no transpositions.
   int lda = M;
   int ldb = K;
@@ -107,14 +108,16 @@ __global__ void power_microbench(float *data1, float *data2, uint32_t *data3, ui
   for (unsigned j=0 ; j<iterations ; ++j) {
     if((gid%32)<div){
         // same block as before
+      uint64_t val2_64 = Value2;
+      uint64_t sdst = 0; // scalar destination
       asm volatile ("{\t\n"
           "v_add_f32 %0, %1, %0;\n\t"
-          "v_add_f32 %2, %3, %2;\n\t"
+          "v_add_u32 %2, %3, %2;\n\t"
           "v_add_u32 %2, %3, %2;\n\t"
           "v_fma_f32 %1, %1, %1, %0;\n\t"
-          "v_mul_lo_u32 %3, %3, %3;\n\t" // mad.lo.u32 splits into two parts here
-          "v_add_u32 %3, %3, %2;\n\t"
-          "}" : "+v"(Value1),"+v"(s1),"+v"(s3),"+v"(Value2)
+          "v_mad_u64_u32 %4, %5, %3, %3, %6\n\t"
+          : "+v"(Value1),"+v"(s1),"+v"(s3),"+v"(Value2), "=v"(val2_64), "=s"(sdst)
+          : "v"(s3_64)
       );
     }
     //wmma::mma_sync(c_frag, a_frag, b_frag, c_frag);

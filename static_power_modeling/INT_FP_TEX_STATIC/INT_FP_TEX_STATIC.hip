@@ -113,22 +113,26 @@ __global__ void power_microbench(float *data1, float *data2, uint32_t *data3, ui
   float Value1=0;
   uint32_t Value2=0;
   float Value3=0;
+  uint64_t s3_64 = s3;
   // synchronize all threads
-  asm volatile ("bar.sync 0;");
+  //asm volatile ("bar.sync 0;");
+  __syncthreads();
 
   if(gid < size){
     if((gid%32)<div){
     //ROI
       #pragma unroll 100
       for (unsigned j=0 ; j<iterations ; ++j) {
+        uint64_t val2_64 = Value2;
+        uint64_t sdst = 0; // scalar destination
         asm volatile ("{\t\n"
           "v_add_f32 %0, %1, %0;\n\t"
-          "v_add_f32 %2, %3, %2;\n\t"
+          "v_add_u32 %2, %3, %2;\n\t"
           "v_add_u32 %2, %3, %2;\n\t"
           "v_fma_f32 %1, %1, %1, %0;\n\t"
-          "v_mul_lo_u32 %3, %3, %3;\n\t" // mad.lo.u32 splits into two parts here
-          "v_add_u32 %3, %3, %2;\n\t"
-          "}" : "+v"(Value1),"+v"(s1),"+v"(s3),"+v"(Value2)
+          "v_mad_u64_u32 %4, %5, %3, %3, %6\n\t"
+          : "+v"(Value1),"+v"(s1),"+v"(s3),"+v"(Value2), "=v"(val2_64), "=s"(sdst)
+          : "v"(s3_64)
         );
         Value3 += tex1Dfetch(texmem1,Value2%(gid+1));
         // Value3 += tex1Dfetch(texmem2,Value2%gid);

@@ -108,11 +108,13 @@ __global__ void PowerKernal2( unsigned* A, unsigned* B, int N)
     for(unsigned k=0; k<N;k++) {
     	__asm volatile(
     		"global_load_dword %0, %1, off sc0 nt" 
+            "s_waitcnt vmcnt(0)\n\t"
     		: "=v"(load_value) : "v"((unsigned long)(A+i))
     	);
     	//__asm volatile("add.u32 %0, %0, %1;" : "+r"(sum_value) : "r"(load_value));
     	__asm volatile(
     		"global_store_dword %0, %1, off sc0 nt"
+            "s_waitcnt vmcnt(0)\n\t"
     		: : "v"((unsigned long)(B+i)), "v"(load_value) 
     	);
 

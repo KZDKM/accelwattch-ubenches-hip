@@ -79,6 +79,7 @@ __global__ void l2_stress(uint64_t *posArray, uint64_t *dsink, unsigned iteratio
   // use cg modifier to cache the in L1
   asm volatile ("{\t\n"
     "global_load_dwordx2 %0, %1, off;\n\t"
+    "s_waitcnt vmcnt(0)\n\t"
     "}" : "=v"(ptr1) : "v"(ptr) : "memory"
   );
 
@@ -92,6 +93,7 @@ __global__ void l2_stress(uint64_t *posArray, uint64_t *dsink, unsigned iteratio
   for(unsigned i=0; i<iterations; ++i) { 
     asm volatile ("{\t\n"
       "global_load_dwordx2 %0, %1, off;\n\t"
+      "s_waitcnt vmcnt(0)\n\t"
       "}" : "=v"(ptr0) : "v"((uint64_t*)ptr1) : "memory"
     );
     ptr1 = ptr0;    //swap the register for the next load
