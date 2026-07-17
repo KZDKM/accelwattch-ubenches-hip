@@ -35,7 +35,7 @@
 #include <cuda.h>
 
 #define THREADS_PER_BLOCK 256
-#define NUM_OF_BLOCKS 640
+#define NUM_OF_BLOCKS (304 * 1024)
 
 __constant__ uint64_t ConstArray1[THREADS_PER_BLOCK];
 

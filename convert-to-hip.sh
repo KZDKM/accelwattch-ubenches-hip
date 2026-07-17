@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the base directories from the accelwattch-ubench collection
-BASE_DIRS=("cache_and_data_width_mem_benchmakrs")
+BASE_DIRS=("cache_and_data_width_mem_benchmarks")
 
 echo "Starting CUDA to HIP conversion and scaling for MI300X..."
 
