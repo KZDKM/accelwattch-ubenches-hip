@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define the base directories from the accelwattch-ubench collection
-BASE_DIRS=("branching_benchmarks" "functional_benchmarks")
+BASE_DIRS=("cache_and_data_width_mem_benchmakrs")
 
 echo "Starting CUDA to HIP conversion and scaling for MI300X..."
 
@@ -25,7 +25,7 @@ for dir in "${BASE_DIRS[@]}"; do
 
         dir_name=$(dirname "$cu_file")
         base_name=$(basename "$cu_file" .cu)
-        hip_file="$dir_name/$base_name.hip"
+        hip_file="$dir_name/$base_name.hip_p"
         
         # 1. Update the block sizing to saturate the MI300X (304 CUs)
         # This replaces any line starting with #define NUM_OF_BLOCKS
