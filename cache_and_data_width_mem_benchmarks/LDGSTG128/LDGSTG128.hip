@@ -48,8 +48,8 @@
 // Variables
 unsigned* h_A;
 unsigned* h_B;
-unsigned* d_A;
-unsigned* d_B;
+uint4* d_A;
+uint4* d_B;
 //bool noprompt = false;
 //uint4 int my_timer;
 
@@ -88,32 +88,44 @@ inline void __getLastCudaError(const char *errorMessage, const char *file, const
 
 
 
-__global__ void PowerKernal2(volatile unsigned* A, volatile unsigned* B, unsigned long long N)
+__global__ void PowerKernal2(uint4* __restrict__ A, uint4* __restrict__ B, unsigned long long N)
 {
     uint32_t uid = blockDim.x * blockIdx.x + threadIdx.x;
 
     uint4 data;
+    data.x = uid;
+    data.y = uid+1;
+    data.z = uid+2;
+    data.w = uid+3;
 
-    volatile unsigned* inptr = A + (4*uid);
-    volatile unsigned* outptr = B + (4*uid);
+    uint4* inptr = A + uid;
+    uint4* outptr = B + uid;
 
     #pragma unroll 100
         for (unsigned long long k = 0; k < N; k++) {
-        // Use inline PTX to load 128 bits (4 x 32-bit values) at once
-        // indirect register problem for consecutive asm blocks, merged
-        asm volatile (
-            "global_load_dwordx4 %0, %1, off\n\t"
-            "s_waitcnt vmcnt(0)\n\t"
-            "global_store_dwordx4 %2, %0, off\n\t"
-            "s_waitcnt vmcnt(0)\n\t" 
-            : "=v"(data)
-            : "v"(inptr), "v"(outptr)
-            : "memory"
-        );  
+            
+            data.x += 1; //hack: avoid loop invariant (hopefully???)
+            asm volatile("" ::: "memory"); // make sure the load materializes and waits before store
+            data = *inptr; // global_load_dwordx4
+            *outptr = data; // global_store_dwordx4
+            // memory clobber to prevent loop optimization
+            asm volatile("s_waitcnt vmcnt(0)" ::: "memory"); 
+            
+            // Use inline PTX to load 128 bits (4 x 32-bit values) at once
+            // indirect register problem for consecutive asm blocks, merged
+            //asm volatile (
+            //    "global_load_dwordx4 %0, %1, off\n\t"
+            //    "s_waitcnt vmcnt(0)\n\t"
+            //    "global_store_dwordx4 %2, %0, off\n\t"
+            //    "s_waitcnt vmcnt(0)\n\t" 
+            //    : "=v"(data)
+            //    : "v"(inptr), "v"(outptr)
+            //    : "memory"
+            //);  
         }
 
     // Store result back to global memory (sum of all four uint components)
-    A[uid] = B[uid];
+    //A[uid] = B[uid];
 }
 
 int main(int argc, char** argv)

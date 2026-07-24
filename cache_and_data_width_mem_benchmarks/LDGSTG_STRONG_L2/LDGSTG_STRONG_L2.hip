@@ -45,18 +45,17 @@
 #include <hip/hip_runtime.h> //BT: Needed for uint32_t
 #define THREADS_PER_BLOCK 256
 #define NUM_OF_BLOCKS (304 * 1024)
-#define SHARED_MEM_SIZE THREADS_PER_BLOCK*4
 // Variables
-uint64_t* h_A;
-uint64_t* h_B;
-uint64_t* d_A;
-uint64_t* d_B;
+unsigned* h_A;
+unsigned* h_B;
+unsigned* d_A;
+unsigned* d_B;
 //bool noprompt = false;
 //unsigned int my_timer;
 
 // Functions
 void CleanupResources(void);
-void RandomInit(uint64_t*, int);
+void RandomInit(unsigned*, int);
 //void ParseArguments(int, char**);
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -89,51 +88,19 @@ inline void __getLastCudaError(const char *errorMessage, const char *file, const
 
 
 
-__global__ void PowerKernal2( uint64_t* A, uint64_t* B, unsigned long long N)
+__global__ void PowerKernal2(unsigned* A, unsigned* B, unsigned long long N)
 {
-    // Define a shared memory array large enough to hold multiple elements per thread.
-    int tid = threadIdx.x;
-    int i = blockDim.x * blockIdx.x + tid;
-
-    __shared__ uint64_t sharedInp[THREADS_PER_BLOCK];  
-    __shared__ uint64_t sharedOut[THREADS_PER_BLOCK];  
-
-    sharedInp[tid] = A[i];
-    // Synchronize to ensure all data is in shared memory
-    __syncthreads();
-
-    // Declare a register to hold the 128-bit data
-    uint64_t data;
-
-    // Set up pointers to shared memory locations
-    size_t inptr = __cvta_generic_to_shared(sharedInp + tid);
-    size_t outptr = __cvta_generic_to_shared(sharedOut + tid);
-
-    #pragma unroll 100
-        for (unsigned long long k = 0; k < N; k++) {
-        // Use inline PTX to load 64b at once from shared memory
-        asm volatile (
-            "{\n\t"
-            "ld.shared.u64 %0, [%1];\n\t"
-            "}"
-            : "=l"(data)
-            : "l"(inptr)
-            : "memory"
-        );
-
-        // Store the loaded data back to shared memory
-        asm volatile (
-            "{\n\t"
-            "st.shared.u64 [%0], %1;\n\t"
-            "}"
-            :
-            : "l"(outptr), "l"(data)
-            : "memory"
-        );
+    uint32_t uid = blockDim.x * blockIdx.x + threadIdx.x;
+    volatile unsigned sink = 0;
+    uint32_t* ptr = A + uid;
+#pragma unroll 100
+	for(uint64_t i=0; i<N; ++i) {
+      asm volatile (
+      "global_load_dword %0, %1, off sc0"
+        : "=v"(sink) : "v"(ptr) : "memory"
+      );
+      B[uid] = sink;   
     }
-
-    // Store result back to global memory (sum of all four uint components)
-    B[i] = data;
 }
 
 
@@ -151,12 +118,11 @@ int main(int argc, char** argv)
  printf("Power Microbenchmarks with iterations %lld\n",iterations);
  
  int N = THREADS_PER_BLOCK*NUM_OF_BLOCKS;
-
- size_t size = N * sizeof(uint64_t);
+ size_t size = N * sizeof(unsigned);
  // Allocate input vectors h_A and h_B in host memory
- h_A = (uint64_t*)malloc(size);
+ h_A = (unsigned*)malloc(size);
  if (h_A == 0) CleanupResources();
- h_B = (uint64_t*)malloc(size);
+ h_B = (unsigned*)malloc(size);
  if (h_B == 0) CleanupResources();
 
 
@@ -219,11 +185,10 @@ void CleanupResources(void)
 }
 
 // Allocates an array with random float entries.
-void RandomInit(uint64_t* data, int n)
+void RandomInit(unsigned* data, int n)
 {
   for (int i = 0; i < n; ++i){
-  srand((uint64_t)time(0));  
+  srand((unsigned)time(0));  
   data[i] = rand() / RAND_MAX;
   }
 }
-

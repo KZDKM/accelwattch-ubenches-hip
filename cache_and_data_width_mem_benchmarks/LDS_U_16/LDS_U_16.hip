@@ -45,6 +45,7 @@
 #include <hip/hip_runtime.h> //BT: Needed for uint32_t
 #define THREADS_PER_BLOCK 256
 #define NUM_OF_BLOCKS (304 * 1024)
+#define SHARED_MEM_SIZE THREADS_PER_BLOCK*4
 // Variables
 uint16_t* h_A;
 uint16_t* h_B;
@@ -88,33 +89,49 @@ inline void __getLastCudaError(const char *errorMessage, const char *file, const
 
 
 
-__global__ void PowerKernal2(volatile uint16_t* A, volatile uint16_t* B, unsigned long long N)
+__global__ void PowerKernal2( uint16_t* A, uint16_t* B, unsigned long long N)
 {
-    uint32_t uid = blockDim.x * blockIdx.x + threadIdx.x;
-    volatile uint16_t sink = 0;
-    volatile uint16_t* inptr = A + uid;
-    volatile uint16_t* outptr = B + uid;
+    // Define a shared memory array large enough to hold multiple elements per thread.
+    int tid = threadIdx.x;
+    int i = blockDim.x * blockIdx.x + tid;
 
-#pragma unroll 100
-	for(uint64_t i=0; i<N; ++i) {
-        // Use inline PTX to load 128 bits (4 x 32-bit values) at once
+    __shared__ uint16_t sharedInp[THREADS_PER_BLOCK];  
+    __shared__ uint16_t sharedOut[THREADS_PER_BLOCK];  
+
+    sharedInp[tid] = A[i];
+    // Synchronize to ensure all data is in shared memory
+    __syncthreads();
+
+    // Declare a register to hold the 128-bit data
+    uint16_t data;
+
+    // Set up pointers to shared memory locations
+    uint32_t inptr = static_cast<uint32_t>(reinterpret_cast<uintptr_t>(sharedInp + tid));
+    uint32_t outptr = static_cast<uint32_t>(reinterpret_cast<uintptr_t>(sharedOut + tid));
+
+    #pragma unroll 100
+        for (unsigned long long k = 0; k < N; k++) {
+        // Use inline PTX to load 128 bits (4 x 32-bit values) at once from shared memory
         asm volatile (
-            "{\n\t"
-            "ld.global.cg.u16 %0, [%1];\n\t"
-            "}"
-            : "=h"(sink)
-            : "l"(inptr)
+            "ds_read_u16 %0, %1\n\t"
+            "s_waitcnt lgkmcnt(0)\n\t"
+            : "=v"(data)
+            : "v"(inptr)
             : "memory"
-        );  
-  	asm volatile (
-            "{\n\t"
-            "st.global.cg.u16 [%0], %1;\n\t"
-            "}"
+        );
+
+        // Store the loaded data back to shared memory
+        asm volatile (
+            "ds_write_b16 %0, %1\n\t"
+            "s_waitcnt lgkmcnt(0)\n\t"
             :
-            : "l"(outptr), "h"(sink)
+            : "v"(outptr), "v"(data)
             : "memory"
         );
     }
+
+    // Store result back to global memory (sum of all four uint components)
+    B[i] = data;
 }
 
 
@@ -132,6 +149,7 @@ int main(int argc, char** argv)
  printf("Power Microbenchmarks with iterations %lld\n",iterations);
  
  int N = THREADS_PER_BLOCK*NUM_OF_BLOCKS;
+
  size_t size = N * sizeof(uint16_t);
  // Allocate input vectors h_A and h_B in host memory
  h_A = (uint16_t*)malloc(size);
