@@ -46,16 +46,16 @@
 #define THREADS_PER_BLOCK 256
 #define NUM_OF_BLOCKS (304 * 1024)
 // Variables
-uint8_t* h_A;
-uint8_t* h_B;
-uint8_t* d_A;
-uint8_t* d_B;
+unsigned* h_A;
+unsigned* h_B;
+unsigned* d_A;
+unsigned* d_B;
 //bool noprompt = false;
 //unsigned int my_timer;
 
 // Functions
 void CleanupResources(void);
-void RandomInit(uint8_t*, int);
+void RandomInit(unsigned*, int);
 //void ParseArguments(int, char**);
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -88,25 +88,31 @@ inline void __getLastCudaError(const char *errorMessage, const char *file, const
 
 
 
-__global__ void PowerKernal2(uint8_t* A, uint8_t* B, unsigned long long N)
+__global__ void PowerKernal2(unsigned* A, unsigned* B, unsigned long long N)
 {
     uint32_t uid = blockDim.x * blockIdx.x + threadIdx.x;
-    uint16_t sink = A[uid];
-    uint8_t* outptr = B + uid;
-
+    volatile unsigned sink;
+   
+    unsigned* A_ptr = A + uid;
+    unsigned* B_ptr = B + uid;
+    
+    asm volatile ("{\t\n"
+      "global_load_dword %0, %1, off sc0\n\t"
+      "}" : "=v"(sink) : "v"(A_ptr) : "memory"
+    );
 #pragma unroll 100
 	for(uint64_t i=0; i<N; ++i) {
-	//B[uid] = sink;
-//*  	
-	asm volatile (
-            "{\n\t"
-            "st.global.u8 [%0], %1;\n\t"
-            "}"
-            :
-            : "l"(outptr), "h"(sink)
-            : "memory"
-        );//*/
-    }
+    asm volatile (
+      "global_store_dword %1, %0, off sc0\n\t"
+      : 
+      : "v"(sink), "v"(B_ptr) : "memory"
+    );
+    asm volatile (
+      "global_store_dword %1, %0, off sc0\n\t"
+      : 
+      : "v"(sink), "v"(A_ptr) : "memory"
+    );    }
+    B[uid] = sink;
 }
 
 
@@ -124,11 +130,11 @@ int main(int argc, char** argv)
  printf("Power Microbenchmarks with iterations %lld\n",iterations);
  
  int N = THREADS_PER_BLOCK*NUM_OF_BLOCKS;
- size_t size = N * sizeof(uint8_t);
+ size_t size = N * sizeof(unsigned);
  // Allocate input vectors h_A and h_B in host memory
- h_A = (uint8_t*)malloc(size);
+ h_A = (unsigned*)malloc(size);
  if (h_A == 0) CleanupResources();
- h_B = (uint8_t*)malloc(size);
+ h_B = (unsigned*)malloc(size);
  if (h_B == 0) CleanupResources();
 
 
@@ -191,10 +197,10 @@ void CleanupResources(void)
 }
 
 // Allocates an array with random float entries.
-void RandomInit(uint8_t* data, int n)
+void RandomInit(unsigned* data, int n)
 {
   for (int i = 0; i < n; ++i){
-  srand((uint8_t)time(0));  
+  srand((unsigned)time(0));  
   data[i] = rand() / RAND_MAX;
   }
 }

@@ -30,32 +30,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 //#include <cutil.h>
-//#include <mgp.h>
-// Includes
-//#include <stdio.h>
-//#include "../include/ContAcq-IntClk.h"
-
-// includes, project
-//#include "../include/sdkHelper.h"  // helper for shared functions common to CUDA SDK samples
-//#include <shrQATest.h>
-//#include <shrUtils.h>
 
 // includes CUDA
 #include <hip/hip_runtime.h>
 #include <hip/hip_runtime.h> //BT: Needed for uint32_t
 #define THREADS_PER_BLOCK 256
 #define NUM_OF_BLOCKS (304 * 1024)
+#define SHARED_MEM_SIZE THREADS_PER_BLOCK*4
 // Variables
-unsigned* h_A;
-unsigned* h_B;
-unsigned* d_A;
-unsigned* d_B;
+uint64_t* h_A;
+uint64_t* h_B;
+uint64_t* d_A;
+uint64_t* d_B;
 //bool noprompt = false;
 //unsigned int my_timer;
 
 // Functions
 void CleanupResources(void);
-void RandomInit(unsigned*, int);
+void RandomInit(uint64_t*, int);
 //void ParseArguments(int, char**);
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -87,30 +79,43 @@ inline void __getLastCudaError(const char *errorMessage, const char *file, const
 // end of CUDA Helper Functions
 
 
+__global__ void lds_u128_kernel(uint64_t* A, uint64_t* B, unsigned long long iterations) {
+    // Define a shared memory array large enough to hold multiple elements per thread.
+    int tid = threadIdx.x;
+    int i = blockDim.x * blockIdx.x + tid;
 
-__global__ void PowerKernal2(unsigned* A, unsigned* B, unsigned long long N)
-{
-    uint32_t uid = blockDim.x * blockIdx.x + threadIdx.x;
-    volatile unsigned sink;
-   
-    unsigned* A_ptr = A + uid;
-    unsigned* B_ptr = B + uid;
-    
-    asm volatile ("{\t\n"
-      "ld.global.cg.u32 %0, [%1] ;\n\t"
-      "}" : "=r"(sink) : "l"(A_ptr) : "memory"
-    );
-#pragma unroll 100
-	for(uint64_t i=0; i<N; ++i) {
-    asm volatile ("{\t\n"
-      "st.cg.u32 [%1], %0;\n\t"
-      "}" : "=r"(sink) : "l"(B_ptr) : "memory"
-    );
-    asm volatile ("{\t\n"
-      "st.cg.u32 [%1], %0;\n\t"
-      "}" : "=r"(sink) : "l"(A_ptr) : "memory"
-    );    }
-    B[uid] = sink;
+    __shared__ uint4 sharedOut[THREADS_PER_BLOCK];  
+
+    uint4 data;
+    data.x = A[i];
+    data.y = A[i];
+    data.z = A[i];
+    data.w = A[i];
+    // Synchronize to ensure all data is in shared memory
+    __syncthreads();
+
+    // Declare a register to hold the 128-bit data
+
+    // Set up pointers to shared memory locations
+    uint4* outptr = &sharedOut[tid];
+
+    #pragma unroll 100
+    for (unsigned long long k = 0; k < iterations; k++) {
+        // Use inline PTX to load 128 bits (4 x 32-bit values) at once from shared memory
+        // Store the loaded data back to shared memory
+        //asm volatile (
+        //    "ds_write_b128 %0, %1\n\t"
+        //    :
+        //    : "v"(outptr), "v"(data)
+        //    : "memory"
+        //);
+        data.x += 1;
+        *outptr = data;
+        asm volatile("s_waitcnt lgkmcnt(0)" ::: "memory");
+    }
+
+    // Store result back to global memory (sum of all four uint components)
+    B[i] = sharedOut[tid].x + sharedOut[tid].y + sharedOut[tid].z + sharedOut[tid].w;
 }
 
 
@@ -128,11 +133,12 @@ int main(int argc, char** argv)
  printf("Power Microbenchmarks with iterations %lld\n",iterations);
  
  int N = THREADS_PER_BLOCK*NUM_OF_BLOCKS;
- size_t size = N * sizeof(unsigned);
+
+ size_t size = N * sizeof(uint64_t);
  // Allocate input vectors h_A and h_B in host memory
- h_A = (unsigned*)malloc(size);
+ h_A = (uint64_t*)malloc(size);
  if (h_A == 0) CleanupResources();
- h_B = (unsigned*)malloc(size);
+ h_B = (uint64_t*)malloc(size);
  if (h_B == 0) CleanupResources();
 
 
@@ -160,7 +166,7 @@ int main(int argc, char** argv)
 
 
  checkCudaErrors(hipEventRecord(start));              
- PowerKernal2<<<dimGrid,dimBlock>>>(d_A, d_B,iterations);  
+ lds_u128_kernel<<<dimGrid,dimBlock>>>(d_A,d_B,iterations);  
  checkCudaErrors(hipEventRecord(stop));               
  
  checkCudaErrors(hipEventSynchronize(stop));           
@@ -194,11 +200,11 @@ void CleanupResources(void)
 
 }
 
-// Allocates an array with random float entries.
-void RandomInit(unsigned* data, int n)
+// Allocates an array with random uint64_t entries.
+void RandomInit(uint64_t* data, int n)
 {
   for (int i = 0; i < n; ++i){
-  srand((unsigned)time(0));  
+  srand((uint64_t)time(0));  
   data[i] = rand() / RAND_MAX;
   }
 }

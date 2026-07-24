@@ -48,8 +48,8 @@
 // Variables
 unsigned* h_A;
 unsigned* h_B;
-unsigned* d_A;
-unsigned* d_B;
+uint4* d_A;
+uint4* d_B;
 //bool noprompt = false;
 //unsigned int my_timer;
 
@@ -88,32 +88,27 @@ inline void __getLastCudaError(const char *errorMessage, const char *file, const
 
 
 
-__global__ void PowerKernal2(volatile unsigned* A, volatile unsigned* B, unsigned long long N)
+__global__ void PowerKernal2(uint4* __restrict__ B, unsigned long long N)
 {
     uint32_t uid = blockDim.x * blockIdx.x + threadIdx.x;
 
     uint4 data;
-    data.x = A[4*uid];
-    data.y = A[4*uid+1];
-    data.z = A[4*uid+2];
-    data.w = A[4*uid+3];
+    data.x = uid;
+    data.y = uid+1;
+    data.z = uid+2;
+    data.w = uid+3;
     
-    volatile unsigned* outptr = B + 4*uid;
+    uint4* outptr = B + uid;
     #pragma unroll 100
-        for (unsigned long long k = 0; k < N; k++) {
-        // Use inline PTX to load 128 bits (4 x 32-bit values) at once
-        asm volatile (
-            "{\n\t"
-            "st.global.v4.u32 [%0], {%1, %2, %3, %4};\n\t"
-            "}"
-            :
-            : "l"(outptr), "r"(data.x), "r"(data.y), "r"(data.z), "r"(data.w)
-            : "memory"
-        );
+    for (unsigned long long k = 0; k < N; k++) {
+
+        data.x += 1; //hack: prevent optimization due to loop invariant
+        *outptr = data;
+        asm volatile("s_waitcnt vmcnt(0)" ::: "memory"); // compiler barrier to prevent loop optimization
     }
 
     // Store result back to global memory (sum of all four uint components)
-    A[uid] = B[uid];
+    //A[uid] = B[uid];
 }
 
 
@@ -163,7 +158,7 @@ int main(int argc, char** argv)
 
 
  checkCudaErrors(hipEventRecord(start));              
- PowerKernal2<<<dimGrid,dimBlock>>>(d_A, d_B,iterations);  
+ PowerKernal2<<<dimGrid,dimBlock>>>(d_B,iterations);  
  checkCudaErrors(hipEventRecord(stop));               
  
  checkCudaErrors(hipEventSynchronize(stop));           
