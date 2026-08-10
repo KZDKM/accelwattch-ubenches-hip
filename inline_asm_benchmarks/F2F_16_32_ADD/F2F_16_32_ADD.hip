@@ -40,7 +40,7 @@
 
 // includes CUDA
 #include <hip/hip_runtime.h>
-#include <mma.h> //Get half precision in scope
+#include <rocwmma/rocwmma.hpp> //Get half precision in scope
 
 #define THREADS_PER_BLOCK 256
 #define NUM_OF_BLOCKS 640
@@ -98,7 +98,13 @@ __global__ void PowerKernal2(const float* A, half* B, unsigned long long iterati
 #pragma unroll 100
     // Excessive Addition access
     for(unsigned long long k=0; k<iterations;k++) {
-      acc += __half(input);
+        half input_h;
+        asm volatile(
+            "v_cvt_f16_f32_e32 %0, %1\n\t"
+            : "=v"(input_h)
+            : "v"(input)
+        );
+      acc += input_h;
     }
     B[tid] = acc;
 }

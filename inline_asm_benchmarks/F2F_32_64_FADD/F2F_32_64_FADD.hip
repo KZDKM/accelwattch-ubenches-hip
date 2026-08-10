@@ -89,14 +89,14 @@ inline void __getLastCudaError(const char *errorMessage, const char *file, const
 __global__ void PowerKernal2(const double* A, float* B, unsigned long long iterations)
 {
   uint64_t tid = blockDim.x * blockIdx.x + threadIdx.x;
-  float input = A[tid];
-  double output;
+  double input = A[tid];
+  float output;
   float acc = 0;
 #pragma unroll 100
     // Excessive Addition access
     for(unsigned long long k=0; k<iterations;k++) {
       asm volatile (
-          "v_cvt_f64_f32 %0, %1\n\t"
+          "v_cvt_f32_f64 %0, %1\n\t"
           : "=v"(output)         // Output: double output
           : "v"(input)           // Input: float input
       );

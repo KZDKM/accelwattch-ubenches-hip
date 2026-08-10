@@ -114,6 +114,7 @@ __global__ void PowerKernal1(const unsigned* A, const unsigned* B, unsigned* C, 
 	Value2|=Value1;
 	    Value2=Value3 & Value2;
 	    Value1=Value2 ^ Value3;
+	asm volatile ("" : "+v"(Value1), "+v"(Value2), "+v"(Value3)); // prevent loop collapsing
 
 //	Value1=I1 & I2;
 //	Value2=I1 | I2;

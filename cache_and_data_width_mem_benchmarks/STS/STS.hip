@@ -96,7 +96,7 @@ __global__ void PowerKernal2( unsigned* A, unsigned* B, unsigned long long N)
     int tid = threadIdx.x;
     int i = blockDim.x * blockIdx.x + tid;
     
-    __device__  __shared__  volatile unsigned sharedOut[THREADS_PER_BLOCK];
+    __shared__  volatile unsigned sharedOut[THREADS_PER_BLOCK];
 
     __syncthreads();
 
