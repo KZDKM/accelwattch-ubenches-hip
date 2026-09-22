@@ -42,7 +42,7 @@
 #include <hip/hip_runtime.h>
 
 #define THREADS_PER_BLOCK 256
-#define NUM_OF_BLOCKS 640
+#define NUM_OF_BLOCKS (304 * 1024)
 //#define ITERATIONS 40
 //#include "../include/ContAcq-IntClk.h"
 
@@ -92,8 +92,9 @@ __global__ void PowerKernal2(const int* A, const int* B, long long* C, unsigned 
 {
 #pragma unroll 100
     // Excessive Addition access
-    for(unsigned long long k=0; k<iterations;k++) {
-      asm volatile ("s_nop 0" ::: "memory"); // clobber memory to hopefully prevent loop collapsing?
+    for(unsigned long long k=0; k<10000;k++) {
+      //asm volatile ("s_nop 0" ::: "memory"); // clobber memory to hopefully prevent loop collapsing?
+      asm volatile("s_sleep 127" ::: "memory");
     }
 }
 

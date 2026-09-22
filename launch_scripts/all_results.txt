@@ -1,0 +1,1308 @@
+=== profiling_result_BAR_profiled_run1.csv_0.csv ===
+profiling_result_BAR_profiled_run1.csv_0.csv
+max instantaneous power: 358.00W
+dynamic energy (nominal static power 310.0W): 2743.85J
+run duration: 9.26s
+average dynamic power: 296.39W
+=== profiling_result_BAR_profiled_run2.csv_0.csv ===
+profiling_result_BAR_profiled_run2.csv_0.csv
+max instantaneous power: 358.00W
+dynamic energy (nominal static power 310.0W): 2750.69J
+run duration: 9.19s
+average dynamic power: 299.33W
+=== profiling_result_BAR_profiled_run3.csv_0.csv ===
+profiling_result_BAR_profiled_run3.csv_0.csv
+max instantaneous power: 359.00W
+dynamic energy (nominal static power 310.0W): 2755.29J
+run duration: 9.19s
+average dynamic power: 299.80W
+=== profiling_result_BAR_profiled_run4.csv_0.csv ===
+profiling_result_BAR_profiled_run4.csv_0.csv
+max instantaneous power: 359.00W
+dynamic energy (nominal static power 310.0W): 2753.72J
+run duration: 9.19s
+average dynamic power: 299.65W
+=== profiling_result_BAR_profiled_run5.csv_0.csv ===
+profiling_result_BAR_profiled_run5.csv_0.csv
+max instantaneous power: 359.00W
+dynamic energy (nominal static power 310.0W): 2757.35J
+run duration: 9.18s
+average dynamic power: 300.31W
+=== profiling_result_BE_SP_INT_ADD_profiled_run1.csv_0.csv ===
+profiling_result_BE_SP_INT_ADD_profiled_run1.csv_0.csv
+max instantaneous power: 751.00W
+dynamic energy (nominal static power 310.0W): 12871.96J
+run duration: 18.58s
+average dynamic power: 692.65W
+=== profiling_result_BE_SP_INT_ADD_profiled_run2.csv_0.csv ===
+profiling_result_BE_SP_INT_ADD_profiled_run2.csv_0.csv
+max instantaneous power: 750.00W
+dynamic energy (nominal static power 310.0W): 12899.32J
+run duration: 18.61s
+average dynamic power: 693.05W
+=== profiling_result_BE_SP_INT_ADD_profiled_run3.csv_0.csv ===
+profiling_result_BE_SP_INT_ADD_profiled_run3.csv_0.csv
+max instantaneous power: 750.00W
+dynamic energy (nominal static power 310.0W): 12913.52J
+run duration: 18.63s
+average dynamic power: 693.08W
+=== profiling_result_BE_SP_INT_ADD_profiled_run4.csv_0.csv ===
+profiling_result_BE_SP_INT_ADD_profiled_run4.csv_0.csv
+max instantaneous power: 750.00W
+dynamic energy (nominal static power 310.0W): 12913.07J
+run duration: 18.64s
+average dynamic power: 692.85W
+=== profiling_result_BE_SP_INT_ADD_profiled_run5.csv_0.csv ===
+profiling_result_BE_SP_INT_ADD_profiled_run5.csv_0.csv
+max instantaneous power: 750.00W
+dynamic energy (nominal static power 310.0W): 12910.72J
+run duration: 18.63s
+average dynamic power: 692.96W
+=== profiling_result_BRA_profiled_run1.csv_0.csv ===
+profiling_result_BRA_profiled_run1.csv_0.csv
+max instantaneous power: 355.00W
+dynamic energy (nominal static power 310.0W): 48471.43J
+run duration: 173.35s
+average dynamic power: 279.62W
+=== profiling_result_BRA_profiled_run2.csv_0.csv ===
+profiling_result_BRA_profiled_run2.csv_0.csv
+max instantaneous power: 358.00W
+dynamic energy (nominal static power 310.0W): 48363.53J
+run duration: 173.30s
+average dynamic power: 279.07W
+=== profiling_result_BRA_profiled_run3.csv_0.csv ===
+profiling_result_BRA_profiled_run3.csv_0.csv
+max instantaneous power: 362.00W
+dynamic energy (nominal static power 310.0W): 49385.97J
+run duration: 174.09s
+average dynamic power: 283.68W
+=== profiling_result_BRA_profiled_run4.csv_0.csv ===
+profiling_result_BRA_profiled_run4.csv_0.csv
+max instantaneous power: 361.00W
+dynamic energy (nominal static power 310.0W): 48909.83J
+run duration: 173.26s
+average dynamic power: 282.30W
+=== profiling_result_BRA_profiled_run5.csv_0.csv ===
+profiling_result_BRA_profiled_run5.csv_0.csv
+max instantaneous power: 362.00W
+dynamic energy (nominal static power 310.0W): 49279.51J
+run duration: 173.92s
+average dynamic power: 283.34W
+=== profiling_result_BSSY_profiled_run1.csv_0.csv ===
+profiling_result_BSSY_profiled_run1.csv_0.csv
+max instantaneous power: 638.00W
+dynamic energy (nominal static power 310.0W): 3816.31J
+run duration: 77.90s
+average dynamic power: 48.99W
+=== profiling_result_BSSY_profiled_run2.csv_0.csv ===
+profiling_result_BSSY_profiled_run2.csv_0.csv
+max instantaneous power: 642.00W
+dynamic energy (nominal static power 310.0W): 3837.80J
+run duration: 77.51s
+average dynamic power: 49.51W
+=== profiling_result_BSSY_profiled_run3.csv_0.csv ===
+profiling_result_BSSY_profiled_run3.csv_0.csv
+max instantaneous power: 639.00W
+dynamic energy (nominal static power 310.0W): 3820.81J
+run duration: 76.46s
+average dynamic power: 49.97W
+=== profiling_result_BSSY_profiled_run4.csv_0.csv ===
+profiling_result_BSSY_profiled_run4.csv_0.csv
+max instantaneous power: 635.00W
+dynamic energy (nominal static power 310.0W): 3791.12J
+run duration: 76.31s
+average dynamic power: 49.68W
+=== profiling_result_BSSY_profiled_run5.csv_0.csv ===
+profiling_result_BSSY_profiled_run5.csv_0.csv
+max instantaneous power: 634.00W
+dynamic energy (nominal static power 310.0W): 3790.23J
+run duration: 76.35s
+average dynamic power: 49.64W
+=== profiling_result_F2F_16_32_ADD_profiled_run1.csv_0.csv ===
+profiling_result_F2F_16_32_ADD_profiled_run1.csv_0.csv
+max instantaneous power: 569.00W
+dynamic energy (nominal static power 310.0W): 4482.27J
+run duration: 8.73s
+average dynamic power: 513.45W
+=== profiling_result_F2F_16_32_ADD_profiled_run2.csv_0.csv ===
+profiling_result_F2F_16_32_ADD_profiled_run2.csv_0.csv
+max instantaneous power: 567.00W
+dynamic energy (nominal static power 310.0W): 4464.79J
+run duration: 8.73s
+average dynamic power: 511.44W
+=== profiling_result_F2F_16_32_ADD_profiled_run3.csv_0.csv ===
+profiling_result_F2F_16_32_ADD_profiled_run3.csv_0.csv
+max instantaneous power: 566.00W
+dynamic energy (nominal static power 310.0W): 4457.87J
+run duration: 8.76s
+average dynamic power: 508.69W
+=== profiling_result_F2F_16_32_ADD_profiled_run4.csv_0.csv ===
+profiling_result_F2F_16_32_ADD_profiled_run4.csv_0.csv
+max instantaneous power: 566.00W
+dynamic energy (nominal static power 310.0W): 4456.12J
+run duration: 8.73s
+average dynamic power: 510.57W
+=== profiling_result_F2F_16_32_ADD_profiled_run5.csv_0.csv ===
+profiling_result_F2F_16_32_ADD_profiled_run5.csv_0.csv
+max instantaneous power: 566.00W
+dynamic energy (nominal static power 310.0W): 4456.97J
+run duration: 8.73s
+average dynamic power: 510.71W
+=== profiling_result_F2F_32_16_ADD_profiled_run1.csv_0.csv ===
+profiling_result_F2F_32_16_ADD_profiled_run1.csv_0.csv
+max instantaneous power: 624.00W
+dynamic energy (nominal static power 310.0W): 1837.70J
+run duration: 3.76s
+average dynamic power: 488.18W
+=== profiling_result_F2F_32_64_FADD_profiled_run1.csv_0.csv ===
+profiling_result_F2F_32_64_FADD_profiled_run1.csv_0.csv
+max instantaneous power: 598.00W
+dynamic energy (nominal static power 310.0W): 4720.30J
+run duration: 8.84s
+average dynamic power: 533.96W
+=== profiling_result_F2F_32_64_FADD_profiled_run2.csv_0.csv ===
+profiling_result_F2F_32_64_FADD_profiled_run2.csv_0.csv
+max instantaneous power: 594.00W
+dynamic energy (nominal static power 310.0W): 4681.74J
+run duration: 8.83s
+average dynamic power: 529.93W
+=== profiling_result_F2F_32_64_FADD_profiled_run3.csv_0.csv ===
+profiling_result_F2F_32_64_FADD_profiled_run3.csv_0.csv
+max instantaneous power: 593.00W
+dynamic energy (nominal static power 310.0W): 4668.21J
+run duration: 8.84s
+average dynamic power: 528.25W
+=== profiling_result_F2F_32_64_FADD_profiled_run4.csv_0.csv ===
+profiling_result_F2F_32_64_FADD_profiled_run4.csv_0.csv
+max instantaneous power: 592.00W
+dynamic energy (nominal static power 310.0W): 4661.07J
+run duration: 8.84s
+average dynamic power: 527.50W
+=== profiling_result_F2F_32_64_FADD_profiled_run5.csv_0.csv ===
+profiling_result_F2F_32_64_FADD_profiled_run5.csv_0.csv
+max instantaneous power: 589.00W
+dynamic energy (nominal static power 310.0W): 4648.74J
+run duration: 8.84s
+average dynamic power: 526.10W
+=== profiling_result_F2F_32_64_STG_profiled_run1.csv_0.csv ===
+profiling_result_F2F_32_64_STG_profiled_run1.csv_0.csv
+max instantaneous power: 632.00W
+dynamic energy (nominal static power 310.0W): 20379.07J
+run duration: 34.75s
+average dynamic power: 586.49W
+=== profiling_result_F2F_32_64_STG_profiled_run2.csv_0.csv ===
+profiling_result_F2F_32_64_STG_profiled_run2.csv_0.csv
+max instantaneous power: 633.00W
+dynamic energy (nominal static power 310.0W): 20377.47J
+run duration: 34.83s
+average dynamic power: 585.06W
+=== profiling_result_F2F_32_64_STG_profiled_run3.csv_0.csv ===
+profiling_result_F2F_32_64_STG_profiled_run3.csv_0.csv
+max instantaneous power: 630.00W
+dynamic energy (nominal static power 310.0W): 20390.96J
+run duration: 34.95s
+average dynamic power: 583.48W
+=== profiling_result_F2F_32_64_STG_profiled_run4.csv_0.csv ===
+profiling_result_F2F_32_64_STG_profiled_run4.csv_0.csv
+max instantaneous power: 635.00W
+dynamic energy (nominal static power 310.0W): 20414.88J
+run duration: 34.63s
+average dynamic power: 589.54W
+=== profiling_result_F2F_32_64_STG_profiled_run5.csv_0.csv ===
+profiling_result_F2F_32_64_STG_profiled_run5.csv_0.csv
+max instantaneous power: 643.00W
+dynamic energy (nominal static power 310.0W): 20712.90J
+run duration: 34.76s
+average dynamic power: 595.85W
+=== profiling_result_F2F_64_32_DADD_profiled_run1.csv_0.csv ===
+profiling_result_F2F_64_32_DADD_profiled_run1.csv_0.csv
+max instantaneous power: 699.00W
+dynamic energy (nominal static power 310.0W): 5552.19J
+run duration: 8.94s
+average dynamic power: 621.31W
+=== profiling_result_F2F_64_32_DADD_profiled_run2.csv_0.csv ===
+profiling_result_F2F_64_32_DADD_profiled_run2.csv_0.csv
+max instantaneous power: 685.00W
+dynamic energy (nominal static power 310.0W): 5429.27J
+run duration: 8.92s
+average dynamic power: 608.76W
+=== profiling_result_F2F_64_32_DADD_profiled_run3.csv_0.csv ===
+profiling_result_F2F_64_32_DADD_profiled_run3.csv_0.csv
+max instantaneous power: 680.00W
+dynamic energy (nominal static power 310.0W): 5393.13J
+run duration: 8.91s
+average dynamic power: 605.06W
+=== profiling_result_F2F_64_32_DADD_profiled_run4.csv_0.csv ===
+profiling_result_F2F_64_32_DADD_profiled_run4.csv_0.csv
+max instantaneous power: 679.00W
+dynamic energy (nominal static power 310.0W): 5379.17J
+run duration: 8.94s
+average dynamic power: 601.61W
+=== profiling_result_F2F_64_32_DADD_profiled_run5.csv_0.csv ===
+profiling_result_F2F_64_32_DADD_profiled_run5.csv_0.csv
+max instantaneous power: 680.00W
+dynamic energy (nominal static power 310.0W): 5378.95J
+run duration: 8.92s
+average dynamic power: 603.09W
+=== profiling_result_F2F_64_32_STG_profiled_run1.csv_0.csv ===
+profiling_result_F2F_64_32_STG_profiled_run1.csv_0.csv
+max instantaneous power: 632.00W
+dynamic energy (nominal static power 310.0W): 36833.48J
+run duration: 64.33s
+average dynamic power: 572.57W
+=== profiling_result_F2F_64_32_STG_profiled_run2.csv_0.csv ===
+profiling_result_F2F_64_32_STG_profiled_run2.csv_0.csv
+max instantaneous power: 634.00W
+dynamic energy (nominal static power 310.0W): 36492.11J
+run duration: 70.86s
+average dynamic power: 514.99W
+=== profiling_result_F2F_64_32_STG_profiled_run3.csv_0.csv ===
+profiling_result_F2F_64_32_STG_profiled_run3.csv_0.csv
+max instantaneous power: 630.00W
+dynamic energy (nominal static power 310.0W): 36347.68J
+run duration: 73.16s
+average dynamic power: 496.83W
+=== profiling_result_F2F_64_32_STG_profiled_run4.csv_0.csv ===
+profiling_result_F2F_64_32_STG_profiled_run4.csv_0.csv
+max instantaneous power: 627.00W
+dynamic energy (nominal static power 310.0W): 36281.29J
+run duration: 67.25s
+average dynamic power: 539.50W
+=== profiling_result_F2F_64_32_STG_profiled_run5.csv_0.csv ===
+profiling_result_F2F_64_32_STG_profiled_run5.csv_0.csv
+max instantaneous power: 636.00W
+dynamic energy (nominal static power 310.0W): 36516.54J
+run duration: 64.98s
+average dynamic power: 561.97W
+=== profiling_result_IMAD_IADD_profiled_run1.csv_0.csv ===
+profiling_result_IMAD_IADD_profiled_run1.csv_0.csv
+max instantaneous power: 235.00W
+dynamic energy (nominal static power 310.0W): 0.00J
+run duration: 0.80s
+average dynamic power: 0.00W
+=== profiling_result_IMAD_IADD_profiled_run2.csv_0.csv ===
+profiling_result_IMAD_IADD_profiled_run2.csv_0.csv
+max instantaneous power: 214.00W
+dynamic energy (nominal static power 310.0W): 0.00J
+run duration: 0.80s
+average dynamic power: 0.00W
+=== profiling_result_IMAD_IADD_profiled_run3.csv_0.csv ===
+profiling_result_IMAD_IADD_profiled_run3.csv_0.csv
+max instantaneous power: 212.00W
+dynamic energy (nominal static power 310.0W): 0.00J
+run duration: 0.81s
+average dynamic power: 0.00W
+=== profiling_result_IMAD_IADD_profiled_run4.csv_0.csv ===
+profiling_result_IMAD_IADD_profiled_run4.csv_0.csv
+max instantaneous power: 210.00W
+dynamic energy (nominal static power 310.0W): 0.00J
+run duration: 0.80s
+average dynamic power: 0.00W
+=== profiling_result_IMAD_IADD_profiled_run5.csv_0.csv ===
+profiling_result_IMAD_IADD_profiled_run5.csv_0.csv
+max instantaneous power: 208.00W
+dynamic energy (nominal static power 310.0W): 0.00J
+run duration: 0.79s
+average dynamic power: 0.00W
+=== profiling_result_ISETP_GE_AND_profiled_run1.csv_0.csv ===
+profiling_result_ISETP_GE_AND_profiled_run1.csv_0.csv
+max instantaneous power: 349.00W
+dynamic energy (nominal static power 310.0W): 5396.65J
+run duration: 51.31s
+average dynamic power: 105.18W
+=== profiling_result_ISETP_GE_AND_profiled_run2.csv_0.csv ===
+profiling_result_ISETP_GE_AND_profiled_run2.csv_0.csv
+max instantaneous power: 352.00W
+dynamic energy (nominal static power 310.0W): 5412.91J
+run duration: 51.52s
+average dynamic power: 105.06W
+=== profiling_result_ISETP_GE_AND_profiled_run3.csv_0.csv ===
+profiling_result_ISETP_GE_AND_profiled_run3.csv_0.csv
+max instantaneous power: 354.00W
+dynamic energy (nominal static power 310.0W): 5447.53J
+run duration: 51.55s
+average dynamic power: 105.67W
+=== profiling_result_ISETP_GE_AND_profiled_run4.csv_0.csv ===
+profiling_result_ISETP_GE_AND_profiled_run4.csv_0.csv
+max instantaneous power: 355.00W
+dynamic energy (nominal static power 310.0W): 5467.95J
+run duration: 51.45s
+average dynamic power: 106.29W
+=== profiling_result_ISETP_GE_AND_profiled_run5.csv_0.csv ===
+profiling_result_ISETP_GE_AND_profiled_run5.csv_0.csv
+max instantaneous power: 355.00W
+dynamic energy (nominal static power 310.0W): 5483.94J
+run duration: 51.54s
+average dynamic power: 106.39W
+=== profiling_result_ISETP_NE_AND_profiled_run1.csv_0.csv ===
+profiling_result_ISETP_NE_AND_profiled_run1.csv_0.csv
+max instantaneous power: 356.00W
+dynamic energy (nominal static power 310.0W): 5498.75J
+run duration: 51.52s
+average dynamic power: 106.72W
+=== profiling_result_ISETP_NE_AND_profiled_run2.csv_0.csv ===
+profiling_result_ISETP_NE_AND_profiled_run2.csv_0.csv
+max instantaneous power: 358.00W
+dynamic energy (nominal static power 310.0W): 5514.71J
+run duration: 51.44s
+average dynamic power: 107.21W
+=== profiling_result_ISETP_NE_AND_profiled_run3.csv_0.csv ===
+profiling_result_ISETP_NE_AND_profiled_run3.csv_0.csv
+max instantaneous power: 358.00W
+dynamic energy (nominal static power 310.0W): 5509.55J
+run duration: 51.53s
+average dynamic power: 106.92W
+=== profiling_result_ISETP_NE_AND_profiled_run4.csv_0.csv ===
+profiling_result_ISETP_NE_AND_profiled_run4.csv_0.csv
+max instantaneous power: 357.00W
+dynamic energy (nominal static power 310.0W): 5507.26J
+run duration: 51.49s
+average dynamic power: 106.96W
+=== profiling_result_ISETP_NE_AND_profiled_run5.csv_0.csv ===
+profiling_result_ISETP_NE_AND_profiled_run5.csv_0.csv
+max instantaneous power: 357.00W
+dynamic energy (nominal static power 310.0W): 5515.48J
+run duration: 51.48s
+average dynamic power: 107.14W
+=== profiling_result_LDC16_profiled_run1.csv_0.csv ===
+profiling_result_LDC16_profiled_run1.csv_0.csv
+max instantaneous power: 750.00W
+dynamic energy (nominal static power 310.0W): 7365.10J
+run duration: 10.13s
+average dynamic power: 727.15W
+=== profiling_result_LDC16_profiled_run2.csv_0.csv ===
+profiling_result_LDC16_profiled_run2.csv_0.csv
+max instantaneous power: 750.00W
+dynamic energy (nominal static power 310.0W): 7285.39J
+run duration: 10.04s
+average dynamic power: 725.79W
+=== profiling_result_LDC16_profiled_run3.csv_0.csv ===
+profiling_result_LDC16_profiled_run3.csv_0.csv
+max instantaneous power: 750.00W
+dynamic energy (nominal static power 310.0W): 7320.35J
+run duration: 10.08s
+average dynamic power: 726.45W
+=== profiling_result_LDC16_profiled_run4.csv_0.csv ===
+profiling_result_LDC16_profiled_run4.csv_0.csv
+max instantaneous power: 750.00W
+dynamic energy (nominal static power 310.0W): 7258.48J
+run duration: 10.02s
+average dynamic power: 724.70W
+=== profiling_result_LDC16_profiled_run5.csv_0.csv ===
+profiling_result_LDC16_profiled_run5.csv_0.csv
+max instantaneous power: 750.00W
+dynamic energy (nominal static power 310.0W): 7261.00J
+run duration: 10.02s
+average dynamic power: 724.90W
+=== profiling_result_LDC64_profiled_run1.csv_0.csv ===
+profiling_result_LDC64_profiled_run1.csv_0.csv
+max instantaneous power: 619.00W
+dynamic energy (nominal static power 310.0W): 19561.21J
+run duration: 32.41s
+average dynamic power: 603.61W
+=== profiling_result_LDC64_profiled_run2.csv_0.csv ===
+profiling_result_LDC64_profiled_run2.csv_0.csv
+max instantaneous power: 613.00W
+dynamic energy (nominal static power 310.0W): 19284.80J
+run duration: 32.44s
+average dynamic power: 594.44W
+=== profiling_result_LDC64_profiled_run3.csv_0.csv ===
+profiling_result_LDC64_profiled_run3.csv_0.csv
+max instantaneous power: 610.00W
+dynamic energy (nominal static power 310.0W): 19204.23J
+run duration: 32.40s
+average dynamic power: 592.81W
+=== profiling_result_LDC64_profiled_run4.csv_0.csv ===
+profiling_result_LDC64_profiled_run4.csv_0.csv
+max instantaneous power: 612.00W
+dynamic energy (nominal static power 310.0W): 19224.04J
+run duration: 32.42s
+average dynamic power: 592.95W
+=== profiling_result_LDC8_profiled_run1.csv_0.csv ===
+profiling_result_LDC8_profiled_run1.csv_0.csv
+max instantaneous power: 141.00W
+dynamic energy (nominal static power 310.0W): 0.00J
+run duration: 0.01s
+average dynamic power: 0.00W
+=== profiling_result_LDC_profiled_run1.csv_0.csv ===
+profiling_result_LDC_profiled_run1.csv_0.csv
+max instantaneous power: 750.00W
+dynamic energy (nominal static power 310.0W): 7338.16J
+run duration: 10.23s
+average dynamic power: 716.98W
+=== profiling_result_LDC_profiled_run2.csv_0.csv ===
+profiling_result_LDC_profiled_run2.csv_0.csv
+max instantaneous power: 750.00W
+dynamic energy (nominal static power 310.0W): 7319.21J
+run duration: 10.13s
+average dynamic power: 722.50W
+=== profiling_result_LDC_profiled_run3.csv_0.csv ===
+profiling_result_LDC_profiled_run3.csv_0.csv
+max instantaneous power: 750.00W
+dynamic energy (nominal static power 310.0W): 7272.16J
+run duration: 10.07s
+average dynamic power: 722.49W
+=== profiling_result_LDC_profiled_run4.csv_0.csv ===
+profiling_result_LDC_profiled_run4.csv_0.csv
+max instantaneous power: 750.00W
+dynamic energy (nominal static power 310.0W): 7340.41J
+run duration: 10.13s
+average dynamic power: 724.33W
+=== profiling_result_LDC_profiled_run5.csv_0.csv ===
+profiling_result_LDC_profiled_run5.csv_0.csv
+max instantaneous power: 750.00W
+dynamic energy (nominal static power 310.0W): 7281.33J
+run duration: 10.06s
+average dynamic power: 723.52W
+=== profiling_result_LDG64_profiled_run1.csv_0.csv ===
+profiling_result_LDG64_profiled_run1.csv_0.csv
+max instantaneous power: 573.00W
+dynamic energy (nominal static power 310.0W): 17932.03J
+run duration: 33.27s
+average dynamic power: 538.94W
+=== profiling_result_LDG64_profiled_run2.csv_0.csv ===
+profiling_result_LDG64_profiled_run2.csv_0.csv
+max instantaneous power: 572.00W
+dynamic energy (nominal static power 310.0W): 17903.20J
+run duration: 33.25s
+average dynamic power: 538.42W
+=== profiling_result_LDG64_profiled_run3.csv_0.csv ===
+profiling_result_LDG64_profiled_run3.csv_0.csv
+max instantaneous power: 572.00W
+dynamic energy (nominal static power 310.0W): 17915.43J
+run duration: 33.25s
+average dynamic power: 538.84W
+=== profiling_result_LDG64_profiled_run4.csv_0.csv ===
+profiling_result_LDG64_profiled_run4.csv_0.csv
+max instantaneous power: 573.00W
+dynamic energy (nominal static power 310.0W): 17967.70J
+run duration: 33.27s
+average dynamic power: 540.02W
+=== profiling_result_LDG64_profiled_run5.csv_0.csv ===
+profiling_result_LDG64_profiled_run5.csv_0.csv
+max instantaneous power: 573.00W
+dynamic energy (nominal static power 310.0W): 17941.51J
+run duration: 33.25s
+average dynamic power: 539.66W
+=== profiling_result_LDG64_STRONG_DRAM_profiled_run1.csv_0.csv ===
+profiling_result_LDG64_STRONG_DRAM_profiled_run1.csv_0.csv
+max instantaneous power: 243.00W
+dynamic energy (nominal static power 310.0W): 0.00J
+run duration: 2.71s
+average dynamic power: 0.00W
+=== profiling_result_LDG_CONSTANT_profiled_run1.csv_0.csv ===
+profiling_result_LDG_CONSTANT_profiled_run1.csv_0.csv
+max instantaneous power: 563.00W
+dynamic energy (nominal static power 310.0W): 17708.75J
+run duration: 33.21s
+average dynamic power: 533.26W
+=== profiling_result_LDG_CONSTANT_profiled_run2.csv_0.csv ===
+profiling_result_LDG_CONSTANT_profiled_run2.csv_0.csv
+max instantaneous power: 561.00W
+dynamic energy (nominal static power 310.0W): 17551.23J
+run duration: 33.21s
+average dynamic power: 528.55W
+=== profiling_result_LDG_CONSTANT_profiled_run3.csv_0.csv ===
+profiling_result_LDG_CONSTANT_profiled_run3.csv_0.csv
+max instantaneous power: 558.00W
+dynamic energy (nominal static power 310.0W): 17491.23J
+run duration: 33.22s
+average dynamic power: 526.56W
+=== profiling_result_LDG_CONSTANT_profiled_run4.csv_0.csv ===
+profiling_result_LDG_CONSTANT_profiled_run4.csv_0.csv
+max instantaneous power: 560.00W
+dynamic energy (nominal static power 310.0W): 17535.31J
+run duration: 33.25s
+average dynamic power: 527.34W
+=== profiling_result_LDG_CONSTANT_profiled_run5.csv_0.csv ===
+profiling_result_LDG_CONSTANT_profiled_run5.csv_0.csv
+max instantaneous power: 559.00W
+dynamic energy (nominal static power 310.0W): 17522.09J
+run duration: 33.23s
+average dynamic power: 527.36W
+=== profiling_result_LDG_profiled_run1.csv_0.csv ===
+profiling_result_LDG_profiled_run1.csv_0.csv
+max instantaneous power: 143.00W
+dynamic energy (nominal static power 310.0W): 0.00J
+run duration: 299.95s
+average dynamic power: 0.00W
+=== profiling_result_LDGSTG128_profiled_run1.csv_0.csv ===
+profiling_result_LDGSTG128_profiled_run1.csv_0.csv
+max instantaneous power: 753.00W
+dynamic energy (nominal static power 310.0W): 120362.33J
+run duration: 197.28s
+average dynamic power: 610.10W
+=== profiling_result_LDGSTG128_profiled_run2.csv_0.csv ===
+profiling_result_LDGSTG128_profiled_run2.csv_0.csv
+max instantaneous power: 752.00W
+dynamic energy (nominal static power 310.0W): 120454.80J
+run duration: 197.42s
+average dynamic power: 610.16W
+=== profiling_result_LDGSTG128_profiled_run3.csv_0.csv ===
+profiling_result_LDGSTG128_profiled_run3.csv_0.csv
+max instantaneous power: 753.00W
+dynamic energy (nominal static power 310.0W): 128584.16J
+run duration: 208.04s
+average dynamic power: 618.08W
+=== profiling_result_LDGSTG128_profiled_run4.csv_0.csv ===
+profiling_result_LDGSTG128_profiled_run4.csv_0.csv
+max instantaneous power: 754.00W
+dynamic energy (nominal static power 310.0W): 120220.88J
+run duration: 196.25s
+average dynamic power: 612.60W
+=== profiling_result_LDGSTG128_profiled_run5.csv_0.csv ===
+profiling_result_LDGSTG128_profiled_run5.csv_0.csv
+max instantaneous power: 752.00W
+dynamic energy (nominal static power 310.0W): 121834.34J
+run duration: 198.76s
+average dynamic power: 612.98W
+=== profiling_result_LDGSTG16_profiled_run1.csv_0.csv ===
+profiling_result_LDGSTG16_profiled_run1.csv_0.csv
+max instantaneous power: 714.00W
+dynamic energy (nominal static power 310.0W): 140727.16J
+run duration: 236.53s
+average dynamic power: 594.95W
+=== profiling_result_LDGSTG16_profiled_run2.csv_0.csv ===
+profiling_result_LDGSTG16_profiled_run2.csv_0.csv
+max instantaneous power: 714.00W
+dynamic energy (nominal static power 310.0W): 140135.92J
+run duration: 236.28s
+average dynamic power: 593.09W
+=== profiling_result_LDGSTG16_profiled_run3.csv_0.csv ===
+profiling_result_LDGSTG16_profiled_run3.csv_0.csv
+max instantaneous power: 713.00W
+dynamic energy (nominal static power 310.0W): 139905.71J
+run duration: 235.93s
+average dynamic power: 592.99W
+=== profiling_result_LDGSTG16_profiled_run4.csv_0.csv ===
+profiling_result_LDGSTG16_profiled_run4.csv_0.csv
+max instantaneous power: 713.00W
+dynamic energy (nominal static power 310.0W): 139964.79J
+run duration: 235.85s
+average dynamic power: 593.45W
+=== profiling_result_LDGSTG16_profiled_run5.csv_0.csv ===
+profiling_result_LDGSTG16_profiled_run5.csv_0.csv
+max instantaneous power: 713.00W
+dynamic energy (nominal static power 310.0W): 140172.07J
+run duration: 236.19s
+average dynamic power: 593.47W
+=== profiling_result_LDGSTG16_STRONG_L2_profiled_run1.csv_0.csv ===
+profiling_result_LDGSTG16_STRONG_L2_profiled_run1.csv_0.csv
+max instantaneous power: 714.00W
+dynamic energy (nominal static power 310.0W): 140433.51J
+run duration: 235.71s
+average dynamic power: 595.79W
+=== profiling_result_LDGSTG16_STRONG_L2_profiled_run2.csv_0.csv ===
+profiling_result_LDGSTG16_STRONG_L2_profiled_run2.csv_0.csv
+max instantaneous power: 713.00W
+dynamic energy (nominal static power 310.0W): 140268.26J
+run duration: 236.40s
+average dynamic power: 593.35W
+=== profiling_result_LDGSTG16_STRONG_L2_profiled_run3.csv_0.csv ===
+profiling_result_LDGSTG16_STRONG_L2_profiled_run3.csv_0.csv
+max instantaneous power: 713.00W
+dynamic energy (nominal static power 310.0W): 140174.50J
+run duration: 236.25s
+average dynamic power: 593.33W
+=== profiling_result_LDGSTG16_STRONG_L2_profiled_run4.csv_0.csv ===
+profiling_result_LDGSTG16_STRONG_L2_profiled_run4.csv_0.csv
+max instantaneous power: 713.00W
+dynamic energy (nominal static power 310.0W): 139922.20J
+run duration: 235.87s
+average dynamic power: 593.22W
+=== profiling_result_LDGSTG16_STRONG_L2_profiled_run5.csv_0.csv ===
+profiling_result_LDGSTG16_STRONG_L2_profiled_run5.csv_0.csv
+max instantaneous power: 713.00W
+dynamic energy (nominal static power 310.0W): 140081.62J
+run duration: 236.34s
+average dynamic power: 592.72W
+=== profiling_result_LDGSTG8_profiled_run1.csv_0.csv ===
+profiling_result_LDGSTG8_profiled_run1.csv_0.csv
+max instantaneous power: 495.00W
+dynamic energy (nominal static power 310.0W): 17798.97J
+run duration: 74.04s
+average dynamic power: 240.40W
+=== profiling_result_LDGSTG8_profiled_run2.csv_0.csv ===
+profiling_result_LDGSTG8_profiled_run2.csv_0.csv
+max instantaneous power: 488.00W
+dynamic energy (nominal static power 310.0W): 17475.76J
+run duration: 76.32s
+average dynamic power: 228.98W
+=== profiling_result_LDGSTG8_profiled_run3.csv_0.csv ===
+profiling_result_LDGSTG8_profiled_run3.csv_0.csv
+max instantaneous power: 489.00W
+dynamic energy (nominal static power 310.0W): 17532.28J
+run duration: 73.87s
+average dynamic power: 237.35W
+=== profiling_result_LDGSTG8_profiled_run4.csv_0.csv ===
+profiling_result_LDGSTG8_profiled_run4.csv_0.csv
+max instantaneous power: 487.00W
+dynamic energy (nominal static power 310.0W): 17471.15J
+run duration: 73.32s
+average dynamic power: 238.30W
+=== profiling_result_LDGSTG8_profiled_run5.csv_0.csv ===
+profiling_result_LDGSTG8_profiled_run5.csv_0.csv
+max instantaneous power: 489.00W
+dynamic energy (nominal static power 310.0W): 17514.58J
+run duration: 73.72s
+average dynamic power: 237.57W
+=== profiling_result_LDGSTG8_STRONG_L2_profiled_run1.csv_0.csv ===
+profiling_result_LDGSTG8_STRONG_L2_profiled_run1.csv_0.csv
+max instantaneous power: 751.00W
+dynamic energy (nominal static power 310.0W): 158924.98J
+run duration: 248.81s
+average dynamic power: 638.73W
+=== profiling_result_LDGSTG8_STRONG_L2_profiled_run2.csv_0.csv ===
+profiling_result_LDGSTG8_STRONG_L2_profiled_run2.csv_0.csv
+max instantaneous power: 750.00W
+dynamic energy (nominal static power 310.0W): 158451.08J
+run duration: 248.38s
+average dynamic power: 637.93W
+=== profiling_result_LDGSTG8_STRONG_L2_profiled_run3.csv_0.csv ===
+profiling_result_LDGSTG8_STRONG_L2_profiled_run3.csv_0.csv
+max instantaneous power: 750.00W
+dynamic energy (nominal static power 310.0W): 158369.77J
+run duration: 248.57s
+average dynamic power: 637.13W
+=== profiling_result_LDGSTG8_STRONG_L2_profiled_run4.csv_0.csv ===
+profiling_result_LDGSTG8_STRONG_L2_profiled_run4.csv_0.csv
+max instantaneous power: 750.00W
+dynamic energy (nominal static power 310.0W): 158517.84J
+run duration: 248.54s
+average dynamic power: 637.79W
+=== profiling_result_LDGSTG8_STRONG_L2_profiled_run5.csv_0.csv ===
+profiling_result_LDGSTG8_STRONG_L2_profiled_run5.csv_0.csv
+max instantaneous power: 750.00W
+dynamic energy (nominal static power 310.0W): 158504.31J
+run duration: 248.78s
+average dynamic power: 637.13W
+=== profiling_result_LDGSTG_profiled_run1.csv_0.csv ===
+profiling_result_LDGSTG_profiled_run1.csv_0.csv
+max instantaneous power: 751.00W
+dynamic energy (nominal static power 310.0W): 123687.70J
+run duration: 201.99s
+average dynamic power: 612.34W
+=== profiling_result_LDGSTG_profiled_run2.csv_0.csv ===
+profiling_result_LDGSTG_profiled_run2.csv_0.csv
+max instantaneous power: 751.00W
+dynamic energy (nominal static power 310.0W): 123651.99J
+run duration: 202.94s
+average dynamic power: 609.30W
+=== profiling_result_LDGSTG_profiled_run3.csv_0.csv ===
+profiling_result_LDGSTG_profiled_run3.csv_0.csv
+max instantaneous power: 751.00W
+dynamic energy (nominal static power 310.0W): 123700.64J
+run duration: 201.83s
+average dynamic power: 612.90W
+=== profiling_result_LDGSTG_profiled_run4.csv_0.csv ===
+profiling_result_LDGSTG_profiled_run4.csv_0.csv
+max instantaneous power: 751.00W
+dynamic energy (nominal static power 310.0W): 123667.19J
+run duration: 203.66s
+average dynamic power: 607.23W
+=== profiling_result_LDGSTG_profiled_run5.csv_0.csv ===
+profiling_result_LDGSTG_profiled_run5.csv_0.csv
+max instantaneous power: 751.00W
+dynamic energy (nominal static power 310.0W): 123749.42J
+run duration: 204.64s
+average dynamic power: 604.73W
+=== profiling_result_LDGSTG_STRONG_L2_profiled_run1.csv_0.csv ===
+profiling_result_LDGSTG_STRONG_L2_profiled_run1.csv_0.csv
+max instantaneous power: 751.00W
+dynamic energy (nominal static power 310.0W): 105947.66J
+run duration: 177.50s
+average dynamic power: 596.90W
+=== profiling_result_LDGSTG_STRONG_L2_profiled_run2.csv_0.csv ===
+profiling_result_LDGSTG_STRONG_L2_profiled_run2.csv_0.csv
+max instantaneous power: 751.00W
+dynamic energy (nominal static power 310.0W): 106073.78J
+run duration: 177.49s
+average dynamic power: 597.64W
+=== profiling_result_LDGSTG_STRONG_L2_profiled_run3.csv_0.csv ===
+profiling_result_LDGSTG_STRONG_L2_profiled_run3.csv_0.csv
+max instantaneous power: 751.00W
+dynamic energy (nominal static power 310.0W): 105859.53J
+run duration: 177.36s
+average dynamic power: 596.87W
+=== profiling_result_LDGSTG_STRONG_L2_profiled_run4.csv_0.csv ===
+profiling_result_LDGSTG_STRONG_L2_profiled_run4.csv_0.csv
+max instantaneous power: 751.00W
+dynamic energy (nominal static power 310.0W): 105779.81J
+run duration: 177.27s
+average dynamic power: 596.71W
+=== profiling_result_LDGSTG_STRONG_L2_profiled_run5.csv_0.csv ===
+profiling_result_LDGSTG_STRONG_L2_profiled_run5.csv_0.csv
+max instantaneous power: 751.00W
+dynamic energy (nominal static power 310.0W): 105978.05J
+run duration: 177.24s
+average dynamic power: 597.93W
+=== profiling_result_LDL_profiled_run1.csv_0.csv ===
+profiling_result_LDL_profiled_run1.csv_0.csv
+max instantaneous power: 751.00W
+dynamic energy (nominal static power 310.0W): 224815.23J
+run duration: 299.96s
+average dynamic power: 749.48W
+=== profiling_result_LDS_U_16_profiled_run1.csv_0.csv ===
+profiling_result_LDS_U_16_profiled_run1.csv_0.csv
+max instantaneous power: 669.00W
+dynamic energy (nominal static power 310.0W): 8171.36J
+run duration: 47.58s
+average dynamic power: 171.76W
+=== profiling_result_LDS_U_16_profiled_run2.csv_0.csv ===
+profiling_result_LDS_U_16_profiled_run2.csv_0.csv
+max instantaneous power: 657.00W
+dynamic energy (nominal static power 310.0W): 7948.32J
+run duration: 47.58s
+average dynamic power: 167.06W
+=== profiling_result_LDS_U_16_profiled_run3.csv_0.csv ===
+profiling_result_LDS_U_16_profiled_run3.csv_0.csv
+max instantaneous power: 654.00W
+dynamic energy (nominal static power 310.0W): 7892.44J
+run duration: 47.53s
+average dynamic power: 166.04W
+=== profiling_result_LDS_U_16_profiled_run4.csv_0.csv ===
+profiling_result_LDS_U_16_profiled_run4.csv_0.csv
+max instantaneous power: 651.00W
+dynamic energy (nominal static power 310.0W): 7862.68J
+run duration: 47.50s
+average dynamic power: 165.54W
+=== profiling_result_LDS_U_16_profiled_run5.csv_0.csv ===
+profiling_result_LDS_U_16_profiled_run5.csv_0.csv
+max instantaneous power: 650.00W
+dynamic energy (nominal static power 310.0W): 7850.49J
+run duration: 47.55s
+average dynamic power: 165.11W
+=== profiling_result_LDS_U_64_profiled_run1.csv_0.csv ===
+profiling_result_LDS_U_64_profiled_run1.csv_0.csv
+max instantaneous power: 555.00W
+dynamic energy (nominal static power 310.0W): 10881.18J
+run duration: 55.30s
+average dynamic power: 196.76W
+=== profiling_result_LDS_U_64_profiled_run2.csv_0.csv ===
+profiling_result_LDS_U_64_profiled_run2.csv_0.csv
+max instantaneous power: 555.00W
+dynamic energy (nominal static power 310.0W): 10869.32J
+run duration: 55.49s
+average dynamic power: 195.87W
+=== profiling_result_LDS_U_64_profiled_run3.csv_0.csv ===
+profiling_result_LDS_U_64_profiled_run3.csv_0.csv
+max instantaneous power: 554.00W
+dynamic energy (nominal static power 310.0W): 10850.00J
+run duration: 55.29s
+average dynamic power: 196.25W
+=== profiling_result_LDS_U_64_profiled_run4.csv_0.csv ===
+profiling_result_LDS_U_64_profiled_run4.csv_0.csv
+max instantaneous power: 554.00W
+dynamic energy (nominal static power 310.0W): 10852.14J
+run duration: 55.25s
+average dynamic power: 196.42W
+=== profiling_result_LDS_U_64_profiled_run5.csv_0.csv ===
+profiling_result_LDS_U_64_profiled_run5.csv_0.csv
+max instantaneous power: 552.00W
+dynamic energy (nominal static power 310.0W): 10830.59J
+run duration: 55.26s
+average dynamic power: 196.00W
+=== profiling_result_LDS_U_8_profiled_run1.csv_0.csv ===
+profiling_result_LDS_U_8_profiled_run1.csv_0.csv
+max instantaneous power: 628.00W
+dynamic energy (nominal static power 310.0W): 7578.76J
+run duration: 47.49s
+average dynamic power: 159.57W
+=== profiling_result_LDS_U_8_profiled_run2.csv_0.csv ===
+profiling_result_LDS_U_8_profiled_run2.csv_0.csv
+max instantaneous power: 623.00W
+dynamic energy (nominal static power 310.0W): 7533.49J
+run duration: 47.53s
+average dynamic power: 158.49W
+=== profiling_result_LDS_U_8_profiled_run3.csv_0.csv ===
+profiling_result_LDS_U_8_profiled_run3.csv_0.csv
+max instantaneous power: 625.00W
+dynamic energy (nominal static power 310.0W): 7536.78J
+run duration: 47.51s
+average dynamic power: 158.63W
+=== profiling_result_LDS_U_8_profiled_run4.csv_0.csv ===
+profiling_result_LDS_U_8_profiled_run4.csv_0.csv
+max instantaneous power: 624.00W
+dynamic energy (nominal static power 310.0W): 7527.12J
+run duration: 47.45s
+average dynamic power: 158.65W
+=== profiling_result_LDS_U_8_profiled_run5.csv_0.csv ===
+profiling_result_LDS_U_8_profiled_run5.csv_0.csv
+max instantaneous power: 623.00W
+dynamic energy (nominal static power 310.0W): 7521.82J
+run duration: 47.49s
+average dynamic power: 158.39W
+=== profiling_result_LOP3_LUT_profiled_run1.csv_0.csv ===
+profiling_result_LOP3_LUT_profiled_run1.csv_0.csv
+max instantaneous power: 235.00W
+dynamic energy (nominal static power 310.0W): 0.00J
+run duration: 71.16s
+average dynamic power: 0.00W
+=== profiling_result_LOP3_LUT_profiled_run2.csv_0.csv ===
+profiling_result_LOP3_LUT_profiled_run2.csv_0.csv
+max instantaneous power: 209.00W
+dynamic energy (nominal static power 310.0W): 0.00J
+run duration: 71.13s
+average dynamic power: 0.00W
+=== profiling_result_LOP3_LUT_profiled_run3.csv_0.csv ===
+profiling_result_LOP3_LUT_profiled_run3.csv_0.csv
+max instantaneous power: 209.00W
+dynamic energy (nominal static power 310.0W): 0.00J
+run duration: 71.15s
+average dynamic power: 0.00W
+=== profiling_result_LOP3_LUT_profiled_run4.csv_0.csv ===
+profiling_result_LOP3_LUT_profiled_run4.csv_0.csv
+max instantaneous power: 208.00W
+dynamic energy (nominal static power 310.0W): 0.00J
+run duration: 71.15s
+average dynamic power: 0.00W
+=== profiling_result_LOP3_LUT_profiled_run5.csv_0.csv ===
+profiling_result_LOP3_LUT_profiled_run5.csv_0.csv
+max instantaneous power: 210.00W
+dynamic energy (nominal static power 310.0W): 0.00J
+run duration: 71.18s
+average dynamic power: 0.00W
+=== profiling_result_NOP_profiled_run1.csv_0.csv ===
+profiling_result_NOP_profiled_run1.csv_0.csv
+max instantaneous power: 324.00W
+dynamic energy (nominal static power 310.0W): 1525.05J
+run duration: 6.36s
+average dynamic power: 239.85W
+=== profiling_result_NOP_profiled_run2.csv_0.csv ===
+profiling_result_NOP_profiled_run2.csv_0.csv
+max instantaneous power: 324.00W
+dynamic energy (nominal static power 310.0W): 1528.54J
+run duration: 6.36s
+average dynamic power: 240.21W
+=== profiling_result_NOP_profiled_run3.csv_0.csv ===
+profiling_result_NOP_profiled_run3.csv_0.csv
+max instantaneous power: 325.00W
+dynamic energy (nominal static power 310.0W): 1529.54J
+run duration: 6.36s
+average dynamic power: 240.63W
+=== profiling_result_NOP_profiled_run4.csv_0.csv ===
+profiling_result_NOP_profiled_run4.csv_0.csv
+max instantaneous power: 325.00W
+dynamic energy (nominal static power 310.0W): 1528.57J
+run duration: 6.36s
+average dynamic power: 240.20W
+=== profiling_result_NOP_profiled_run5.csv_0.csv ===
+profiling_result_NOP_profiled_run5.csv_0.csv
+max instantaneous power: 325.00W
+dynamic energy (nominal static power 310.0W): 1531.72J
+run duration: 6.37s
+average dynamic power: 240.45W
+=== profiling_result_P2R_profiled_run1.csv_0.csv ===
+profiling_result_P2R_profiled_run1.csv_0.csv
+max instantaneous power: 491.00W
+dynamic energy (nominal static power 310.0W): 3842.51J
+run duration: 43.82s
+average dynamic power: 87.70W
+=== profiling_result_P2R_profiled_run2.csv_0.csv ===
+profiling_result_P2R_profiled_run2.csv_0.csv
+max instantaneous power: 490.00W
+dynamic energy (nominal static power 310.0W): 3840.75J
+run duration: 43.86s
+average dynamic power: 87.56W
+=== profiling_result_P2R_profiled_run3.csv_0.csv ===
+profiling_result_P2R_profiled_run3.csv_0.csv
+max instantaneous power: 486.00W
+dynamic energy (nominal static power 310.0W): 3806.00J
+run duration: 43.84s
+average dynamic power: 86.83W
+=== profiling_result_P2R_profiled_run4.csv_0.csv ===
+profiling_result_P2R_profiled_run4.csv_0.csv
+max instantaneous power: 489.00W
+dynamic energy (nominal static power 310.0W): 3824.21J
+run duration: 43.86s
+average dynamic power: 87.19W
+=== profiling_result_P2R_profiled_run5.csv_0.csv ===
+profiling_result_P2R_profiled_run5.csv_0.csv
+max instantaneous power: 490.00W
+dynamic energy (nominal static power 310.0W): 3834.90J
+run duration: 43.75s
+average dynamic power: 87.66W
+=== profiling_result_PRMT_profiled_run1.csv_0.csv ===
+profiling_result_PRMT_profiled_run1.csv_0.csv
+max instantaneous power: 606.00W
+dynamic energy (nominal static power 310.0W): 3592.90J
+run duration: 77.44s
+average dynamic power: 46.40W
+=== profiling_result_PRMT_profiled_run2.csv_0.csv ===
+profiling_result_PRMT_profiled_run2.csv_0.csv
+max instantaneous power: 605.00W
+dynamic energy (nominal static power 310.0W): 3587.59J
+run duration: 77.39s
+average dynamic power: 46.36W
+=== profiling_result_PRMT_profiled_run3.csv_0.csv ===
+profiling_result_PRMT_profiled_run3.csv_0.csv
+max instantaneous power: 605.00W
+dynamic energy (nominal static power 310.0W): 3586.54J
+run duration: 77.29s
+average dynamic power: 46.41W
+=== profiling_result_PRMT_profiled_run4.csv_0.csv ===
+profiling_result_PRMT_profiled_run4.csv_0.csv
+max instantaneous power: 604.00W
+dynamic energy (nominal static power 310.0W): 3586.67J
+run duration: 77.35s
+average dynamic power: 46.37W
+=== profiling_result_PRMT_profiled_run5.csv_0.csv ===
+profiling_result_PRMT_profiled_run5.csv_0.csv
+max instantaneous power: 602.00W
+dynamic energy (nominal static power 310.0W): 3567.11J
+run duration: 77.63s
+average dynamic power: 45.95W
+=== profiling_result_SHFL_IDX_profiled_run1.csv_0.csv ===
+profiling_result_SHFL_IDX_profiled_run1.csv_0.csv
+max instantaneous power: 736.00W
+dynamic energy (nominal static power 310.0W): 13115.95J
+run duration: 54.16s
+average dynamic power: 242.16W
+=== profiling_result_SHFL_IDX_profiled_run2.csv_0.csv ===
+profiling_result_SHFL_IDX_profiled_run2.csv_0.csv
+max instantaneous power: 739.00W
+dynamic energy (nominal static power 310.0W): 13177.45J
+run duration: 54.11s
+average dynamic power: 243.53W
+=== profiling_result_SHFL_IDX_profiled_run3.csv_0.csv ===
+profiling_result_SHFL_IDX_profiled_run3.csv_0.csv
+max instantaneous power: 740.00W
+dynamic energy (nominal static power 310.0W): 13195.29J
+run duration: 54.01s
+average dynamic power: 244.32W
+=== profiling_result_SHFL_IDX_profiled_run4.csv_0.csv ===
+profiling_result_SHFL_IDX_profiled_run4.csv_0.csv
+max instantaneous power: 739.00W
+dynamic energy (nominal static power 310.0W): 13199.82J
+run duration: 54.04s
+average dynamic power: 244.28W
+=== profiling_result_SHFL_IDX_profiled_run5.csv_0.csv ===
+profiling_result_SHFL_IDX_profiled_run5.csv_0.csv
+max instantaneous power: 740.00W
+dynamic energy (nominal static power 310.0W): 13195.71J
+run duration: 54.09s
+average dynamic power: 243.98W
+=== profiling_result_ST_E_STRONG_L1_profiled_run1.csv_0.csv ===
+profiling_result_ST_E_STRONG_L1_profiled_run1.csv_0.csv
+max instantaneous power: 550.00W
+dynamic energy (nominal static power 310.0W): 32906.06J
+run duration: 96.42s
+average dynamic power: 341.26W
+=== profiling_result_ST_E_STRONG_L1_profiled_run2.csv_0.csv ===
+profiling_result_ST_E_STRONG_L1_profiled_run2.csv_0.csv
+max instantaneous power: 554.00W
+dynamic energy (nominal static power 310.0W): 33368.07J
+run duration: 96.99s
+average dynamic power: 344.02W
+=== profiling_result_ST_E_STRONG_L1_profiled_run3.csv_0.csv ===
+profiling_result_ST_E_STRONG_L1_profiled_run3.csv_0.csv
+max instantaneous power: 557.00W
+dynamic energy (nominal static power 310.0W): 33470.42J
+run duration: 96.97s
+average dynamic power: 345.18W
+=== profiling_result_ST_E_STRONG_L1_profiled_run4.csv_0.csv ===
+profiling_result_ST_E_STRONG_L1_profiled_run4.csv_0.csv
+max instantaneous power: 557.00W
+dynamic energy (nominal static power 310.0W): 33357.84J
+run duration: 96.75s
+average dynamic power: 344.77W
+=== profiling_result_ST_E_STRONG_L1_profiled_run5.csv_0.csv ===
+profiling_result_ST_E_STRONG_L1_profiled_run5.csv_0.csv
+max instantaneous power: 557.00W
+dynamic energy (nominal static power 310.0W): 33469.78J
+run duration: 96.77s
+average dynamic power: 345.87W
+=== profiling_result_STG128_profiled_run1.csv_0.csv ===
+profiling_result_STG128_profiled_run1.csv_0.csv
+max instantaneous power: 607.00W
+dynamic energy (nominal static power 310.0W): 70587.62J
+run duration: 154.73s
+average dynamic power: 456.21W
+=== profiling_result_STG128_profiled_run2.csv_0.csv ===
+profiling_result_STG128_profiled_run2.csv_0.csv
+max instantaneous power: 607.00W
+dynamic energy (nominal static power 310.0W): 70583.64J
+run duration: 154.79s
+average dynamic power: 455.99W
+=== profiling_result_STG128_profiled_run3.csv_0.csv ===
+profiling_result_STG128_profiled_run3.csv_0.csv
+max instantaneous power: 610.00W
+dynamic energy (nominal static power 310.0W): 70769.92J
+run duration: 154.75s
+average dynamic power: 457.33W
+=== profiling_result_STG128_profiled_run4.csv_0.csv ===
+profiling_result_STG128_profiled_run4.csv_0.csv
+max instantaneous power: 607.00W
+dynamic energy (nominal static power 310.0W): 70606.55J
+run duration: 154.77s
+average dynamic power: 456.21W
+=== profiling_result_STG128_profiled_run5.csv_0.csv ===
+profiling_result_STG128_profiled_run5.csv_0.csv
+max instantaneous power: 612.00W
+dynamic energy (nominal static power 310.0W): 70779.84J
+run duration: 154.78s
+average dynamic power: 457.29W
+=== profiling_result_STG16_profiled_run1.csv_0.csv ===
+profiling_result_STG16_profiled_run1.csv_0.csv
+max instantaneous power: 600.00W
+dynamic energy (nominal static power 310.0W): 22119.84J
+run duration: 72.70s
+average dynamic power: 304.28W
+=== profiling_result_STG16_profiled_run2.csv_0.csv ===
+profiling_result_STG16_profiled_run2.csv_0.csv
+max instantaneous power: 596.00W
+dynamic energy (nominal static power 310.0W): 21822.55J
+run duration: 72.71s
+average dynamic power: 300.14W
+=== profiling_result_STG16_profiled_run3.csv_0.csv ===
+profiling_result_STG16_profiled_run3.csv_0.csv
+max instantaneous power: 591.00W
+dynamic energy (nominal static power 310.0W): 21673.94J
+run duration: 72.69s
+average dynamic power: 298.16W
+=== profiling_result_STG16_profiled_run4.csv_0.csv ===
+profiling_result_STG16_profiled_run4.csv_0.csv
+max instantaneous power: 595.00W
+dynamic energy (nominal static power 310.0W): 21725.71J
+run duration: 72.66s
+average dynamic power: 298.99W
+=== profiling_result_STG16_profiled_run5.csv_0.csv ===
+profiling_result_STG16_profiled_run5.csv_0.csv
+max instantaneous power: 590.00W
+dynamic energy (nominal static power 310.0W): 21614.12J
+run duration: 72.66s
+average dynamic power: 297.46W
+=== profiling_result_STG64_profiled_run1.csv_0.csv ===
+profiling_result_STG64_profiled_run1.csv_0.csv
+max instantaneous power: 599.00W
+dynamic energy (nominal static power 310.0W): 75200.01J
+run duration: 163.62s
+average dynamic power: 459.61W
+=== profiling_result_STG64_profiled_run2.csv_0.csv ===
+profiling_result_STG64_profiled_run2.csv_0.csv
+max instantaneous power: 598.00W
+dynamic energy (nominal static power 310.0W): 75212.72J
+run duration: 163.80s
+average dynamic power: 459.17W
+=== profiling_result_STG64_profiled_run3.csv_0.csv ===
+profiling_result_STG64_profiled_run3.csv_0.csv
+max instantaneous power: 598.00W
+dynamic energy (nominal static power 310.0W): 75154.80J
+run duration: 163.64s
+average dynamic power: 459.26W
+=== profiling_result_STG64_profiled_run4.csv_0.csv ===
+profiling_result_STG64_profiled_run4.csv_0.csv
+max instantaneous power: 599.00W
+dynamic energy (nominal static power 310.0W): 75207.12J
+run duration: 163.79s
+average dynamic power: 459.18W
+=== profiling_result_STG64_profiled_run5.csv_0.csv ===
+profiling_result_STG64_profiled_run5.csv_0.csv
+max instantaneous power: 599.00W
+dynamic energy (nominal static power 310.0W): 75138.98J
+run duration: 163.68s
+average dynamic power: 459.05W
+=== profiling_result_STG8_profiled_run1.csv_0.csv ===
+profiling_result_STG8_profiled_run1.csv_0.csv
+max instantaneous power: 531.00W
+dynamic energy (nominal static power 310.0W): 10310.77J
+run duration: 54.82s
+average dynamic power: 188.09W
+=== profiling_result_STG8_profiled_run2.csv_0.csv ===
+profiling_result_STG8_profiled_run2.csv_0.csv
+max instantaneous power: 521.00W
+dynamic energy (nominal static power 310.0W): 10107.80J
+run duration: 54.86s
+average dynamic power: 184.25W
+=== profiling_result_STG8_profiled_run3.csv_0.csv ===
+profiling_result_STG8_profiled_run3.csv_0.csv
+max instantaneous power: 517.00W
+dynamic energy (nominal static power 310.0W): 10023.20J
+run duration: 54.90s
+average dynamic power: 182.58W
+=== profiling_result_STG8_profiled_run4.csv_0.csv ===
+profiling_result_STG8_profiled_run4.csv_0.csv
+max instantaneous power: 517.00W
+dynamic energy (nominal static power 310.0W): 10028.64J
+run duration: 54.84s
+average dynamic power: 182.85W
+=== profiling_result_STG8_profiled_run5.csv_0.csv ===
+profiling_result_STG8_profiled_run5.csv_0.csv
+max instantaneous power: 519.00W
+dynamic energy (nominal static power 310.0W): 10064.69J
+run duration: 54.91s
+average dynamic power: 183.29W
+=== profiling_result_STG8_STRONG_profiled_run1.csv_0.csv ===
+profiling_result_STG8_STRONG_profiled_run1.csv_0.csv
+max instantaneous power: 695.00W
+dynamic energy (nominal static power 310.0W): 47453.10J
+run duration: 105.58s
+average dynamic power: 449.46W
+=== profiling_result_STG8_STRONG_profiled_run2.csv_0.csv ===
+profiling_result_STG8_STRONG_profiled_run2.csv_0.csv
+max instantaneous power: 694.00W
+dynamic energy (nominal static power 310.0W): 47634.02J
+run duration: 105.63s
+average dynamic power: 450.96W
+=== profiling_result_STG8_STRONG_profiled_run3.csv_0.csv ===
+profiling_result_STG8_STRONG_profiled_run3.csv_0.csv
+max instantaneous power: 694.00W
+dynamic energy (nominal static power 310.0W): 47699.73J
+run duration: 105.65s
+average dynamic power: 451.50W
+=== profiling_result_STG8_STRONG_profiled_run4.csv_0.csv ===
+profiling_result_STG8_STRONG_profiled_run4.csv_0.csv
+max instantaneous power: 696.00W
+dynamic energy (nominal static power 310.0W): 47756.84J
+run duration: 105.63s
+average dynamic power: 452.11W
+=== profiling_result_STG8_STRONG_profiled_run5.csv_0.csv ===
+profiling_result_STG8_STRONG_profiled_run5.csv_0.csv
+max instantaneous power: 697.00W
+dynamic energy (nominal static power 310.0W): 47765.04J
+run duration: 105.67s
+average dynamic power: 452.02W
+=== profiling_result_STG_profiled_run1.csv_0.csv ===
+profiling_result_STG_profiled_run1.csv_0.csv
+max instantaneous power: 649.00W
+dynamic energy (nominal static power 310.0W): 18492.83J
+run duration: 64.26s
+average dynamic power: 287.76W
+=== profiling_result_STG_profiled_run2.csv_0.csv ===
+profiling_result_STG_profiled_run2.csv_0.csv
+max instantaneous power: 646.00W
+dynamic energy (nominal static power 310.0W): 18371.11J
+run duration: 64.46s
+average dynamic power: 285.00W
+=== profiling_result_STG_profiled_run3.csv_0.csv ===
+profiling_result_STG_profiled_run3.csv_0.csv
+max instantaneous power: 645.00W
+dynamic energy (nominal static power 310.0W): 18342.37J
+run duration: 64.27s
+average dynamic power: 285.41W
+=== profiling_result_STG_profiled_run4.csv_0.csv ===
+profiling_result_STG_profiled_run4.csv_0.csv
+max instantaneous power: 643.00W
+dynamic energy (nominal static power 310.0W): 18334.72J
+run duration: 64.25s
+average dynamic power: 285.39W
+=== profiling_result_STG_profiled_run5.csv_0.csv ===
+profiling_result_STG_profiled_run5.csv_0.csv
+max instantaneous power: 644.00W
+dynamic energy (nominal static power 310.0W): 18330.41J
+run duration: 64.31s
+average dynamic power: 285.05W
+=== profiling_result_STG_STRONG_L2_profiled_run1.csv_0.csv ===
+profiling_result_STG_STRONG_L2_profiled_run1.csv_0.csv
+max instantaneous power: 751.00W
+dynamic energy (nominal static power 310.0W): 55100.84J
+run duration: 109.21s
+average dynamic power: 504.54W
+=== profiling_result_STG_STRONG_L2_profiled_run2.csv_0.csv ===
+profiling_result_STG_STRONG_L2_profiled_run2.csv_0.csv
+max instantaneous power: 751.00W
+dynamic energy (nominal static power 310.0W): 55003.97J
+run duration: 108.98s
+average dynamic power: 504.71W
+=== profiling_result_STG_STRONG_L2_profiled_run3.csv_0.csv ===
+profiling_result_STG_STRONG_L2_profiled_run3.csv_0.csv
+max instantaneous power: 751.00W
+dynamic energy (nominal static power 310.0W): 55006.84J
+run duration: 108.97s
+average dynamic power: 504.79W
+=== profiling_result_STG_STRONG_L2_profiled_run4.csv_0.csv ===
+profiling_result_STG_STRONG_L2_profiled_run4.csv_0.csv
+max instantaneous power: 751.00W
+dynamic energy (nominal static power 310.0W): 54573.74J
+run duration: 108.58s
+average dynamic power: 502.61W
+=== profiling_result_STG_STRONG_L2_profiled_run5.csv_0.csv ===
+profiling_result_STG_STRONG_L2_profiled_run5.csv_0.csv
+max instantaneous power: 751.00W
+dynamic energy (nominal static power 310.0W): 55227.83J
+run duration: 109.27s
+average dynamic power: 505.43W
+=== profiling_result_STL_profiled_run1.csv_0.csv ===
+profiling_result_STL_profiled_run1.csv_0.csv
+max instantaneous power: 752.00W
+dynamic energy (nominal static power 310.0W): 224834.28J
+run duration: 299.96s
+average dynamic power: 749.54W
+=== profiling_result_STS_128_profiled_run1.csv_0.csv ===
+profiling_result_STS_128_profiled_run1.csv_0.csv
+max instantaneous power: 610.00W
+dynamic energy (nominal static power 310.0W): 15591.62J
+run duration: 61.40s
+average dynamic power: 253.92W
+=== profiling_result_STS_128_profiled_run2.csv_0.csv ===
+profiling_result_STS_128_profiled_run2.csv_0.csv
+max instantaneous power: 608.00W
+dynamic energy (nominal static power 310.0W): 15590.99J
+run duration: 61.45s
+average dynamic power: 253.73W
+=== profiling_result_STS_128_profiled_run3.csv_0.csv ===
+profiling_result_STS_128_profiled_run3.csv_0.csv
+max instantaneous power: 612.00W
+dynamic energy (nominal static power 310.0W): 15599.66J
+run duration: 61.41s
+average dynamic power: 254.01W
+=== profiling_result_STS_128_profiled_run4.csv_0.csv ===
+profiling_result_STS_128_profiled_run4.csv_0.csv
+max instantaneous power: 611.00W
+dynamic energy (nominal static power 310.0W): 15631.54J
+run duration: 61.49s
+average dynamic power: 254.23W
+=== profiling_result_STS_128_profiled_run5.csv_0.csv ===
+profiling_result_STS_128_profiled_run5.csv_0.csv
+max instantaneous power: 609.00W
+dynamic energy (nominal static power 310.0W): 15589.68J
+run duration: 61.43s
+average dynamic power: 253.79W
+=== profiling_result_STS_16_profiled_run1.csv_0.csv ===
+profiling_result_STS_16_profiled_run1.csv_0.csv
+max instantaneous power: 570.00W
+dynamic energy (nominal static power 310.0W): 6724.14J
+run duration: 47.19s
+average dynamic power: 142.49W
+=== profiling_result_STS_64_profiled_run1.csv_0.csv ===
+profiling_result_STS_64_profiled_run1.csv_0.csv
+max instantaneous power: 140.00W
+dynamic energy (nominal static power 310.0W): 0.00J
+run duration: 0.01s
+average dynamic power: 0.00W
+=== profiling_result_STS_8_profiled_run1.csv_0.csv ===
+profiling_result_STS_8_profiled_run1.csv_0.csv
+max instantaneous power: 140.00W
+dynamic energy (nominal static power 310.0W): 0.00J
+run duration: 0.01s
+average dynamic power: 0.00W
+=== profiling_result_STS_profiled_run1.csv_0.csv ===
+profiling_result_STS_profiled_run1.csv_0.csv
+max instantaneous power: 584.00W
+dynamic energy (nominal static power 310.0W): 6965.74J
+run duration: 47.22s
+average dynamic power: 147.52W
+=== profiling_result_STS_profiled_run2.csv_0.csv ===
+profiling_result_STS_profiled_run2.csv_0.csv
+max instantaneous power: 565.00W
+dynamic energy (nominal static power 310.0W): 6662.48J
+run duration: 47.22s
+average dynamic power: 141.08W
+=== profiling_result_STS_profiled_run3.csv_0.csv ===
+profiling_result_STS_profiled_run3.csv_0.csv
+max instantaneous power: 558.00W
+dynamic energy (nominal static power 310.0W): 6589.68J
+run duration: 47.25s
+average dynamic power: 139.46W
+=== profiling_result_STS_profiled_run4.csv_0.csv ===
+profiling_result_STS_profiled_run4.csv_0.csv
+max instantaneous power: 558.00W
+dynamic energy (nominal static power 310.0W): 6586.09J
+run duration: 47.20s
+average dynamic power: 139.54W
+=== profiling_result_STS_profiled_run5.csv_0.csv ===
+profiling_result_STS_profiled_run5.csv_0.csv
+max instantaneous power: 558.00W
+dynamic energy (nominal static power 310.0W): 6587.22J
+run duration: 47.20s
+average dynamic power: 139.56W

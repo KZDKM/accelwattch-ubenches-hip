@@ -104,9 +104,9 @@ __global__ void PowerKernal2(uint4* __restrict__ A, uint4* __restrict__ B, unsig
     #pragma unroll 100
         for (unsigned long long k = 0; k < N; k++) {
             
-            data.x += 1; //hack: avoid loop invariant (hopefully???)
             asm volatile("" ::: "memory"); // make sure the load materializes and waits before store
             data = *inptr; // global_load_dwordx4
+            //data.x += 1; //hack: avoid loop invariant (hopefully???)
             *outptr = data; // global_store_dwordx4
             // memory clobber to prevent loop optimization
             asm volatile("s_waitcnt vmcnt(0)" ::: "memory"); 

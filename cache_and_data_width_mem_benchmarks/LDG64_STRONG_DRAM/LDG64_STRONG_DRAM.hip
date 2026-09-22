@@ -43,7 +43,7 @@
 #define WARP_SIZE 32
 
 #define ARRAY_SIZE 67108864 // 2^26
-#define STRIDE THREADS_PER_BLOCK*NUM_OF_BLOCKS//2^14 * 10
+#define STRIDE 163840//2^14 * 10
 
 // GPU error check
 #define checkCudaErrors(ans) { gpuAssert((ans), __FILE__, __LINE__); }
@@ -54,7 +54,7 @@ inline void gpuAssert(hipError_t code, const char *file, int line, bool abort=tr
         }
 }
 
-__global__ void pointers_init(uint64_t *posArray){
+/*__global__ void pointers_init(uint64_t *posArray){
 
   uint32_t tid = blockIdx.x*blockDim.x + threadIdx.x;
   if(tid == 0){
@@ -63,9 +63,15 @@ __global__ void pointers_init(uint64_t *posArray){
       }
       //get the last STRIDE wrapped around
       for (uint64_t i=0; i < STRIDE; i++){
-	posArray[ARRAY_SIZE - STRIDE + i - 1] = (uint64_t)(posArray + i);
+        posArray[ARRAY_SIZE - STRIDE + i - 1] = (uint64_t)(posArray + i);
       }
   }
+}*/
+
+__global__ void pointers_init(uint64_t *posArray){
+  uint64_t i = (uint64_t)blockIdx.x * blockDim.x + threadIdx.x;
+  if (i < ARRAY_SIZE)
+    posArray[i] = (uint64_t)(posArray + (i + STRIDE) % ARRAY_SIZE);
 }
 
 __global__ void dram_stress(uint64_t *posArray, uint64_t *dsink, unsigned long long iterations){
@@ -73,7 +79,7 @@ __global__ void dram_stress(uint64_t *posArray, uint64_t *dsink, unsigned long l
   // thread index
   uint32_t tid = blockIdx.x*blockDim.x + threadIdx.x;
 
-  if(tid < NUM_OF_BLOCKS*THREADS_PER_BLOCK){
+  if(tid < ARRAY_SIZE) {
   	// a register to avoid compiler optimization
   	uint64_t *ptr = posArray + tid;
   	uint64_t ptr1, ptr0;
@@ -137,7 +143,10 @@ int main(int argc, char** argv){
  checkCudaErrors(hipEventCreate(&start));  
  checkCudaErrors(hipEventCreate(&stop));
 
-    pointers_init<<<1,1>>>(posArray_g);
+ int init_blocks = (ARRAY_SIZE + THREADS_PER_BLOCK - 1) / THREADS_PER_BLOCK;
+ pointers_init<<<init_blocks, THREADS_PER_BLOCK>>>(posArray_g);
+ checkCudaErrors(hipDeviceSynchronize());
+    
  checkCudaErrors(hipEventRecord(start));    
   dram_stress<<<NUM_OF_BLOCKS,THREADS_PER_BLOCK>>>(posArray_g, dsink_g, iterations);
  checkCudaErrors(hipEventRecord(stop));               

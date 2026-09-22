@@ -1,0 +1,20 @@
+# generated data
+*.csv
+*.jpg
+cache_workloads
+
+# compilation artifacts
+a.out
+*.bc
+*.hipi
+*.o
+*.out
+*.s
+*.out.resolution.txt
+*.bc
+*.hipi
+*.hipfb
+bin
+
+# runtime dir
+.rocprofv3

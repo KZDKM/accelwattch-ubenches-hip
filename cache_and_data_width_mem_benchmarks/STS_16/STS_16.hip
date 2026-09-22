@@ -196,10 +196,8 @@ void CleanupResources(void)
 }
 
 // Allocates an array with random float entries.
-void RandomInit(uint16_t* data, int n)
-{
-  for (int i = 0; i < n; ++i){
-  srand((uint16_t)time(0));  
-  data[i] = rand() / RAND_MAX;
-  }
+void RandomInit(uint16_t* data, int n) {
+  srand(1);
+  for (int i = 0; i < n; ++i)
+    data[i] = (uint16_t)(rand() & 0xFFFF);
 }

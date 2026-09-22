@@ -43,7 +43,7 @@
 #include <hip/hip_runtime.h>
 
 #define THREADS_PER_BLOCK 256
-#define NUM_OF_BLOCKS 640
+#define NUM_OF_BLOCKS (304*1024)
 //#define ITERATIONS 40
 //#include "../include/ContAcq-IntClk.h"
 

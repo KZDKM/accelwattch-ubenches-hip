@@ -154,9 +154,9 @@ int main(int argc, char** argv)
 // Allocates an array with random float entries.
 void RandomInit(uint8_t* data, int n)
 {
-  for (int i = 0; i < n; ++i){
-  srand((uint8_t)time(0));  
-  data[i] = rand() / RAND_MAX;
+    srand(1);  
+    for (int i = 0; i < n; ++i){
+        data[i] = (uint8_t)(rand() & 0xFF);
   }
 }
 

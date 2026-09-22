@@ -43,7 +43,7 @@
 #include <rocwmma/rocwmma.hpp> //Get half precision in scope
 
 #define THREADS_PER_BLOCK 256
-#define NUM_OF_BLOCKS 640
+#define NUM_OF_BLOCKS (304*1024)
 //#define ITERATIONS 40
 //#include "../include/ContAcq-IntClk.h"
 
@@ -141,7 +141,7 @@ int main(int argc, char** argv)
  // Allocate vectors in device memory
 printf("before\n");
  checkCudaErrors( hipMalloc((void**)&d_A, N * sizeof(half)) );
- checkCudaErrors( hipMalloc((void**)&d_B, N * sizeof(half)) );
+ checkCudaErrors( hipMalloc((void**)&d_B, N * sizeof(float)) );
  checkCudaErrors( hipMalloc((void**)&d_A_fp32, sizeof(float)*N) );
 printf("after\n");
 

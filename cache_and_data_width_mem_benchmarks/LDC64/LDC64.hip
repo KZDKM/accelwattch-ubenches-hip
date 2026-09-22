@@ -120,7 +120,11 @@ int main(int argc, char** argv)
 	uint64_t array1[THREADS_PER_BLOCK];
 	int N = THREADS_PER_BLOCK*NUM_OF_BLOCKS;
 	size_t size = N * sizeof(uint64_t);
-	 h_Value = (uint64_t *) malloc(size);
+	h_Value = (uint64_t *) malloc(size);
+	if (!h_Value) { fprintf(stderr, "malloc failed\n"); exit(1); }
+	
+	checkCudaErrors(hipMemcpyToSymbol(HIP_SYMBOL(ConstArray1), array1,
+                                sizeof(uint64_t) * THREADS_PER_BLOCK));
 
 	// Initialize input vectors
 	RandomInit(array1, THREADS_PER_BLOCK);
@@ -154,9 +158,11 @@ int main(int argc, char** argv)
 // Allocates an array with random float entries.
 void RandomInit(uint64_t* data, int n)
 {
+    srand(1);
   for (int i = 0; i < n; ++i){
-  srand((uint64_t)time(0));  
-  data[i] = rand() / RAND_MAX;
+      data[i] = ((uint64_t)rand() << 32) | (uint64_t)rand();
+    //srand((uint64_t)time(0));  
+    //data[i] = rand() / RAND_MAX;
   }
 }
 

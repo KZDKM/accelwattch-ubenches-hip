@@ -92,8 +92,8 @@ __global__ void PowerKernal2(unsigned* B, unsigned long long N)
     unsigned arr[THREADS_PER_BLOCK];
    
   #pragma unroll 100
-    for(uint64_t i=0; i<N; ++i) {
-      #pragma unroll
+    for(uint64_t i=0; i< N / 256; ++i) {
+      #pragma unroll 256
       for(int j=0; j < THREADS_PER_BLOCK; ++j)
 	      arr[j] = i;
 //        asm volatile ("{\t\n"
