@@ -105,8 +105,9 @@ __global__ void PowerKernal1(const unsigned* A, const unsigned* B, unsigned* C, 
     unsigned Value4= ~Value3;
     unsigned Value;
 
+    for(unsigned long long k=0; k<N/100;k++) {
 #pragma unroll 100
-    for(unsigned long long k=0; k<N;k++) {
+      for(unsigned long long j=0; j<100;j++) {
         /*asm volatile (
             "v_lop3_b32 %0, %1, %2, %3, 0xA8\n\t"  // Value1 = (Value3 & Value2) ^ ~Value4;
             "v_lop3_b32 %1, %1, %0, %3, 0x3C\n\t"  // Value2 = (Value2 | Value1) & ~Value4;
@@ -138,6 +139,7 @@ __global__ void PowerKernal1(const unsigned* A, const unsigned* B, unsigned* C, 
         Value2 = ~(Value2 | Value3) & Value1;
         Value3 = (Value2 ^ Value1) | ~Value4;
         Value4 = (Value1 & Value2) | ~Value3;
+    }
     }
 
     __syncthreads();

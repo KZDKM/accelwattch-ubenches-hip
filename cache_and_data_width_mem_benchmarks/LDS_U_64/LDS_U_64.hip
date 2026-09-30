@@ -109,8 +109,9 @@ __global__ void PowerKernal2( uint64_t* A, uint64_t* B, unsigned long long N)
     uint32_t inptr = static_cast<uint32_t>(reinterpret_cast<uintptr_t>(sharedInp + tid));
     uint32_t outptr = static_cast<uint32_t>(reinterpret_cast<uintptr_t>(sharedOut + tid));
 
+        for (unsigned long long k = 0; k < N/100; k++) {
     #pragma unroll 100
-        for (unsigned long long k = 0; k < N; k++) {
+          for (unsigned long long j = 0; j < 100; j++) {
         // Use inline PTX to load 64b at once from shared memory
         asm volatile (
             "ds_read_b64 %0, %1\n\t"
@@ -129,6 +130,7 @@ __global__ void PowerKernal2( uint64_t* A, uint64_t* B, unsigned long long N)
             : "memory"
         );
     }
+        }
 
     // Store result back to global memory (sum of all four uint components)
     B[i] = data;

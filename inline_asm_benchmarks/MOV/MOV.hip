@@ -109,8 +109,9 @@ __global__ void PowerKernal2(const unsigned* A, const unsigned* B, unsigned* C, 
         : "r"(I1), "r"(I2)
     );
 
+    for (unsigned long long k = 0; k < N/100; k++) {
     #pragma unroll 100 
-    for (unsigned long long k = 0; k < N; k++) {
+      for (unsigned long long j = 0; j < 100; j++) {
         // Doing several moves
         __asm volatile (
             "\n\tv_mov_b32 %2, %0;"
@@ -139,6 +140,7 @@ __global__ void PowerKernal2(const unsigned* A, const unsigned* B, unsigned* C, 
             "\n\tv_mov_b32 %1, %11;"
             : "+v"(Value1), "+v"(Value2), "+v"(Value3), "+v"(Value4), "+v"(Value5), "+v"(Value6), "+v"(Value7), "+v"(Value8), "+v"(Value9), "+v"(Value10), "+v"(Value11), "+v"(Value12)
         );
+    }
     }
     C[i] = Value12;
     __syncthreads();

@@ -103,15 +103,17 @@ __global__ void PowerKernal2(const int* A, const int* B, int* C, unsigned long l
     int Value2 = __builtin_amdgcn_sdot4(I3, I1, I2, false);
     int Value3 = __builtin_amdgcn_sdot4(I2, I3, I1, false);
 
-#pragma unroll 100
     // Excessive Addition access
-    for(unsigned long long k=0; k<iterations;k++) {
+    for(unsigned long long k=0; k<iterations/100;k++) {
+#pragma unroll 100
+      for(unsigned long long j=0; j<100;j++) {
 	    Value1 = __builtin_amdgcn_sdot4(Value3, Value2, Value2, false);
 	    Value2 = __builtin_amdgcn_sdot4(Value3, Value1, Value3, false);
 	    Value3 = __builtin_amdgcn_sdot4(Value2, Value1, Value1, false);
 	    Value1 = __builtin_amdgcn_sdot4(Value1, Value3, Value2, false);
 	    Value2 = __builtin_amdgcn_sdot4(Value2, Value1, Value3, false);
 	    Value3 = __builtin_amdgcn_sdot4(Value2, Value2, Value1, false);
+    }
     }
     __syncthreads();
     C[i]=Value3;

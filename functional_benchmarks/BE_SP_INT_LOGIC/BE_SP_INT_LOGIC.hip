@@ -104,9 +104,10 @@ __global__ void PowerKernal1(const unsigned* A, const unsigned* B, unsigned* C, 
     unsigned I1=A[i];
     unsigned I2=B[i];
 
-#pragma unroll 100
     //Excessive Logical Unit access
-    for(unsigned k=0; k<N;k++) {
+    for(unsigned k=0; k<N/100;k++) {
+#pragma unroll 100
+      for(unsigned j=0; j<100;j++) {
 
 	Value1=I1 & I2;
 	Value2 |= (I1 | I2);
@@ -122,6 +123,7 @@ __global__ void PowerKernal1(const unsigned* A, const unsigned* B, unsigned* C, 
 //	Value2|=Value1;
 //	    Value2=Value3 & Value2;
 //	    Value1=Value2 ^ Value3;
+    }
     }
 
     __syncthreads();

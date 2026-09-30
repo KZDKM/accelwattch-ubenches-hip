@@ -30,10 +30,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 //#include <cutil.h>
-//#include <mgp.h>
 // Includes
 //#include <stdio.h>
-//#include "../include/ContAcq-IntClk.h"
 
 // includes, project
 //#include "../include/sdkHelper.h"  // helper for shared functions common to CUDA SDK samples
@@ -42,20 +40,25 @@
 
 // includes CUDA
 #include <hip/hip_runtime.h>
-#include <hip/hip_runtime.h> //BT: Needed for uint32_t
+
 #define THREADS_PER_BLOCK 256
 #define NUM_OF_BLOCKS (304 * 1024)
+//#define ITERATIONS 40
+//#include "../include/ContAcq-IntClk.h"
+
 // Variables
-unsigned* h_A;
-unsigned* h_B;
-unsigned* d_A;
-unsigned* d_B;
+int* h_A;
+int* h_B;
+long long* h_C;
+int* d_A;
+int* d_B;
+long long* d_C;
 //bool noprompt = false;
 //unsigned int my_timer;
 
 // Functions
 void CleanupResources(void);
-void RandomInit(unsigned*, int);
+void RandomInit(int*, int);
 //void ParseArguments(int, char**);
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -67,8 +70,8 @@ void RandomInit(unsigned*, int);
 inline void __checkCudaErrors(hipError_t err, const char *file, const int line )
 {
   if(hipSuccess != err){
-  fprintf(stderr, "%s(%i) : CUDA Runtime API error %d: %s.\n",file, line, (int)err, hipGetErrorString( err ) );
-   exit(-1);
+	fprintf(stderr, "%s(%i) : CUDA Runtime API error %d: %s.\n",file, line, (int)err, hipGetErrorString( err ) );
+	 exit(-1);
   }
 }
 
@@ -79,28 +82,21 @@ inline void __getLastCudaError(const char *errorMessage, const char *file, const
 {
   hipError_t err = hipGetLastError();
   if (hipSuccess != err){
-  fprintf(stderr, "%s(%i) : getLastCudaError() CUDA error : %s : (%d) %s.\n",file, line, errorMessage, (int)err, hipGetErrorString( err ) );
-  exit(-1);
+	fprintf(stderr, "%s(%i) : getLastCudaError() CUDA error : %s : (%d) %s.\n",file, line, errorMessage, (int)err, hipGetErrorString( err ) );
+	exit(-1);
   }
 }
 
 // end of CUDA Helper Functions
-
-
-
-__global__ void PowerKernal2(unsigned* A, unsigned* B, unsigned long long N)
+__global__ void PowerKernal2(const int* A, const int* B, long long* C, unsigned long long iterations)
 {
-    uint32_t uid = blockDim.x * blockIdx.x + threadIdx.x;
-    volatile unsigned sink = 0;
-	for(uint64_t i=0; i<N/100; ++i) {
 #pragma unroll 100
-	  for(uint64_t j=0; j<100; ++j) {
-      sink = A[uid];
-      B[uid] = sink;   
+    // Excessive Addition access
+    for(unsigned long long k=0; k<10000;k++) {
+      //asm volatile ("s_nop 0" ::: "memory"); // clobber memory to hopefully prevent loop collapsing?
+      asm volatile("s_sleep 127" ::: "memory");
     }
-	}
 }
-
 
 int main(int argc, char** argv)
 {
@@ -112,54 +108,55 @@ int main(int argc, char** argv)
  else {
    iterations = atoll(argv[1]);
  }
- 
- printf("Power Microbenchmarks with iterations %lld\n",iterations);
- 
- int N = THREADS_PER_BLOCK*NUM_OF_BLOCKS;
- size_t size = N * sizeof(unsigned);
- // Allocate input vectors h_A and h_B in host memory
- h_A = (unsigned*)malloc(size);
- if (h_A == 0) CleanupResources();
- h_B = (unsigned*)malloc(size);
- if (h_B == 0) CleanupResources();
 
+ printf("Power Microbenchmarks with iterations %lld\n",iterations);
+ int N = THREADS_PER_BLOCK*NUM_OF_BLOCKS;
+ size_t size = N * sizeof(int);
+ // Allocate input vectors h_A and h_B in host memory
+ h_A = (int*)malloc(size);
+ if (h_A == 0) CleanupResources();
+ h_B = (int*)malloc(size);
+ if (h_B == 0) CleanupResources();
+ h_C = (long long*)malloc(N*sizeof(long long));
+ if (h_C == 0) CleanupResources();
 
  // Initialize input vectors
  RandomInit(h_A, N);
-
+ RandomInit(h_B, N);
 
  // Allocate vectors in device memory
+printf("before\n");
  checkCudaErrors( hipMalloc((void**)&d_A, size) );
  checkCudaErrors( hipMalloc((void**)&d_B, size) );
-
-
- // Copy vector from host memory to device memory
- checkCudaErrors( hipMemcpy(d_A, h_A, size, hipMemcpyHostToDevice) );
-
+ checkCudaErrors( hipMalloc((void**)&d_C, N * sizeof(long long)) );
+printf("after\n");
 
  hipEvent_t start, stop;                   
  float elapsedTime = 0;                     
  checkCudaErrors(hipEventCreate(&start));  
  checkCudaErrors(hipEventCreate(&stop));
 
+ // Copy vectors from host memory to device memory
+ checkCudaErrors( hipMemcpy(d_A, h_A, size, hipMemcpyHostToDevice) );
+ checkCudaErrors( hipMemcpy(d_B, h_B, size, hipMemcpyHostToDevice) );
+
  //VecAdd<<<blocksPerGrid, threadsPerBlock>>>(d_A, d_B, d_C, N);
  dim3 dimGrid(NUM_OF_BLOCKS,1);
  dim3 dimBlock(THREADS_PER_BLOCK,1);
 
-
  checkCudaErrors(hipEventRecord(start));              
- PowerKernal2<<<dimGrid,dimBlock>>>(d_A, d_B,iterations);  
+ PowerKernal2<<<dimGrid,dimBlock>>>(d_A, d_B, d_C, iterations);  
  checkCudaErrors(hipEventRecord(stop));               
  
  checkCudaErrors(hipEventSynchronize(stop));           
  checkCudaErrors(hipEventElapsedTime(&elapsedTime, start, stop));  
  printf("gpu execution time = %.3f ms\n", elapsedTime);  
- getLastCudaError("kernel launch failure");              
+ getLastCudaError("kernel launch failure");         
 
  // Copy result from device memory to host memory
- // h_B contains the result in host memory
- checkCudaErrors( hipMemcpy(h_B, d_B, size, hipMemcpyDeviceToHost) );
-  checkCudaErrors(hipEventDestroy(start));
+ // h_C contains the result in host memory
+ checkCudaErrors( hipMemcpy(h_C, d_C, size, hipMemcpyDeviceToHost) );
+ checkCudaErrors(hipEventDestroy(start));
  checkCudaErrors(hipEventDestroy(stop));
  CleanupResources();
 
@@ -170,23 +167,32 @@ void CleanupResources(void)
 {
   // Free device memory
   if (d_A)
-  hipFree(d_A);
+	hipFree(d_A);
   if (d_B)
-  hipFree(d_B);
+	hipFree(d_B);
+  if (d_C)
+	hipFree(d_C);
 
   // Free host memory
   if (h_A)
-  free(h_A);
+	free(h_A);
   if (h_B)
-  free(h_B);
+	free(h_B);
+  if (h_C)
+	free(h_C);
 
 }
 
-// Allocates an array with random float entries.
-void RandomInit(unsigned* data, int n)
+// Allocates an array with random int entries.
+void RandomInit(int* data, int n)
 {
-  for (int i = 0; i < n; ++i){
-  srand((unsigned)time(0));  
-  data[i] = rand() / RAND_MAX;
+  for (int i = 0; i < n; ++i){ 
+	data[i] = rand() / RAND_MAX;
   }
 }
+
+
+
+
+
+

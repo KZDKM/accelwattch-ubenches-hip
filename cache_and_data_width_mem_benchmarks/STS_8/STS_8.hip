@@ -103,9 +103,11 @@ __global__ void PowerKernal2( uint8_t* A, uint8_t* B, unsigned long long N)
 //    unsigned load_value;
 //    volatile unsigned* storeAddr = sharedOut+ tid;
     //unsigned sum_value = 0;
+    for(unsigned long long k=0; k<N/100;k++) {
     #pragma unroll 100
-    for(unsigned long long k=0; k<N;k++) {
+      for(unsigned long long j=0; j<100;j++) {
         sharedOut[tid] = A[i];
+    }
     }
 
     B[i] = sharedOut[tid];

@@ -94,8 +94,9 @@ __global__ void PowerKernal2(uint8_t* A, uint8_t* B, unsigned long long N)
     uint32_t sink = A[uid];
     uint8_t* outptr = B + uid;
 
+	for(uint64_t i=0; i<N/100; ++i) {
 #pragma unroll 100
-	for(uint64_t i=0; i<N; ++i) {
+	  for(uint64_t j=0; j<100; ++j) {
 	//B[uid] = sink;
 //*  	
 	asm volatile (
@@ -106,6 +107,7 @@ __global__ void PowerKernal2(uint8_t* A, uint8_t* B, unsigned long long N)
             : "memory"
         );//*/
     }
+	}
 }
 
 

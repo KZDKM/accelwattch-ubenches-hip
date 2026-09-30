@@ -102,9 +102,10 @@ __global__ void PowerKernal2(const unsigned* A, const unsigned* B, unsigned* C, 
     unsigned Value2;
     unsigned Value3;
     unsigned Value1;
-    #pragma unroll 100
     //Excessive Logical Unit access
-    for(unsigned k=0; k<N;k++) {
+    for(unsigned k=0; k<N/100;k++) {
+    #pragma unroll 100
+      for(unsigned j=0; j<100;j++) {
     // BLOCK-0 (For instruction size of 16 bytes for Volta
       __asm volatile (
           "\n\tv_mov_b32 %0, %3;"
@@ -117,6 +118,7 @@ __global__ void PowerKernal2(const unsigned* A, const unsigned* B, unsigned* C, 
           "\n\tv_mov_b32 %4, %0;"
           : "+v"(Value1), "+v"(Value2), "+v"(Value3) : "v"(I1), "v"(I2)
           );
+    }
     }
     C[i]=Value3;
     __syncthreads();

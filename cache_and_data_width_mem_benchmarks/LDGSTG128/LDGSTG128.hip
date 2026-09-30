@@ -101,8 +101,9 @@ __global__ void PowerKernal2(uint4* __restrict__ A, uint4* __restrict__ B, unsig
     uint4* inptr = A + uid;
     uint4* outptr = B + uid;
 
+        for (unsigned long long k = 0; k < N/100; k++) {
     #pragma unroll 100
-        for (unsigned long long k = 0; k < N; k++) {
+          for (unsigned long long j = 0; j < 100; j++) {
             
             asm volatile("" ::: "memory"); // make sure the load materializes and waits before store
             data = *inptr; // global_load_dwordx4
@@ -122,6 +123,7 @@ __global__ void PowerKernal2(uint4* __restrict__ A, uint4* __restrict__ B, unsig
             //    : "v"(inptr), "v"(outptr)
             //    : "memory"
             //);  
+        }
         }
 
     // Store result back to global memory (sum of all four uint components)

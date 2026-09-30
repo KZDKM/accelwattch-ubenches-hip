@@ -91,10 +91,12 @@ __global__ void PowerKernal2(const unsigned* A, unsigned* B, unsigned long long 
   uint64_t tid = blockDim.x * blockIdx.x + threadIdx.x;
   unsigned input = A[tid];
   unsigned one = 1;
-#pragma unroll 100
     // Excessive Addition access
-    for(unsigned long long k=0; k<iterations;k++) {
+    for(unsigned long long k=0; k<iterations/100;k++) {
+#pragma unroll 100
+      for(unsigned long long j=0; j<100;j++) {
         input += one*input;
+    }
     }
     B[tid] = input;
 }

@@ -93,6 +93,7 @@ inline void __getLastCudaError(const char *errorMessage, const char *file, const
 
 
 
+#define OPAQUE(x) asm volatile("" : "+v"(x))
 
 __global__ void PowerKernal2(const unsigned* A, const unsigned* B, unsigned* C, int N)
 {
@@ -105,16 +106,18 @@ __global__ void PowerKernal2(const unsigned* A, const unsigned* B, unsigned* C, 
     unsigned I1=A[i];
     unsigned I2=B[i];
 
-#pragma unroll 100
     // Excessive Addition access
-    for(unsigned k=0; k<N;k++) {
+    for(unsigned k=0; k<N/100;k++) {
+#pragma unroll 100
+      for(unsigned j=0; j<100;j++) {
 
-      Value1=I1+I2;
-      Value3=I1-I2;
-      Value1+=Value2;
-      Value1+=Value2;
-      Value2=Value3-Value1;
-      Value1=Value2+Value3;
+      OPAQUE(I1); OPAQUE(I2);            // stops I1+I2 / I1-I2 being hoisted
+      Value1=I1+I2;   OPAQUE(Value1);
+      Value3=I1-I2;   OPAQUE(Value3);
+      Value1+=Value2; OPAQUE(Value1);
+      Value1+=Value2; OPAQUE(Value1);
+      Value2=Value3-Value1; OPAQUE(Value2);
+      Value1=Value2+Value3; OPAQUE(Value1);
 
 //	Value2= I1+I2;
 //	Value3=I1-I2;
@@ -122,6 +125,7 @@ __global__ void PowerKernal2(const unsigned* A, const unsigned* B, unsigned* C, 
 //	Value3+=Value1;
 //	Value2-=Value3;
 //	Value1+=Value3;
+    }
     }
     __syncthreads();
  

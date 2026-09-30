@@ -95,8 +95,9 @@ __global__ void PowerKernal2(volatile uint16_t* A, volatile uint16_t* B, unsigne
     volatile uint16_t* inptr = A + uid;
     volatile uint16_t* outptr = B + uid;
 
+	for(uint64_t i=0; i<N/100; ++i) {
 #pragma unroll 100
-	for(uint64_t i=0; i<N; ++i) {
+	  for(uint64_t j=0; j<100; ++j) {
         // Use inline PTX to load 128 bits (4 x 32-bit values) at once
         asm volatile (
             "global_load_ushort %0, %1, off\n\t"
@@ -113,6 +114,7 @@ __global__ void PowerKernal2(volatile uint16_t* A, volatile uint16_t* B, unsigne
             : "memory"
         );
     }
+	}
 }
 
 

@@ -32,6 +32,7 @@ bt_memories:
 
 
 inline:
+	$(SETENV) make $(MAKE_ARGS) noinline=$(noinline) -C inline_asm_benchmarks/SLEEP/$(OPT)
 	$(SETENV) make $(MAKE_ARGS) noinline=$(noinline) -C inline_asm_benchmarks/NOP/$(OPT)
 	$(SETENV) make $(MAKE_ARGS) noinline=$(noinline) -C inline_asm_benchmarks/BAR/$(OPT)
 	# $(SETENV) make $(MAKE_ARGS) noinline=$(noinline) -C inline_asm_benchmarks/IMAD_IADD/$(OPT)
@@ -317,6 +318,7 @@ mix:
 
 cleaninline:
 	$(SETENV) make $(MAKE_ARGS) clean -C inline_asm_benchmarks/MOV/$(OPT)
+	$(SETENV) make $(MAKE_ARGS) clean -C inline_asm_benchmarks/SLEEP/$(OPT)
 	$(SETENV) make $(MAKE_ARGS) clean -C inline_asm_benchmarks/NOP/$(OPT)
 	$(SETENV) make $(MAKE_ARGS) clean -C inline_asm_benchmarks/BAR/$(OPT)
 	# $(SETENV) make $(MAKE_ARGS) clean -C inline_asm_benchmarks/LDS/$(OPT)

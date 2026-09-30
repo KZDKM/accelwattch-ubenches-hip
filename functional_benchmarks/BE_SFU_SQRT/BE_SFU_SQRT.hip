@@ -104,14 +104,16 @@ __global__ void PowerKernal3(const float* A, const float* B, float* C, int itera
     float Value=0;
     float I1=A[i];
     float I2=B[i];
-#pragma unroll 100
     //square root
-    for(int k=0; k<iterations;k++) {
+    for(int k=0; k<iterations/100;k++) {
+#pragma unroll 100
+      for(int j=0; j<100;j++) {
   Value1=sqrt(Value2);
   Value1=sqrt(Value1);
   Value2=sqrt(I2);
   Value3=sqrt(Value2);
   Value2=sqrt(Value1);
+    }
     }
 
 

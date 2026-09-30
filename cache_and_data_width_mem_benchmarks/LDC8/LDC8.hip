@@ -88,8 +88,9 @@ __global__ void PowerKernal(uint8_t* Value, unsigned long long iterations)
 
 	uint32_t Value1=0; // VGPRS are 32bits so we make sure we have space
     uint32_t sink=0;
+    for(unsigned long long k=0; k<iterations/100;k++) {
 	#pragma unroll 100
-    for(unsigned long long k=0; k<iterations;k++) {
+      for(unsigned long long j=0; j<100;j++) {
 		asm volatile(
 			"global_load_ubyte %0, %1, off\n\t"
 			"s_waitcnt vmcnt(0)\n\t"
@@ -98,6 +99,7 @@ __global__ void PowerKernal(uint8_t* Value, unsigned long long iterations)
 		);
         sink += Value1;
 	}
+    }
 		Value[i] = sink;
 }
 

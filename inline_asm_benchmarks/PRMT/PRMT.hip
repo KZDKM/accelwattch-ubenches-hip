@@ -102,8 +102,9 @@ __global__ void PowerKernal2(const unsigned* A, const unsigned* B, unsigned* C, 
     //Initalize
 
     unsigned ctrl = 0x07060004;
+    for (unsigned long long k = 0; k < N/100; k++) {
     #pragma unroll 100
-    for (unsigned long long k = 0; k < N; k++) {
+      for (unsigned long long j = 0; j < 100; j++) {
         // Doing permutations
         __asm volatile (
           "\n\tv_perm_b32_e64 %0, %0, %1, %2;"   // From heterosync it was interesting to see the default 30212
@@ -112,6 +113,7 @@ __global__ void PowerKernal2(const unsigned* A, const unsigned* B, unsigned* C, 
           : "+v"(I1)
 	  : "v"(I2), "v"(ctrl)
       );
+    }
     }
     C[i] = I1;
     __syncthreads();

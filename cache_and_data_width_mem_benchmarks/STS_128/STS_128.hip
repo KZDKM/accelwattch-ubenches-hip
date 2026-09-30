@@ -99,8 +99,9 @@ __global__ void lds_u128_kernel(uint64_t* A, uint64_t* B, unsigned long long ite
     // Set up pointers to shared memory locations
     uint4* outptr = &sharedOut[tid];
 
+    for (unsigned long long k = 0; k < iterations/100; k++) {
     #pragma unroll 100
-    for (unsigned long long k = 0; k < iterations; k++) {
+      for (unsigned long long j = 0; j < 100; j++) {
         // Use inline PTX to load 128 bits (4 x 32-bit values) at once from shared memory
         // Store the loaded data back to shared memory
         //asm volatile (
@@ -112,6 +113,7 @@ __global__ void lds_u128_kernel(uint64_t* A, uint64_t* B, unsigned long long ite
         data.x += 1;
         *outptr = data;
         asm volatile("s_waitcnt lgkmcnt(0)" ::: "memory");
+    }
     }
 
     // Store result back to global memory (sum of all four uint components)

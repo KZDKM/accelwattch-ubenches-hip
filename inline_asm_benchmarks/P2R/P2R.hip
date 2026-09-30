@@ -99,13 +99,15 @@ __global__ void PowerKernal2(unsigned* A, unsigned* B, unsigned long long N)
     : "vcc"
 );
 //Converting predicate to register
+    for(unsigned long long i=0; i<N/100; i++){
 #pragma unroll 100
-    for(unsigned long long i=0; i<N; i++){
+      for(unsigned long long j=0; j<100; j++){
         asm volatile(
           "v_cndmask_b32_e64 %0, 0, 1, vcc\n\t"
           :"=v"(sink)
         );
     }//*/
+    }
     B[uid] = sink;
 }
 

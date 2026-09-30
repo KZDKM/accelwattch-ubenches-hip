@@ -43,6 +43,9 @@
 
 #define THREADS_PER_BLOCK 256
 #define NUM_OF_BLOCKS (304 * 1024)
+#ifndef NOP_ITERATIONS
+#define NOP_ITERATIONS 31000000ULL // ~0.32 us/iter on MI300X (scaled from 1.154 us/iter measured on MI210)
+#endif
 //#define ITERATIONS 40
 //#include "../include/ContAcq-IntClk.h"
 
@@ -90,11 +93,12 @@ inline void __getLastCudaError(const char *errorMessage, const char *file, const
 // end of CUDA Helper Functions
 __global__ void PowerKernal2(const int* A, const int* B, long long* C, unsigned long long iterations)
 {
-#pragma unroll 100
-    // Excessive Addition access
-    for(unsigned long long k=0; k<10000;k++) {
-      //asm volatile ("s_nop 0" ::: "memory"); // clobber memory to hopefully prevent loop collapsing?
-      asm volatile("s_sleep 127" ::: "memory");
+    // Excessive s_nop issue; count is hardcoded for ~10 s on MI300X
+    for(unsigned long long k=0; k<iterations/100;k++) {
+        #pragma unroll 100
+        for(unsigned int i=0; i<100;i++) {
+            asm volatile("s_nop 0" ::: "memory");
+        }
     }
 }
 

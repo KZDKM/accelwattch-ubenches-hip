@@ -91,13 +91,15 @@ __global__ void PowerKernal1(const float* A, const float* B, float* C, int itera
     float Value=0;
     float I1=A[i];  
     float I2=B[i];   
-    #pragma unroll 100
     // exponential function
-    for(unsigned k=0; k<iterations;k++) {
+    for(unsigned k=0; k<iterations/100;k++) {
+    #pragma unroll 100
+      for(unsigned j=0; j<100;j++) {
       Value2=__expf(Value1);
       Value3=__expf(Value2);
       Value1=__expf(Value3);
       Value2=__expf(Value1);
+    }
     }
 
   

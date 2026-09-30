@@ -93,15 +93,17 @@ __global__ void PowerKernal2(const float* A, double* B, unsigned long long itera
   float input = A[tid];
   double output;
   double acc = 0;
-#pragma unroll 100
     // Excessive Addition access
-    for(unsigned long long k=0; k<iterations;k++) {
+    for(unsigned long long k=0; k<iterations/100;k++) {
+#pragma unroll 100
+      for(unsigned long long j=0; j<100;j++) {
       asm volatile (
           "v_cvt_f64_f32 %0, %1;\n\t"
           : "=v"(output)         // Output: double output
           : "v"(input)           // Input: float input
       );
       acc += output;
+    }
     }
     B[tid] = acc;
 }

@@ -107,9 +107,10 @@ __global__ void PowerKernal4(const unsigned* A, const unsigned* B, unsigned* C, 
 
 
     __syncthreads();
-    #pragma unroll 100
    // Excessive Mod/Div Operations
-    for(unsigned k=0; k<iterations;k++) {
+    for(unsigned k=0; k<iterations/100;k++) {
+    #pragma unroll 100
+      for(unsigned j=0; j<100;j++) {
 
     	Value1=I1/(I2+1);
     	Value2=Value1/(I2+1);
@@ -129,6 +130,7 @@ __global__ void PowerKernal4(const unsigned* A, const unsigned* B, unsigned* C, 
 //    	Value2/=(Value3+1);
 //        Value1%=(Value+1);
 //        Value3/=(Value1+1);
+    }
     }
 
     __syncthreads();

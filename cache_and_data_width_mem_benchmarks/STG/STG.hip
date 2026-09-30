@@ -92,11 +92,13 @@ __global__ void PowerKernal2(unsigned* A, unsigned* B, unsigned long long N)
 {
     uint32_t uid = blockDim.x * blockIdx.x + threadIdx.x;
     volatile unsigned sink = A[uid];
+	for(uint64_t i=0; i<N/100; ++i) {
 #pragma unroll 100
-	for(uint64_t i=0; i<N; ++i) {
+	  for(uint64_t j=0; j<100; ++j) {
       B[uid] = sink;
       A[uid] = sink;
     }
+	}
     B[uid] = sink;
 }
 

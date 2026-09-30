@@ -89,8 +89,9 @@ __global__ void PowerKernal(unsigned* Value, unsigned long long iterations)
 
 	unsigned Value1=0;
     unsigned sink=0;
+    for(unsigned long long k=0; k<iterations/100;k++) {
 	#pragma unroll 100
-    for(unsigned long long k=0; k<iterations;k++) {
+      for(unsigned long long j=0; j<100;j++) {
 		asm volatile(
 			"global_load_dword %0, %1, off\n\t"
 			"s_waitcnt vmcnt(0)\n\t"
@@ -99,6 +100,7 @@ __global__ void PowerKernal(unsigned* Value, unsigned long long iterations)
 		);
         sink += Value1;
 	}
+    }
 		Value[i] = sink;
 }
 

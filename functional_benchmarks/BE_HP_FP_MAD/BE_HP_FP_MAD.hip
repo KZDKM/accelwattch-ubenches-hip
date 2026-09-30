@@ -116,9 +116,10 @@ __global__ void PowerKernal1(const half* A, const half* B, half* C, unsigned lon
     volatile half Value=0;
     volatile half I1=A[i];
     volatile half I2=B[i];
-#pragma unroll 100
     // Excessive Addition access
-    for(unsigned long long k=0; k<iterations;k++) {
+    for(unsigned long long k=0; k<iterations/100;k++) {
+#pragma unroll 100
+      for(unsigned long long j=0; j<100;j++) {
 	Value1= __hfma(I1,I2,Value1);
 	Value3= __hfma(I1,I2,Value2);
 	Value1= __hfma(Value1,Value2,Value1); 
@@ -131,6 +132,7 @@ __global__ void PowerKernal1(const half* A, const half* B, half* C, unsigned lon
 //	Value3*=Value2;
 //	Value1*=Value2;
 //        Value3*=Value1;
+    }
     }
     __syncthreads();
 

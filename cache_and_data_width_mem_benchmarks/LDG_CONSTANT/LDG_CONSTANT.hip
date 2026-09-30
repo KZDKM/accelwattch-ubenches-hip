@@ -84,10 +84,12 @@ __global__ void l1_stress(uint64_t *posArray, uint64_t *dsink, unsigned long lon
 
   	// pointer-chasing iterations times
   	// use ca modifier to cache the load in L1
+  	for(unsigned long long i=0; i<iterations/100; ++i) { 
   	#pragma unroll 100
-  	for(unsigned long long i=0; i<iterations; ++i) { 
+  	  for(unsigned long long j=0; j<100; ++j) { 
       ptr0 = __ldg((uint64_t*)ptr1);
   	  ptr1 = ptr0;    //swap the register for the next load
+  	}
   	}
 
   	// write data back to memory

@@ -101,8 +101,9 @@ __global__ void PowerKernal2(const unsigned* A, const unsigned* B, unsigned* C, 
     unsigned I2 = B[i];
     //Initalize
 
+    for (unsigned long long k = 0; k < N/100; k++) {
     #pragma unroll 100
-    for (unsigned long long k = 0; k < N; k++) {
+      for (unsigned long long j = 0; j < 100; j++) {
         // Trying to invoke BSSY and BSYNC
         if(i%2 == 0){
           I1 = I2;
@@ -111,6 +112,7 @@ __global__ void PowerKernal2(const unsigned* A, const unsigned* B, unsigned* C, 
 	  I1 = I1 + I2;
 	}
         __syncthreads();
+    }
     }
     C[i] = I1;
     __syncthreads();

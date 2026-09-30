@@ -94,8 +94,9 @@ __global__ void PowerKernal2(volatile uint16_t* A, volatile uint16_t* B, unsigne
     volatile uint32_t sink = A[uid];
     volatile uint16_t* outptr = B + uid;
 
+	for(uint64_t i=0; i<N/100; ++i) {
 #pragma unroll 100
-	for(uint64_t i=0; i<N; ++i) {
+	  for(uint64_t j=0; j<100; ++j) {
   	asm volatile (
             "global_store_short %0, %1, off\n\t"
             "s_waitcnt vmcnt(0)\n\t"
@@ -104,6 +105,7 @@ __global__ void PowerKernal2(volatile uint16_t* A, volatile uint16_t* B, unsigne
             : "memory"
         );
     }
+	}
 }
 
 

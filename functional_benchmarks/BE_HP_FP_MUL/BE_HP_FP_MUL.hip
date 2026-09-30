@@ -111,9 +111,10 @@ __global__ void PowerKernal2(const half* A, const half* B, half* C, unsigned lon
     half Value=0;
     half I1=A[i];
     half I2=B[i];
-#pragma unroll 100
     // Excessive Addition access
-    for(unsigned long long k=0; k<N;k++) {
+    for(unsigned long long k=0; k<N/100;k++) {
+#pragma unroll 100
+      for(unsigned long long j=0; j<100;j++) {
 	Value1= __hmul(I1,I2);
 	Value3= __hmul(I1,I2);
 	Value1= __hmul(Value1,Value2);
@@ -126,6 +127,7 @@ __global__ void PowerKernal2(const half* A, const half* B, half* C, unsigned lon
 //	Value3*=Value2;
 //	Value1*=Value2;
 //        Value3*=Value1;
+    }
     }
     __syncthreads();
 

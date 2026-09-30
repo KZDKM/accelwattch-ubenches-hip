@@ -94,8 +94,9 @@ __global__ void PowerKernal2(unsigned* A, unsigned* B, unsigned long long N)
     uint32_t uid = blockDim.x * blockIdx.x + threadIdx.x;
     unsigned id = uid*SCALING_ARRAY_SIZE;
     unsigned sink = 0;
+	for(uint64_t i=0; i<N/100; ++i) {
 #pragma unroll 100
-	for(uint64_t i=0; i<N; ++i) {
+	  for(uint64_t j=0; j<100; ++j) {
       sink += uid + A[id];	
       sink += uid + A[id+1];	
       sink += uid + A[id+2];	
@@ -132,6 +133,7 @@ __global__ void PowerKernal2(unsigned* A, unsigned* B, unsigned long long N)
       sink += uid + B[id+15];
       B[id] = sink;   
     }
+	}
 }
 
 

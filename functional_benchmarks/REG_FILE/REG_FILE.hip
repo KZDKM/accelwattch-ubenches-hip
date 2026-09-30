@@ -98,9 +98,10 @@ __global__ void PowerKernal2(const float* A, const float* B, float* C, int itera
     float I2=B[i];
     float Value;
     
-  #pragma unroll 100
     // Excessive Addition access
-    for(unsigned k=0; k<iterations;k++) {
+    for(unsigned k=0; k<iterations/100;k++) {
+  #pragma unroll 100
+      for(unsigned j=0; j<100;j++) {
       def1= __fmaf_rn(I1,I2,use1);
       def2= __fmaf_rn(I1,I2,use2);
       def3= __fmaf_rn(I1,I2,use3);
@@ -114,6 +115,7 @@ __global__ void PowerKernal2(const float* A, const float* B, float* C, int itera
       use4= __fmaf_rn(def6,def4,def5); 
       use5= __fmaf_rn(def4,def2,def5); 
       use6= __fmaf_rn(def4,def5,def6);
+    }
     }
     __syncthreads();
 

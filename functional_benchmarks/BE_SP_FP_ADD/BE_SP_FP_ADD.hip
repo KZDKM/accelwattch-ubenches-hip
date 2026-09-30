@@ -103,15 +103,17 @@ __global__ void PowerKernal1(const float* A, const float* B, float* C, int itera
     float Value=0;
     float I1=A[i];
     float I2=B[i];
-#pragma unroll 100
     // Excessive Addition access
-    for(float k=0; k<(float)iterations;k++) {
+    for(float k=0; k<(float)iterations/100;k++) {
+#pragma unroll 100
+      for(float j=0; j<100;j++) {
     	Value1=I1+I2;
     	Value3=I1-I2;
     	Value1+=Value2;
     	Value1+=Value2;
     	Value2=Value3-Value1;
     	Value1=Value2+Value3;
+    }
     }
     __syncthreads();
 

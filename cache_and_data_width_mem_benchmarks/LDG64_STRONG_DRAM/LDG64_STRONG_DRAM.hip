@@ -98,8 +98,9 @@ __global__ void dram_stress(uint64_t *posArray, uint64_t *dsink, unsigned long l
 
   	// pointer-chasing iterations times
   	// use ca modifier to cache the load in L1
+  	for(unsigned long long i=0; i<iterations/100; ++i) { 
   	#pragma unroll 100
-  	for(unsigned long long i=0; i<iterations; ++i) { 
+  	  for(unsigned long long j=0; j<100; ++j) { 
   	  asm volatile ("{\t\n"
   	    "global_load_dwordx2 %0, %1, off sc0\n\t"
         "s_waitcnt vmcnt(0)\n\t"
@@ -107,6 +108,7 @@ __global__ void dram_stress(uint64_t *posArray, uint64_t *dsink, unsigned long l
   	  );
   	  ptr1 = ptr0;    //swap the register for the next load
 
+  	}
   	}
 
   	// write data back to memory

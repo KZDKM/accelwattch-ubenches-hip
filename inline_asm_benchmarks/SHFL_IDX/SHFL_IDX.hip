@@ -95,8 +95,9 @@ __global__ void PowerKernal2(unsigned* A, unsigned* B, unsigned long long N)
     //unsigned other = B[uid];
     //unsigned iterations = N;
 //Doing shuffling
+    for(unsigned long long i=0; i<N/100; i++){
 #pragma unroll 100
-    for(unsigned long long i=0; i<N; i++){
+      for(unsigned long long j=0; j<100; j++){
         sink += __shfl_sync(0xffffffffffffffff, sink,0); // 64 lanes on amd, both mask and sink needs to expand
         //sink = __shfl_sync(0xffffffff, sink,1); //Adding Offsets did not do anything
         //sink = __shfl_sync(0xffffffff, other,0);//Adding additional sinks didn't really work
@@ -109,6 +110,7 @@ __global__ void PowerKernal2(unsigned* A, unsigned* B, unsigned long long N)
           "shfl.sync.idx.b32 %0, 0, 0,  0x0, 0xffffffff;\n"
           :"=r"(sink)
         );//*/
+    }
     }
     B[uid] = sink;
 }

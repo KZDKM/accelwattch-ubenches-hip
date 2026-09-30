@@ -99,12 +99,14 @@ __global__ void PowerKernal2(uint4* __restrict__ B, unsigned long long N)
     data.w = uid+3;
     
     uint4* outptr = B + uid;
+    for (unsigned long long k = 0; k < N/100; k++) {
     #pragma unroll 100
-    for (unsigned long long k = 0; k < N; k++) {
+      for (unsigned long long j = 0; j < 100; j++) {
 
         data.x += 1; //hack: prevent optimization due to loop invariant
         *outptr = data;
         asm volatile("s_waitcnt vmcnt(0)" ::: "memory"); // compiler barrier to prevent loop optimization
+    }
     }
 
     // Store result back to global memory (sum of all four uint components)

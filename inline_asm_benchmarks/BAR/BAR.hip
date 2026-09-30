@@ -90,11 +90,13 @@ inline void __getLastCudaError(const char *errorMessage, const char *file, const
 // end of CUDA Helper Functions
 __global__ void PowerKernal2(const int* A, const int* B, long long* C, unsigned long long iterations)
 {
-#pragma unroll 100
     // Excessive Addition access
-    for(unsigned long long k=0; k<iterations;k++) {
+    for(unsigned long long k=0; k<iterations/100;k++) {
+#pragma unroll 100
+      for(unsigned long long j=0; j<100;j++) {
       //asm volatile ("bar.sync 0;");
       asm volatile ("s_barrier");
+    }
     }
 }
 

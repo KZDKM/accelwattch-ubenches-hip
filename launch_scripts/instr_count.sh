@@ -13,8 +13,8 @@ export ATT_LIBRARY_PATH="${ATT_LIBRARY_PATH:-$HOME/rocprof-trace-decoder/release
 set -euo pipefail
 
 BIN_DIR="${BIN_DIR:-/home1/kzdkm/accelwattch-ubenches-hip}"
-RESULTS_DIR="${RESULTS_DIR:-/home1/kzdkm/accelwattch_ubench_opcodes_1000}"
-ITERATIONS="${ITERATIONS:-1000}"
+RESULTS_DIR="${RESULTS_DIR:-/home1/kzdkm/accelwattch_ubench_opcodes_10000_unrolled}"
+ITERATIONS="${ITERATIONS:-10000}"
 TIMEOUT_SEC="${TIMEOUT_SEC:-6000}"
 MCPU="${MCPU:-gfx942}"
 GPU_ID="${GPU_ID:-0}"
@@ -42,7 +42,7 @@ check_prereqs() {
     command -v rocprofv3 >/dev/null || die "rocprofv3 not found in PATH"
     command -v llvm-objdump >/dev/null \
         || warn "llvm-objdump not found; opcodes will fall back to raw addresses"
-    [[ -d "$BIN_DIR/bin" ]] || die "no such directory: $BIN_DIR/bin"
+    [[ -d "$BIN_DIR/bin1" ]] || die "no such directory: $BIN_DIR/bin1"
     [[ -f "$AGGREGATOR" ]] || die "aggregator not found: $AGGREGATOR"
     [[ -d "$ATT_LIBRARY_PATH" ]] \
         || warn "ATT_LIBRARY_PATH does not exist: $ATT_LIBRARY_PATH"
@@ -163,15 +163,15 @@ collect_targets() {
     if (( $# > 0 )); then
         local name
         for name in "$@"; do
-            if [[ -x "$BIN_DIR/bin/$name" ]]; then
-                printf '%s\n' "$BIN_DIR/bin/$name"
+            if [[ -x "$BIN_DIR/bin1/$name" ]]; then
+                printf '%s\n' "$BIN_DIR/bin1/$name"
             else
                 warn "skipping ${name}: not an executable in $BIN_DIR/bin"
             fi
         done
     else
         local exe
-        for exe in "$BIN_DIR"/bin/*; do
+        for exe in "$BIN_DIR"/bin1/*; do
             [[ -f "$exe" && -x "$exe" ]] && printf '%s\n' "$exe"
         done
     fi

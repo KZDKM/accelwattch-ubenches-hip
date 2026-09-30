@@ -100,8 +100,9 @@ __global__ void PowerKernal2(unsigned* A, unsigned* B, unsigned long long N)
       "global_load_dword %0, %1, off sc0\n\t"
       "}" : "=v"(sink) : "v"(A_ptr) : "memory"
     );
+	for(uint64_t i=0; i<N/100; ++i) {
 #pragma unroll 100
-	for(uint64_t i=0; i<N; ++i) {
+	  for(uint64_t j=0; j<100; ++j) {
     asm volatile (
       "global_store_dword %1, %0, off sc0\n\t"
       : 
@@ -112,6 +113,7 @@ __global__ void PowerKernal2(unsigned* A, unsigned* B, unsigned long long N)
       : 
       : "v"(sink), "v"(A_ptr) : "memory"
     );    }
+	}
     B[uid] = sink;
 }
 

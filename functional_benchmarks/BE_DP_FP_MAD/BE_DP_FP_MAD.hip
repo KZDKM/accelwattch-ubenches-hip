@@ -98,9 +98,10 @@ __global__ void PowerKernal2(const double* A, const double* B, double* C, int it
     double Value;
     double I1=A[i];
     double I2=B[i];
-#pragma unroll 100
     // Excessive Addition access
-    for(unsigned k=0; k<iterations;k++) {
+    for(unsigned k=0; k<iterations/100;k++) {
+#pragma unroll 100
+      for(unsigned j=0; j<100;j++) {
 	Value1= __fma_rn(I1,I2,Value1);
 	Value3= __fma_rn(I1,I2,Value2);
 	Value1= __fma_rn(Value1,Value2,Value1); 
@@ -113,6 +114,7 @@ __global__ void PowerKernal2(const double* A, const double* B, double* C, int it
 //	Value3*=Value2;
 //	Value1*=Value2;
 //        Value3*=Value1;
+    }
     }
     __syncthreads();
 

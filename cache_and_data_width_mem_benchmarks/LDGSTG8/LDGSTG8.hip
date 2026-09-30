@@ -95,8 +95,9 @@ __global__ void PowerKernal2(uint8_t* A, uint8_t* B, unsigned long long N)
     uint8_t* inptr = A + uid;
     uint8_t* outptr = B + uid;
 
+	for(uint64_t i=0; i<N/100; ++i) {
 #pragma unroll 100
-	for(uint64_t i=0; i<N; ++i) {
+	  for(uint64_t j=0; j<100; ++j) {
 //	sink = A[uid];
 //	B[uid] = sink;
         // Use inline PTX to load 128 bits (4 x 32-bit values) at once
@@ -116,6 +117,7 @@ __global__ void PowerKernal2(uint8_t* A, uint8_t* B, unsigned long long N)
             : "memory"
         );//*/
     }
+	}
 }
 
 

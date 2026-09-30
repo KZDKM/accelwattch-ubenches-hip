@@ -107,15 +107,17 @@ __global__ void PowerKernal3(const unsigned* A, const unsigned* B, unsigned* C, 
     unsigned I2=B[i];
 
 
-#pragma unroll 100
     // Excessive Multiplication
-    for(unsigned k=0; k<N;k++) {
+    for(unsigned k=0; k<N/100;k++) {
+#pragma unroll 100
+      for(unsigned j=0; j<100;j++) {
     	Value1= __umul24(I1,I2);
     	Value1 = __umul24(Value1,Value2); 
     	Value3=__umul24(Value1,I2); 
     	Value2= __umul24(Value2,__umul24(I1,Value3)); 
     	Value1 = __umul24(Value1,Value2); 
       Value3 = __umul24(Value3,Value1); 
+    }
     }
 
     __syncthreads();
