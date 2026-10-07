@@ -36,7 +36,7 @@
 # # Add source files here
   EXECUTABLE      := BE_SP_FP_ADD
 # # Cuda source files (compiled with cudacc)
-  CUFILES         := BE_SP_FP_ADD.cu
+  CUFILES         := BE_SP_FP_ADD.hip
 # # C/C++ source files (compiled with gcc / c++)
   CCFILES         := \
 	#

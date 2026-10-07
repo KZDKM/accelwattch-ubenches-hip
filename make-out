@@ -1,0 +1,1334 @@
+Compiling functional_benchmarks/BE_SP_INT_ADD/BE_SP_INT_ADD.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 functional_benchmarks/BE_SP_INT_ADD/BE_SP_INT_ADD.hip -o bin/BE_SP_INT_ADD
+functional_benchmarks/BE_SP_INT_ADD/BE_SP_INT_ADD.hip:192:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  192 |  hipDeviceSynchronize(); 
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_SP_INT_ADD/BE_SP_INT_ADD.hip:233:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  233 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_INT_ADD/BE_SP_INT_ADD.hip:235:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  235 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_INT_ADD/BE_SP_INT_ADD.hip:237:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  237 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for gfx942.
+functional_benchmarks/BE_SP_INT_ADD/BE_SP_INT_ADD.hip:192:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  192 |  hipDeviceSynchronize(); 
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_SP_INT_ADD/BE_SP_INT_ADD.hip:233:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  233 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_INT_ADD/BE_SP_INT_ADD.hip:235:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  235 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_INT_ADD/BE_SP_INT_ADD.hip:237:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  237 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for host.
+Compiling functional_benchmarks/BE_SP_FP_MUL/BE_SP_FP_MUL.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 functional_benchmarks/BE_SP_FP_MUL/BE_SP_FP_MUL.hip -o bin/BE_SP_FP_MUL
+functional_benchmarks/BE_SP_FP_MUL/BE_SP_FP_MUL.hip:183:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  183 |  hipDeviceSynchronize(); 
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_SP_FP_MUL/BE_SP_FP_MUL.hip:223:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  223 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_FP_MUL/BE_SP_FP_MUL.hip:225:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  225 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_FP_MUL/BE_SP_FP_MUL.hip:227:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  227 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for gfx942.
+functional_benchmarks/BE_SP_FP_MUL/BE_SP_FP_MUL.hip:183:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  183 |  hipDeviceSynchronize(); 
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_SP_FP_MUL/BE_SP_FP_MUL.hip:223:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  223 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_FP_MUL/BE_SP_FP_MUL.hip:225:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  225 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_FP_MUL/BE_SP_FP_MUL.hip:227:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  227 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for host.
+Compiling functional_benchmarks/BE_SP_FP_ADD/BE_SP_FP_ADD.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 functional_benchmarks/BE_SP_FP_ADD/BE_SP_FP_ADD.hip -o bin/BE_SP_FP_ADD
+functional_benchmarks/BE_SP_FP_ADD/BE_SP_FP_ADD.hip:181:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  181 |  hipDeviceSynchronize();
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_SP_FP_ADD/BE_SP_FP_ADD.hip:221:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  221 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_FP_ADD/BE_SP_FP_ADD.hip:223:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  223 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_FP_ADD/BE_SP_FP_ADD.hip:225:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  225 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for gfx942.
+functional_benchmarks/BE_SP_FP_ADD/BE_SP_FP_ADD.hip:181:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  181 |  hipDeviceSynchronize();
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_SP_FP_ADD/BE_SP_FP_ADD.hip:221:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  221 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_FP_ADD/BE_SP_FP_ADD.hip:223:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  223 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_FP_ADD/BE_SP_FP_ADD.hip:225:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  225 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for host.
+Compiling functional_benchmarks/BE_DP_FP_MAD/BE_DP_FP_MAD.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 functional_benchmarks/BE_DP_FP_MAD/BE_DP_FP_MAD.hip -o bin/BE_DP_FP_MAD
+functional_benchmarks/BE_DP_FP_MAD/BE_DP_FP_MAD.hip:183:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  183 |  hipDeviceSynchronize();
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_DP_FP_MAD/BE_DP_FP_MAD.hip:219:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  219 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_DP_FP_MAD/BE_DP_FP_MAD.hip:221:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  221 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_DP_FP_MAD/BE_DP_FP_MAD.hip:223:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  223 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for gfx942.
+functional_benchmarks/BE_DP_FP_MAD/BE_DP_FP_MAD.hip:183:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  183 |  hipDeviceSynchronize();
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_DP_FP_MAD/BE_DP_FP_MAD.hip:219:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  219 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_DP_FP_MAD/BE_DP_FP_MAD.hip:221:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  221 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_DP_FP_MAD/BE_DP_FP_MAD.hip:223:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  223 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for host.
+Compiling functional_benchmarks/BE_SFU_EXP/BE_SFU_EXP.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 functional_benchmarks/BE_SFU_EXP/BE_SFU_EXP.hip -o bin/BE_SFU_EXP
+functional_benchmarks/BE_SFU_EXP/BE_SFU_EXP.hip:174:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  174 |  hipDeviceSynchronize();                                
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_SFU_EXP/BE_SFU_EXP.hip:193:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  193 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SFU_EXP/BE_SFU_EXP.hip:195:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  195 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SFU_EXP/BE_SFU_EXP.hip:197:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  197 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for gfx942.
+functional_benchmarks/BE_SFU_EXP/BE_SFU_EXP.hip:174:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  174 |  hipDeviceSynchronize();                                
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_SFU_EXP/BE_SFU_EXP.hip:193:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  193 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SFU_EXP/BE_SFU_EXP.hip:195:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  195 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SFU_EXP/BE_SFU_EXP.hip:197:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  197 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for host.
+Compiling functional_benchmarks/BE_SP_INT_MUL/BE_SP_INT_MUL.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 functional_benchmarks/BE_SP_INT_MUL/BE_SP_INT_MUL.hip -o bin/BE_SP_INT_MUL
+functional_benchmarks/BE_SP_INT_MUL/BE_SP_INT_MUL.hip:188:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  188 |  hipDeviceSynchronize();
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_SP_INT_MUL/BE_SP_INT_MUL.hip:227:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  227 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_INT_MUL/BE_SP_INT_MUL.hip:229:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  229 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_INT_MUL/BE_SP_INT_MUL.hip:231:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  231 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for gfx942.
+functional_benchmarks/BE_SP_INT_MUL/BE_SP_INT_MUL.hip:188:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  188 |  hipDeviceSynchronize();
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_SP_INT_MUL/BE_SP_INT_MUL.hip:227:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  227 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_INT_MUL/BE_SP_INT_MUL.hip:229:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  229 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_INT_MUL/BE_SP_INT_MUL.hip:231:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  231 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for host.
+Compiling functional_benchmarks/REG_FILE/REG_FILE.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 functional_benchmarks/REG_FILE/REG_FILE.hip -o bin/REG_FILE
+functional_benchmarks/REG_FILE/REG_FILE.hip:184:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  184 |  hipDeviceSynchronize();
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/REG_FILE/REG_FILE.hip:220:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  220 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+functional_benchmarks/REG_FILE/REG_FILE.hip:222:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  222 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+functional_benchmarks/REG_FILE/REG_FILE.hip:224:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  224 |   hipFree(d_C);
+      |   ^~~~~~~~~~~~
+4 warnings generated when compiling for gfx942.
+functional_benchmarks/REG_FILE/REG_FILE.hip:184:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  184 |  hipDeviceSynchronize();
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/REG_FILE/REG_FILE.hip:220:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  220 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+functional_benchmarks/REG_FILE/REG_FILE.hip:222:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  222 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+functional_benchmarks/REG_FILE/REG_FILE.hip:224:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  224 |   hipFree(d_C);
+      |   ^~~~~~~~~~~~
+4 warnings generated when compiling for host.
+Compiling functional_benchmarks/MOV/MOV.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 functional_benchmarks/MOV/MOV.hip -o bin/MOV
+functional_benchmarks/MOV/MOV.hip:182:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  182 |  hipDeviceSynchronize(); 
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/MOV/MOV.hip:223:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  223 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/MOV/MOV.hip:225:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  225 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/MOV/MOV.hip:227:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  227 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for gfx942.
+functional_benchmarks/MOV/MOV.hip:182:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  182 |  hipDeviceSynchronize(); 
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/MOV/MOV.hip:223:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  223 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/MOV/MOV.hip:225:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  225 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/MOV/MOV.hip:227:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  227 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for host.
+Compiling functional_benchmarks/BE_SP_FP_DIV/BE_SP_FP_DIV.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 functional_benchmarks/BE_SP_FP_DIV/BE_SP_FP_DIV.hip -o bin/BE_SP_FP_DIV
+functional_benchmarks/BE_SP_FP_DIV/BE_SP_FP_DIV.hip:184:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  184 |  hipDeviceSynchronize();
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_SP_FP_DIV/BE_SP_FP_DIV.hip:223:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  223 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_FP_DIV/BE_SP_FP_DIV.hip:225:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  225 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_FP_DIV/BE_SP_FP_DIV.hip:227:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  227 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for gfx942.
+functional_benchmarks/BE_SP_FP_DIV/BE_SP_FP_DIV.hip:184:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  184 |  hipDeviceSynchronize();
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_SP_FP_DIV/BE_SP_FP_DIV.hip:223:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  223 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_FP_DIV/BE_SP_FP_DIV.hip:225:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  225 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_FP_DIV/BE_SP_FP_DIV.hip:227:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  227 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for host.
+Compiling functional_benchmarks/BE_SP_FP_MAD/BE_SP_FP_MAD.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 functional_benchmarks/BE_SP_FP_MAD/BE_SP_FP_MAD.hip -o bin/BE_SP_FP_MAD
+functional_benchmarks/BE_SP_FP_MAD/BE_SP_FP_MAD.hip:183:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  183 |  hipDeviceSynchronize();
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_SP_FP_MAD/BE_SP_FP_MAD.hip:219:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  219 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_FP_MAD/BE_SP_FP_MAD.hip:221:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  221 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_FP_MAD/BE_SP_FP_MAD.hip:223:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  223 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for gfx942.
+functional_benchmarks/BE_SP_FP_MAD/BE_SP_FP_MAD.hip:183:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  183 |  hipDeviceSynchronize();
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_SP_FP_MAD/BE_SP_FP_MAD.hip:219:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  219 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_FP_MAD/BE_SP_FP_MAD.hip:221:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  221 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_FP_MAD/BE_SP_FP_MAD.hip:223:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  223 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for host.
+Compiling functional_benchmarks/BE_HP_FP_MAD/BE_HP_FP_MAD.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 functional_benchmarks/BE_HP_FP_MAD/BE_HP_FP_MAD.hip -o bin/BE_HP_FP_MAD
+functional_benchmarks/BE_HP_FP_MAD/BE_HP_FP_MAD.hip:206:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  206 |  hipDeviceSynchronize();
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_MAD/BE_HP_FP_MAD.hip:246:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  246 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_MAD/BE_HP_FP_MAD.hip:248:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  248 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_MAD/BE_HP_FP_MAD.hip:250:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  250 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_MAD/BE_HP_FP_MAD.hip:252:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  252 |         hipFree(d_A_fp32);
+      |         ^~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_MAD/BE_HP_FP_MAD.hip:254:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  254 |         hipFree(d_B_fp32);
+      |         ^~~~~~~~~~~~~~~~~
+6 warnings generated when compiling for gfx942.
+functional_benchmarks/BE_HP_FP_MAD/BE_HP_FP_MAD.hip:206:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  206 |  hipDeviceSynchronize();
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_MAD/BE_HP_FP_MAD.hip:246:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  246 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_MAD/BE_HP_FP_MAD.hip:248:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  248 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_MAD/BE_HP_FP_MAD.hip:250:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  250 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_MAD/BE_HP_FP_MAD.hip:252:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  252 |         hipFree(d_A_fp32);
+      |         ^~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_MAD/BE_HP_FP_MAD.hip:254:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  254 |         hipFree(d_B_fp32);
+      |         ^~~~~~~~~~~~~~~~~
+6 warnings generated when compiling for host.
+Compiling functional_benchmarks/BE_SP_INT_DIV/BE_SP_INT_DIV.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 functional_benchmarks/BE_SP_INT_DIV/BE_SP_INT_DIV.hip -o bin/BE_SP_INT_DIV
+functional_benchmarks/BE_SP_INT_DIV/BE_SP_INT_DIV.hip:197:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  197 |  hipDeviceSynchronize(); 
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_SP_INT_DIV/BE_SP_INT_DIV.hip:234:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  234 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_INT_DIV/BE_SP_INT_DIV.hip:236:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  236 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_INT_DIV/BE_SP_INT_DIV.hip:238:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  238 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for gfx942.
+functional_benchmarks/BE_SP_INT_DIV/BE_SP_INT_DIV.hip:197:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  197 |  hipDeviceSynchronize(); 
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_SP_INT_DIV/BE_SP_INT_DIV.hip:234:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  234 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_INT_DIV/BE_SP_INT_DIV.hip:236:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  236 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_INT_DIV/BE_SP_INT_DIV.hip:238:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  238 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for host.
+Compiling functional_benchmarks/BE_SP_INT_LOGIC/BE_SP_INT_LOGIC.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 functional_benchmarks/BE_SP_INT_LOGIC/BE_SP_INT_LOGIC.hip -o bin/BE_SP_INT_LOGIC
+functional_benchmarks/BE_SP_INT_LOGIC/BE_SP_INT_LOGIC.hip:192:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  192 |  hipDeviceSynchronize();   
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_SP_INT_LOGIC/BE_SP_INT_LOGIC.hip:224:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  224 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_INT_LOGIC/BE_SP_INT_LOGIC.hip:226:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  226 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_INT_LOGIC/BE_SP_INT_LOGIC.hip:228:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  228 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for gfx942.
+functional_benchmarks/BE_SP_INT_LOGIC/BE_SP_INT_LOGIC.hip:192:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  192 |  hipDeviceSynchronize();   
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_SP_INT_LOGIC/BE_SP_INT_LOGIC.hip:224:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  224 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_INT_LOGIC/BE_SP_INT_LOGIC.hip:226:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  226 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SP_INT_LOGIC/BE_SP_INT_LOGIC.hip:228:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  228 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for host.
+Compiling functional_benchmarks/BE_SFU_SQRT/BE_SFU_SQRT.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 functional_benchmarks/BE_SFU_SQRT/BE_SFU_SQRT.hip -o bin/BE_SFU_SQRT
+functional_benchmarks/BE_SFU_SQRT/BE_SFU_SQRT.hip:137:45: warning: format specifies type 'int' but the argument has type 'char *' [-Wformat]
+  137 |    fprintf(stderr,"usage: %d #iterations\n",argv[0]);
+      |                           ~~                ^~~~~~~
+      |                           %s
+functional_benchmarks/BE_SFU_SQRT/BE_SFU_SQRT.hip:190:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  190 |  hipDeviceSynchronize();
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_SFU_SQRT/BE_SFU_SQRT.hip:227:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  227 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SFU_SQRT/BE_SFU_SQRT.hip:229:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  229 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SFU_SQRT/BE_SFU_SQRT.hip:231:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  231 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+5 warnings generated when compiling for gfx942.
+functional_benchmarks/BE_SFU_SQRT/BE_SFU_SQRT.hip:137:45: warning: format specifies type 'int' but the argument has type 'char *' [-Wformat]
+  137 |    fprintf(stderr,"usage: %d #iterations\n",argv[0]);
+      |                           ~~                ^~~~~~~
+      |                           %s
+functional_benchmarks/BE_SFU_SQRT/BE_SFU_SQRT.hip:190:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  190 |  hipDeviceSynchronize();
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_SFU_SQRT/BE_SFU_SQRT.hip:227:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  227 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SFU_SQRT/BE_SFU_SQRT.hip:229:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  229 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SFU_SQRT/BE_SFU_SQRT.hip:231:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  231 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+5 warnings generated when compiling for host.
+Compiling functional_benchmarks/BE_DP_FP_DIV/BE_DP_FP_DIV.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 functional_benchmarks/BE_DP_FP_DIV/BE_DP_FP_DIV.hip -o bin/BE_DP_FP_DIV
+functional_benchmarks/BE_DP_FP_DIV/BE_DP_FP_DIV.hip:185:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  185 |  hipDeviceSynchronize();
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_DP_FP_DIV/BE_DP_FP_DIV.hip:224:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  224 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+functional_benchmarks/BE_DP_FP_DIV/BE_DP_FP_DIV.hip:226:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  226 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+functional_benchmarks/BE_DP_FP_DIV/BE_DP_FP_DIV.hip:228:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  228 |   hipFree(d_C);
+      |   ^~~~~~~~~~~~
+4 warnings generated when compiling for gfx942.
+functional_benchmarks/BE_DP_FP_DIV/BE_DP_FP_DIV.hip:185:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  185 |  hipDeviceSynchronize();
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_DP_FP_DIV/BE_DP_FP_DIV.hip:224:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  224 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+functional_benchmarks/BE_DP_FP_DIV/BE_DP_FP_DIV.hip:226:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  226 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+functional_benchmarks/BE_DP_FP_DIV/BE_DP_FP_DIV.hip:228:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  228 |   hipFree(d_C);
+      |   ^~~~~~~~~~~~
+4 warnings generated when compiling for host.
+Compiling functional_benchmarks/BE_DP_FP_ADD/BE_DP_FP_ADD.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 functional_benchmarks/BE_DP_FP_ADD/BE_DP_FP_ADD.hip -o bin/BE_DP_FP_ADD
+functional_benchmarks/BE_DP_FP_ADD/BE_DP_FP_ADD.hip:181:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  181 |  hipDeviceSynchronize();
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_DP_FP_ADD/BE_DP_FP_ADD.hip:221:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  221 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_DP_FP_ADD/BE_DP_FP_ADD.hip:223:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  223 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_DP_FP_ADD/BE_DP_FP_ADD.hip:225:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  225 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for gfx942.
+functional_benchmarks/BE_DP_FP_ADD/BE_DP_FP_ADD.hip:181:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  181 |  hipDeviceSynchronize();
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_DP_FP_ADD/BE_DP_FP_ADD.hip:221:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  221 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_DP_FP_ADD/BE_DP_FP_ADD.hip:223:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  223 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_DP_FP_ADD/BE_DP_FP_ADD.hip:225:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  225 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for host.
+Compiling functional_benchmarks/BE_SFU_LG2/BE_SFU_LG2.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 functional_benchmarks/BE_SFU_LG2/BE_SFU_LG2.hip -o bin/BE_SFU_LG2
+functional_benchmarks/BE_SFU_LG2/BE_SFU_LG2.hip:190:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  190 |  hipDeviceSynchronize();
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_SFU_LG2/BE_SFU_LG2.hip:229:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  229 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SFU_LG2/BE_SFU_LG2.hip:231:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  231 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SFU_LG2/BE_SFU_LG2.hip:233:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  233 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for gfx942.
+functional_benchmarks/BE_SFU_LG2/BE_SFU_LG2.hip:190:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  190 |  hipDeviceSynchronize();
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_SFU_LG2/BE_SFU_LG2.hip:229:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  229 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SFU_LG2/BE_SFU_LG2.hip:231:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  231 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_SFU_LG2/BE_SFU_LG2.hip:233:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  233 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for host.
+Compiling functional_benchmarks/BE_HP_FP_DIV/BE_HP_FP_DIV.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 functional_benchmarks/BE_HP_FP_DIV/BE_HP_FP_DIV.hip -o bin/BE_HP_FP_DIV
+functional_benchmarks/BE_HP_FP_DIV/BE_HP_FP_DIV.hip:200:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  200 |  hipDeviceSynchronize();
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_DIV/BE_HP_FP_DIV.hip:240:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  240 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_DIV/BE_HP_FP_DIV.hip:242:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  242 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_DIV/BE_HP_FP_DIV.hip:244:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  244 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_DIV/BE_HP_FP_DIV.hip:246:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  246 |         hipFree(d_A_fp32);
+      |         ^~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_DIV/BE_HP_FP_DIV.hip:248:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  248 |         hipFree(d_B_fp32);
+      |         ^~~~~~~~~~~~~~~~~
+6 warnings generated when compiling for gfx942.
+functional_benchmarks/BE_HP_FP_DIV/BE_HP_FP_DIV.hip:200:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  200 |  hipDeviceSynchronize();
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_DIV/BE_HP_FP_DIV.hip:240:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  240 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_DIV/BE_HP_FP_DIV.hip:242:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  242 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_DIV/BE_HP_FP_DIV.hip:244:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  244 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_DIV/BE_HP_FP_DIV.hip:246:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  246 |         hipFree(d_A_fp32);
+      |         ^~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_DIV/BE_HP_FP_DIV.hip:248:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  248 |         hipFree(d_B_fp32);
+      |         ^~~~~~~~~~~~~~~~~
+6 warnings generated when compiling for host.
+Compiling functional_benchmarks/BE_HP_FP_MUL/BE_HP_FP_MUL.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 functional_benchmarks/BE_HP_FP_MUL/BE_HP_FP_MUL.hip -o bin/BE_HP_FP_MUL
+functional_benchmarks/BE_HP_FP_MUL/BE_HP_FP_MUL.hip:202:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  202 |  hipDeviceSynchronize(); 
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_MUL/BE_HP_FP_MUL.hip:242:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  242 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_MUL/BE_HP_FP_MUL.hip:244:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  244 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_MUL/BE_HP_FP_MUL.hip:246:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  246 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for gfx942.
+functional_benchmarks/BE_HP_FP_MUL/BE_HP_FP_MUL.hip:202:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  202 |  hipDeviceSynchronize(); 
+      |  ^~~~~~~~~~~~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_MUL/BE_HP_FP_MUL.hip:242:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  242 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_MUL/BE_HP_FP_MUL.hip:244:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  244 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+functional_benchmarks/BE_HP_FP_MUL/BE_HP_FP_MUL.hip:246:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  246 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+4 warnings generated when compiling for host.
+Compiling inline_asm_benchmarks/SHFL_IDX/SHFL_IDX.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 inline_asm_benchmarks/SHFL_IDX/SHFL_IDX.hip -o bin/SHFL_IDX
+inline_asm_benchmarks/SHFL_IDX/SHFL_IDX.hip:187:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  187 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+inline_asm_benchmarks/SHFL_IDX/SHFL_IDX.hip:189:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  189 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+inline_asm_benchmarks/SHFL_IDX/SHFL_IDX.hip:187:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  187 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+inline_asm_benchmarks/SHFL_IDX/SHFL_IDX.hip:189:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  189 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling inline_asm_benchmarks/PRMT/PRMT.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 inline_asm_benchmarks/PRMT/PRMT.hip -o bin/PRMT
+inline_asm_benchmarks/PRMT/PRMT.hip:190:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  190 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/PRMT/PRMT.hip:192:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  192 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/PRMT/PRMT.hip:194:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  194 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+3 warnings generated when compiling for gfx942.
+inline_asm_benchmarks/PRMT/PRMT.hip:190:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  190 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/PRMT/PRMT.hip:192:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  192 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/PRMT/PRMT.hip:194:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  194 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+3 warnings generated when compiling for host.
+Compiling inline_asm_benchmarks/BSSY/BSSY.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 inline_asm_benchmarks/BSSY/BSSY.hip -o bin/BSSY
+inline_asm_benchmarks/BSSY/BSSY.hip:189:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  189 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/BSSY/BSSY.hip:191:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  191 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/BSSY/BSSY.hip:193:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  193 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+3 warnings generated when compiling for gfx942.
+inline_asm_benchmarks/BSSY/BSSY.hip:189:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  189 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/BSSY/BSSY.hip:191:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  191 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/BSSY/BSSY.hip:193:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  193 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+3 warnings generated when compiling for host.
+Compiling inline_asm_benchmarks/LOP3_LUT/LOP3_LUT.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 inline_asm_benchmarks/LOP3_LUT/LOP3_LUT.hip -o bin/LOP3_LUT
+inline_asm_benchmarks/LOP3_LUT/LOP3_LUT.hip:223:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  223 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/LOP3_LUT/LOP3_LUT.hip:225:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  225 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/LOP3_LUT/LOP3_LUT.hip:227:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  227 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+3 warnings generated when compiling for gfx942.
+inline_asm_benchmarks/LOP3_LUT/LOP3_LUT.hip:223:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  223 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/LOP3_LUT/LOP3_LUT.hip:225:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  225 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/LOP3_LUT/LOP3_LUT.hip:227:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  227 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+3 warnings generated when compiling for host.
+Compiling inline_asm_benchmarks/IMAD_IADD/IMAD_IADD.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 inline_asm_benchmarks/IMAD_IADD/IMAD_IADD.hip -o bin/IMAD_IADD
+inline_asm_benchmarks/IMAD_IADD/IMAD_IADD.hip:169:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  169 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/IMAD_IADD/IMAD_IADD.hip:171:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  171 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+inline_asm_benchmarks/IMAD_IADD/IMAD_IADD.hip:169:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  169 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/IMAD_IADD/IMAD_IADD.hip:171:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  171 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling inline_asm_benchmarks/F2F_16_32_ADD/F2F_16_32_ADD.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 inline_asm_benchmarks/F2F_16_32_ADD/F2F_16_32_ADD.hip -o bin/F2F_16_32_ADD
+inline_asm_benchmarks/F2F_16_32_ADD/F2F_16_32_ADD.hip:173:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  173 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/F2F_16_32_ADD/F2F_16_32_ADD.hip:175:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  175 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+inline_asm_benchmarks/F2F_16_32_ADD/F2F_16_32_ADD.hip:173:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  173 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/F2F_16_32_ADD/F2F_16_32_ADD.hip:175:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  175 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling inline_asm_benchmarks/F2F_64_32_STG/F2F_64_32_STG.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 inline_asm_benchmarks/F2F_64_32_STG/F2F_64_32_STG.hip -o bin/F2F_64_32_STG
+inline_asm_benchmarks/F2F_64_32_STG/F2F_64_32_STG.hip:173:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  173 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/F2F_64_32_STG/F2F_64_32_STG.hip:175:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  175 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+inline_asm_benchmarks/F2F_64_32_STG/F2F_64_32_STG.hip:173:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  173 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/F2F_64_32_STG/F2F_64_32_STG.hip:175:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  175 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling inline_asm_benchmarks/F2F_32_64_FADD/F2F_32_64_FADD.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 inline_asm_benchmarks/F2F_32_64_FADD/F2F_32_64_FADD.hip -o bin/F2F_32_64_FADD
+inline_asm_benchmarks/F2F_32_64_FADD/F2F_32_64_FADD.hip:175:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  175 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/F2F_32_64_FADD/F2F_32_64_FADD.hip:177:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  177 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+inline_asm_benchmarks/F2F_32_64_FADD/F2F_32_64_FADD.hip:175:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  175 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/F2F_32_64_FADD/F2F_32_64_FADD.hip:177:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  177 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling inline_asm_benchmarks/ISETP_GE_AND/ISETP_GE_AND.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 inline_asm_benchmarks/ISETP_GE_AND/ISETP_GE_AND.hip -o bin/ISETP_GE_AND
+inline_asm_benchmarks/ISETP_GE_AND/ISETP_GE_AND.hip:260:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  260 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+inline_asm_benchmarks/ISETP_GE_AND/ISETP_GE_AND.hip:262:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  262 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+inline_asm_benchmarks/ISETP_GE_AND/ISETP_GE_AND.hip:260:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  260 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+inline_asm_benchmarks/ISETP_GE_AND/ISETP_GE_AND.hip:262:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  262 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling inline_asm_benchmarks/P2R/P2R.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 inline_asm_benchmarks/P2R/P2R.hip -o bin/P2R
+inline_asm_benchmarks/P2R/P2R.hip:183:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  183 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+inline_asm_benchmarks/P2R/P2R.hip:185:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  185 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+inline_asm_benchmarks/P2R/P2R.hip:183:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  183 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+inline_asm_benchmarks/P2R/P2R.hip:185:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  185 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling inline_asm_benchmarks/F2F_64_32_DADD/F2F_64_32_DADD.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 inline_asm_benchmarks/F2F_64_32_DADD/F2F_64_32_DADD.hip -o bin/F2F_64_32_DADD
+inline_asm_benchmarks/F2F_64_32_DADD/F2F_64_32_DADD.hip:175:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  175 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/F2F_64_32_DADD/F2F_64_32_DADD.hip:177:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  177 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+inline_asm_benchmarks/F2F_64_32_DADD/F2F_64_32_DADD.hip:175:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  175 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/F2F_64_32_DADD/F2F_64_32_DADD.hip:177:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  177 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling inline_asm_benchmarks/F2F_32_16_ADD/F2F_32_16_ADD.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 inline_asm_benchmarks/F2F_32_16_ADD/F2F_32_16_ADD.hip -o bin/F2F_32_16_ADD
+inline_asm_benchmarks/F2F_32_16_ADD/F2F_32_16_ADD.hip:187:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  187 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/F2F_32_16_ADD/F2F_32_16_ADD.hip:189:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  189 |         hipFree(d_A_fp32);
+      |         ^~~~~~~~~~~~~~~~~
+inline_asm_benchmarks/F2F_32_16_ADD/F2F_32_16_ADD.hip:191:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  191 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+3 warnings generated when compiling for gfx942.
+inline_asm_benchmarks/F2F_32_16_ADD/F2F_32_16_ADD.hip:187:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  187 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/F2F_32_16_ADD/F2F_32_16_ADD.hip:189:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  189 |         hipFree(d_A_fp32);
+      |         ^~~~~~~~~~~~~~~~~
+inline_asm_benchmarks/F2F_32_16_ADD/F2F_32_16_ADD.hip:191:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  191 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+3 warnings generated when compiling for host.
+Compiling inline_asm_benchmarks/F2F_32_64_STG/F2F_32_64_STG.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 inline_asm_benchmarks/F2F_32_64_STG/F2F_32_64_STG.hip -o bin/F2F_32_64_STG
+inline_asm_benchmarks/F2F_32_64_STG/F2F_32_64_STG.hip:174:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  174 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/F2F_32_64_STG/F2F_32_64_STG.hip:176:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  176 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+inline_asm_benchmarks/F2F_32_64_STG/F2F_32_64_STG.hip:174:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  174 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/F2F_32_64_STG/F2F_32_64_STG.hip:176:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  176 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling inline_asm_benchmarks/BRA/BRA.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 inline_asm_benchmarks/BRA/BRA.hip -o bin/BRA
+inline_asm_benchmarks/BRA/BRA.hip:244:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  244 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+inline_asm_benchmarks/BRA/BRA.hip:246:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  246 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+inline_asm_benchmarks/BRA/BRA.hip:244:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  244 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+inline_asm_benchmarks/BRA/BRA.hip:246:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  246 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling inline_asm_benchmarks/BAR/BAR.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 inline_asm_benchmarks/BAR/BAR.hip -o bin/BAR
+inline_asm_benchmarks/BAR/BAR.hip:172:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  172 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/BAR/BAR.hip:174:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  174 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/BAR/BAR.hip:176:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  176 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+3 warnings generated when compiling for gfx942.
+inline_asm_benchmarks/BAR/BAR.hip:172:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  172 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/BAR/BAR.hip:174:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  174 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/BAR/BAR.hip:176:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  176 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+3 warnings generated when compiling for host.
+Compiling inline_asm_benchmarks/NOP/NOP.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 inline_asm_benchmarks/NOP/NOP.hip -o bin/NOP
+inline_asm_benchmarks/NOP/NOP.hip:170:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  170 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/NOP/NOP.hip:172:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  172 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/NOP/NOP.hip:174:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  174 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+3 warnings generated when compiling for gfx942.
+inline_asm_benchmarks/NOP/NOP.hip:170:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  170 |         hipFree(d_A);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/NOP/NOP.hip:172:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  172 |         hipFree(d_B);
+      |         ^~~~~~~~~~~~
+inline_asm_benchmarks/NOP/NOP.hip:174:2: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  174 |         hipFree(d_C);
+      |         ^~~~~~~~~~~~
+3 warnings generated when compiling for host.
+Compiling inline_asm_benchmarks/ISETP_NE_AND/ISETP_NE_AND.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 inline_asm_benchmarks/ISETP_NE_AND/ISETP_NE_AND.hip -o bin/ISETP_NE_AND
+inline_asm_benchmarks/ISETP_NE_AND/ISETP_NE_AND.hip:190:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  190 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+inline_asm_benchmarks/ISETP_NE_AND/ISETP_NE_AND.hip:192:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  192 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+inline_asm_benchmarks/ISETP_NE_AND/ISETP_NE_AND.hip:190:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  190 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+inline_asm_benchmarks/ISETP_NE_AND/ISETP_NE_AND.hip:192:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  192 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/LDC128/LDC128.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/LDC128/LDC128.hip -o bin/LDC128
+cache_and_data_width_mem_benchmarks/LDC128/LDC128.hip:97:6: error: invalid input constraint 'l' in asm
+   97 |                         : "l"(ConstArray1)
+      |                           ^
+cache_and_data_width_mem_benchmarks/LDC128/LDC128.hip:129:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  129 |          hipMemcpyToSymbol(HIP_SYMBOL(ConstArray1), array1, sizeof(uint4) * THREADS_PER_BLOCK );
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning and 1 error generated when compiling for gfx942.
+failed to execute:/opt/rocm-7.2.0/lib/llvm/bin/clang++  --offload-arch=gfx942 --driver-mode=g++ --hip-link  -O3 -std=c++17 -x hip cache_and_data_width_mem_benchmarks/LDC128/LDC128.hip -o "bin/LDC128"
+make: *** [Makefile-hip:42: bin/LDC128] Error 1
+Compiling cache_and_data_width_mem_benchmarks/LDG64/LDG64.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/LDG64/LDG64.hip -o bin/LDG64
+Compiling cache_and_data_width_mem_benchmarks/LDS_U_16/LDS_U_16.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/LDS_U_16/LDS_U_16.hip -o bin/LDS_U_16
+cache_and_data_width_mem_benchmarks/LDS_U_16/LDS_U_16.hip:209:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  209 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/LDS_U_16/LDS_U_16.hip:211:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  211 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/LDS_U_16/LDS_U_16.hip:209:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  209 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/LDS_U_16/LDS_U_16.hip:211:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  211 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/LDC8/LDC8.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/LDC8/LDC8.hip -o bin/LDC8
+cache_and_data_width_mem_benchmarks/LDC8/LDC8.hip:130:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  130 |          hipMemcpyToSymbol(HIP_SYMBOL(ConstArray1), array1, sizeof(uint8_t) * THREADS_PER_BLOCK );
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/LDC8/LDC8.hip:130:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  130 |          hipMemcpyToSymbol(HIP_SYMBOL(ConstArray1), array1, sizeof(uint8_t) * THREADS_PER_BLOCK );
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/LDG_CONSTANT/LDG_CONSTANT.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/LDG_CONSTANT/LDG_CONSTANT.hip -o bin/LDG_CONSTANT
+Compiling cache_and_data_width_mem_benchmarks/LDC16/LDC16.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/LDC16/LDC16.hip -o bin/LDC16
+cache_and_data_width_mem_benchmarks/LDC16/LDC16.hip:130:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  130 |          hipMemcpyToSymbol(HIP_SYMBOL(ConstArray1), array1, sizeof(uint16_t) * THREADS_PER_BLOCK );
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/LDC16/LDC16.hip:130:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  130 |          hipMemcpyToSymbol(HIP_SYMBOL(ConstArray1), array1, sizeof(uint16_t) * THREADS_PER_BLOCK );
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/LDG64_STRONG_DRAM/LDG64_STRONG_DRAM.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/LDG64_STRONG_DRAM/LDG64_STRONG_DRAM.hip -o bin/LDG64_STRONG_DRAM
+Compiling cache_and_data_width_mem_benchmarks/LDGSTG/LDGSTG.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/LDGSTG/LDGSTG.hip -o bin/LDGSTG
+cache_and_data_width_mem_benchmarks/LDGSTG/LDGSTG.hip:173:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  173 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/LDGSTG/LDGSTG.hip:175:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  175 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/LDGSTG/LDGSTG.hip:173:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  173 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/LDGSTG/LDGSTG.hip:175:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  175 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/STG128_STRONG/STG8_STRONG.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/STG128_STRONG/STG8_STRONG.hip -o bin/STG8_STRONG
+cache_and_data_width_mem_benchmarks/STG128_STRONG/STG8_STRONG.hip:182:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  182 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/STG128_STRONG/STG8_STRONG.hip:184:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  184 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/STG128_STRONG/STG8_STRONG.hip:182:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  182 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/STG128_STRONG/STG8_STRONG.hip:184:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  184 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/STG8/STG8.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/STG8/STG8.hip -o bin/STG8
+cache_and_data_width_mem_benchmarks/STG8/STG8.hip:182:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  182 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/STG8/STG8.hip:184:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  184 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/STG8/STG8.hip:182:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  182 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/STG8/STG8.hip:184:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  184 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/LDGSTG_STRONG_L2/LDGSTG_STRONG_L2.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/LDGSTG_STRONG_L2/LDGSTG_STRONG_L2.hip -o bin/LDGSTG_STRONG_L2
+cache_and_data_width_mem_benchmarks/LDGSTG_STRONG_L2/LDGSTG_STRONG_L2.hip:177:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  177 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/LDGSTG_STRONG_L2/LDGSTG_STRONG_L2.hip:179:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  179 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/LDGSTG_STRONG_L2/LDGSTG_STRONG_L2.hip:177:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  177 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/LDGSTG_STRONG_L2/LDGSTG_STRONG_L2.hip:179:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  179 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/LDGSTG128/LDGSTG128.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/LDGSTG128/LDGSTG128.hip -o bin/LDGSTG128
+cache_and_data_width_mem_benchmarks/LDGSTG128/LDGSTG128.hip:201:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  201 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/LDGSTG128/LDGSTG128.hip:203:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  203 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/LDGSTG128/LDGSTG128.hip:201:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  201 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/LDGSTG128/LDGSTG128.hip:203:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  203 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/LDC64/LDC64.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/LDC64/LDC64.hip -o bin/LDC64
+cache_and_data_width_mem_benchmarks/LDC64/LDC64.hip:134:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  134 |          hipMemcpyToSymbol(HIP_SYMBOL(ConstArray1), array1, sizeof(uint64_t) * THREADS_PER_BLOCK );
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/LDC64/LDC64.hip:134:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  134 |          hipMemcpyToSymbol(HIP_SYMBOL(ConstArray1), array1, sizeof(uint64_t) * THREADS_PER_BLOCK );
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/STS_16/STS_16.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/STS_16/STS_16.hip -o bin/STS_16
+cache_and_data_width_mem_benchmarks/STS_16/STS_16.hip:188:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  188 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/STS_16/STS_16.hip:190:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  190 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/STS_16/STS_16.hip:188:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  188 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/STS_16/STS_16.hip:190:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  190 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/STS/STS.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/STS/STS.hip -o bin/STS
+cache_and_data_width_mem_benchmarks/STS/STS.hip:188:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  188 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/STS/STS.hip:190:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  190 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/STS/STS.hip:188:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  188 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/STS/STS.hip:190:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  190 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/LDGSTG16/LDGSTG16.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/LDGSTG16/LDGSTG16.hip -o bin/LDGSTG16
+cache_and_data_width_mem_benchmarks/LDGSTG16/LDGSTG16.hip:189:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  189 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/LDGSTG16/LDGSTG16.hip:191:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  191 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/LDGSTG16/LDGSTG16.hip:189:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  189 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/LDGSTG16/LDGSTG16.hip:191:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  191 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/LDL/LDL.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/LDL/LDL.hip -o bin/LDL
+cache_and_data_width_mem_benchmarks/LDL/LDL.hip:162:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  162 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+1 warning generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/LDL/LDL.hip:162:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  162 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+1 warning generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/ST_E_STRONG_L1/ST_E_STRONG_L1.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/ST_E_STRONG_L1/ST_E_STRONG_L1.hip -o bin/ST_E_STRONG_L1
+cache_and_data_width_mem_benchmarks/ST_E_STRONG_L1/ST_E_STRONG_L1.hip:198:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  198 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/ST_E_STRONG_L1/ST_E_STRONG_L1.hip:200:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  200 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/ST_E_STRONG_L1/ST_E_STRONG_L1.hip:198:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  198 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/ST_E_STRONG_L1/ST_E_STRONG_L1.hip:200:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  200 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/LDC/LDC.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/LDC/LDC.hip -o bin/LDC
+cache_and_data_width_mem_benchmarks/LDC/LDC.hip:131:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  131 |          hipMemcpyToSymbol(HIP_SYMBOL(ConstArray1), array1, sizeof(unsigned) * THREADS_PER_BLOCK );
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/LDC/LDC.hip:131:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  131 |          hipMemcpyToSymbol(HIP_SYMBOL(ConstArray1), array1, sizeof(unsigned) * THREADS_PER_BLOCK );
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+1 warning generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/STG_STRONG_L2/STG_STRONG_L2.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/STG_STRONG_L2/STG_STRONG_L2.hip -o bin/STG_STRONG_L2
+cache_and_data_width_mem_benchmarks/STG_STRONG_L2/STG_STRONG_L2.hip:189:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  189 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/STG_STRONG_L2/STG_STRONG_L2.hip:191:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  191 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/STG_STRONG_L2/STG_STRONG_L2.hip:189:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  189 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/STG_STRONG_L2/STG_STRONG_L2.hip:191:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  191 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/STS_128/STS_128.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/STS_128/STS_128.hip -o bin/STS_128
+cache_and_data_width_mem_benchmarks/STS_128/STS_128.hip:193:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  193 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/STS_128/STS_128.hip:195:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  195 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/STS_128/STS_128.hip:193:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  193 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/STS_128/STS_128.hip:195:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  195 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/STS_8/STS_8.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/STS_8/STS_8.hip -o bin/STS_8
+cache_and_data_width_mem_benchmarks/STS_8/STS_8.hip:188:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  188 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/STS_8/STS_8.hip:190:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  190 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/STS_8/STS_8.hip:188:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  188 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/STS_8/STS_8.hip:190:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  190 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/STG16/STG16.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/STG16/STG16.hip -o bin/STG16
+cache_and_data_width_mem_benchmarks/STG16/STG16.hip:180:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  180 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/STG16/STG16.hip:182:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  182 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/STG16/STG16.hip:180:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  180 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/STG16/STG16.hip:182:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  182 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/STL/STL.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/STL/STL.hip -o bin/STL
+cache_and_data_width_mem_benchmarks/STL/STL.hip:164:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  164 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+1 warning generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/STL/STL.hip:164:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  164 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+1 warning generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/STG/STG.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/STG/STG.hip -o bin/STG
+cache_and_data_width_mem_benchmarks/STG/STG.hip:174:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  174 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/STG/STG.hip:176:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  176 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/STG/STG.hip:174:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  174 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/STG/STG.hip:176:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  176 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/LDS_U_64/LDS_U_64.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/LDS_U_64/LDS_U_64.hip -o bin/LDS_U_64
+cache_and_data_width_mem_benchmarks/LDS_U_64/LDS_U_64.hip:209:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  209 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/LDS_U_64/LDS_U_64.hip:211:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  211 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/LDS_U_64/LDS_U_64.hip:209:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  209 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/LDS_U_64/LDS_U_64.hip:211:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  211 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/LDGSTG8_STRONG_L2/LDGSTG8_STRONG_L2.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/LDGSTG8_STRONG_L2/LDGSTG8_STRONG_L2.hip -o bin/LDGSTG8_STRONG_L2
+cache_and_data_width_mem_benchmarks/LDGSTG8_STRONG_L2/LDGSTG8_STRONG_L2.hip:193:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  193 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/LDGSTG8_STRONG_L2/LDGSTG8_STRONG_L2.hip:195:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  195 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/LDGSTG8_STRONG_L2/LDGSTG8_STRONG_L2.hip:193:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  193 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/LDGSTG8_STRONG_L2/LDGSTG8_STRONG_L2.hip:195:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  195 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/LDS_U_8/LDS_U_8.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/LDS_U_8/LDS_U_8.hip -o bin/LDS_U_8
+cache_and_data_width_mem_benchmarks/LDS_U_8/LDS_U_8.hip:209:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  209 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/LDS_U_8/LDS_U_8.hip:211:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  211 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/LDS_U_8/LDS_U_8.hip:209:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  209 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/LDS_U_8/LDS_U_8.hip:211:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  211 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/LDG/LDG.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/LDG/LDG.hip -o bin/LDG
+cache_and_data_width_mem_benchmarks/LDG/LDG.hip:208:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  208 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/LDG/LDG.hip:210:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  210 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/LDG/LDG.hip:208:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  208 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/LDG/LDG.hip:210:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  210 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/STS_64/STS_64.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/STS_64/STS_64.hip -o bin/STS_64
+cache_and_data_width_mem_benchmarks/STS_64/STS_64.hip:188:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  188 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/STS_64/STS_64.hip:190:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  190 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/STS_64/STS_64.hip:188:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  188 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/STS_64/STS_64.hip:190:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  190 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/STG128/STG128.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/STG128/STG128.hip -o bin/STG128
+cache_and_data_width_mem_benchmarks/STG128/STG128.hip:185:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  185 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/STG128/STG128.hip:187:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  187 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/STG128/STG128.hip:185:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  185 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/STG128/STG128.hip:187:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  187 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/LDGSTG8/LDGSTG8.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/LDGSTG8/LDGSTG8.hip -o bin/LDGSTG8
+cache_and_data_width_mem_benchmarks/LDGSTG8/LDGSTG8.hip:192:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  192 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/LDGSTG8/LDGSTG8.hip:194:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  194 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/LDGSTG8/LDGSTG8.hip:192:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  192 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/LDGSTG8/LDGSTG8.hip:194:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  194 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/STG64/STG64.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/STG64/STG64.hip -o bin/STG64
+cache_and_data_width_mem_benchmarks/STG64/STG64.hip:174:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  174 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/STG64/STG64.hip:176:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  176 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/STG64/STG64.hip:174:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  174 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/STG64/STG64.hip:176:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  176 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+Compiling cache_and_data_width_mem_benchmarks/LDGSTG16_STRONG_L2/LDGSTG16_STRONG_L2.hip for gfx942...
+hipcc -O3 --offload-arch=gfx942  -std=c++17 cache_and_data_width_mem_benchmarks/LDGSTG16_STRONG_L2/LDGSTG16_STRONG_L2.hip -o bin/LDGSTG16_STRONG_L2
+cache_and_data_width_mem_benchmarks/LDGSTG16_STRONG_L2/LDGSTG16_STRONG_L2.hip:189:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  189 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/LDGSTG16_STRONG_L2/LDGSTG16_STRONG_L2.hip:191:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  191 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for gfx942.
+cache_and_data_width_mem_benchmarks/LDGSTG16_STRONG_L2/LDGSTG16_STRONG_L2.hip:189:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  189 |   hipFree(d_A);
+      |   ^~~~~~~~~~~~
+cache_and_data_width_mem_benchmarks/LDGSTG16_STRONG_L2/LDGSTG16_STRONG_L2.hip:191:3: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+  191 |   hipFree(d_B);
+      |   ^~~~~~~~~~~~
+2 warnings generated when compiling for host.
+make: Target 'all' not remade because of errors.

@@ -15,6 +15,7 @@ a.out
 *.hipi
 *.hipfb
 bin
+bin1
 
 # runtime dir
 .rocprofv3

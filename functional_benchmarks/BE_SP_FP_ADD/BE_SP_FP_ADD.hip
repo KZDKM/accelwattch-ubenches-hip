@@ -93,6 +93,8 @@ inline void __getLastCudaError(const char *errorMessage, const char *file, const
 
 
 // Device code
+#define OPAQUE(x) asm volatile("" : "+v"(x))
+
 __global__ void PowerKernal1(const float* A, const float* B, float* C, int iterations)
 {
     int i = blockDim.x * blockIdx.x + threadIdx.x;
@@ -107,12 +109,13 @@ __global__ void PowerKernal1(const float* A, const float* B, float* C, int itera
     for(float k=0; k<(float)iterations/100;k++) {
 #pragma unroll 100
       for(float j=0; j<100;j++) {
-    	Value1=I1+I2;
-    	Value3=I1-I2;
-    	Value1+=Value2;
-    	Value1+=Value2;
-    	Value2=Value3-Value1;
-    	Value1=Value2+Value3;
+      OPAQUE(I1); OPAQUE(I2);            // stops I1+I2 / I2+Value2 being hoisted
+      Value1=I1+I2;   OPAQUE(Value1);
+      Value3=I2+Value2; OPAQUE(Value3);
+      Value1+=Value2; OPAQUE(Value1);
+      Value1+=Value2; OPAQUE(Value1);
+      Value2=Value3+Value1; OPAQUE(Value2);
+      Value1=Value2+Value3; OPAQUE(Value1);
     }
     }
     __syncthreads();

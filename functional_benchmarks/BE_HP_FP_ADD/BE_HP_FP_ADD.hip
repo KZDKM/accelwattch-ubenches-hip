@@ -109,12 +109,12 @@ __global__ void PowerKernal1(const half* A, const half* B, half* C, unsigned lon
 {
     int i = blockDim.x * blockIdx.x + threadIdx.x;
     //Do Some Computation
-    volatile half Value1=0;
-    volatile half Value2=0;
-    volatile half Value3=0;
-    volatile half Value=0;
-    volatile half I1=A[i];
-    volatile half I2=B[i];
+    half Value1=0;
+    half Value2=0;
+    half Value3=0;
+    half Value=0;
+    half I1=A[i];
+    half I2=B[i];
     // Excessive Addition access
     for(unsigned long long k=0; k<iterations/100;k++) {
 #pragma unroll 100

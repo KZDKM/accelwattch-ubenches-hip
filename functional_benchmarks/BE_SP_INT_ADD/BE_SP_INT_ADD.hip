@@ -111,12 +111,12 @@ __global__ void PowerKernal2(const unsigned* A, const unsigned* B, unsigned* C, 
 #pragma unroll 100
       for(unsigned j=0; j<100;j++) {
 
-      OPAQUE(I1); OPAQUE(I2);            // stops I1+I2 / I1-I2 being hoisted
+      OPAQUE(I1); OPAQUE(I2);            // stops I1+I2 / I2+Value2 being hoisted
       Value1=I1+I2;   OPAQUE(Value1);
-      Value3=I1-I2;   OPAQUE(Value3);
+      Value3=I2+Value2; OPAQUE(Value3);
       Value1+=Value2; OPAQUE(Value1);
       Value1+=Value2; OPAQUE(Value1);
-      Value2=Value3-Value1; OPAQUE(Value2);
+      Value2=Value3+Value1; OPAQUE(Value2);
       Value1=Value2+Value3; OPAQUE(Value1);
 
 //	Value2= I1+I2;

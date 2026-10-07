@@ -91,7 +91,7 @@ inline void __getLastCudaError(const char *errorMessage, const char *file, const
 __global__ void PowerKernal2(volatile uint16_t* A, volatile uint16_t* B, unsigned long long N)
 {
     uint32_t uid = blockDim.x * blockIdx.x + threadIdx.x;
-    volatile uint32_t sink = A[uid];
+    uint32_t sink = A[uid];
     volatile uint16_t* outptr = B + uid;
 
 	for(uint64_t i=0; i<N/100; ++i) {
