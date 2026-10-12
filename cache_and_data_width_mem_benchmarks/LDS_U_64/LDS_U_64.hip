@@ -221,9 +221,9 @@ void CleanupResources(void)
 // Allocates an array with random float entries.
 void RandomInit(uint64_t* data, int n)
 {
+  srand(1);
   for (int i = 0; i < n; ++i){
-  srand((uint64_t)time(0));  
-  data[i] = rand() / RAND_MAX;
+    data[i] = ((uint64_t)rand() << 32) | (uint64_t)rand();
   }
 }
 

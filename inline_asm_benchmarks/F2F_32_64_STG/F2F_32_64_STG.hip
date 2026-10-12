@@ -186,8 +186,12 @@ void CleanupResources(void)
 // Allocates an array with random double entries.
 void RandomInit(double* data, int n)
 {
-  for (int i = 0; i < n; ++i){ 
-  data[i] = rand() / RAND_MAX;
+  srand(1);
+  for (int i = 0; i < n; ++i){
+    // random mantissa bits with exponent of 1.0 -> [1,2), shifted to [0,1)
+    union { uint64_t u; double d; } v;
+    v.u = 0x3FF0000000000000ull | ((((uint64_t)rand() << 31) | (uint64_t)rand()) & 0xFFFFFFFFFFFFFull);
+    data[i] = v.d - 1.0;
   }
 }
 

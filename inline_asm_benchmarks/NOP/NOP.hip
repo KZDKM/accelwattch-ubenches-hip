@@ -190,8 +190,10 @@ void CleanupResources(void)
 // Allocates an array with random int entries.
 void RandomInit(int* data, int n)
 {
-  for (int i = 0; i < n; ++i){ 
-	data[i] = rand() / RAND_MAX;
+  static bool seeded = false;   // seed once so A and B get different data
+  if (!seeded) { srand(1); seeded = true; }
+  for (int i = 0; i < n; ++i){
+    data[i] = (int)rand();
   }
 }
 

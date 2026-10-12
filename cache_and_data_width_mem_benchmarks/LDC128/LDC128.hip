@@ -155,15 +155,12 @@ int main(int argc, char** argv)
 // Allocates an array with random float entries.
 void RandomInit(uint4* data, int n)
 {
+  srand(1);
   for (int i = 0; i < n; ++i){
-  srand((unsigned)time(0));  
-  data[i].x = rand() / RAND_MAX;
-  srand((unsigned)time(0));  
-  data[i].y = rand() / RAND_MAX;
-  srand((unsigned)time(0));  
-  data[i].z = rand() / RAND_MAX;
-  srand((unsigned)time(0));  
-  data[i].w = rand() / RAND_MAX;
+    data[i].x = (unsigned)rand();
+    data[i].y = (unsigned)rand();
+    data[i].z = (unsigned)rand();
+    data[i].w = (unsigned)rand();
   }
 }
 

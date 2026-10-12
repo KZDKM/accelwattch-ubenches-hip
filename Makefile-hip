@@ -8,7 +8,7 @@ STD = -std=c++17
 HIPCC_FLAGS = -O3 --offload-arch=$(ARCH) #--gcc-install-dir=/usr/bin/../lib/gcc/x86_64-linux-gnu/13
 
 # Source directories containing the benchmarks
-DIRS = additional_hip_benches cache_and_data_width_mem_benchmarks functional_benchmarks inline_asm_benchmarks
+DIRS = inline_asm_benchmarks functional_benchmarks additional_hip_benches
 
 # Define the output directory (defaults to "bin" if not specified)
 BIN_DIR ?= bin

@@ -7,8 +7,8 @@
 #                          <bench>_<iters>, ready for scale_instruction.ipynb
 #
 # `profile` re-launches the binary once per counter pass, so its cost is roughly
-# (number of passes) x (one full run of the binary, host setup included).
-# Restricting the profiled blocks cuts the number of passes.
+# (number of passes) x (one full run of the binary). Collecting only the vL1D
+# and L2 blocks keeps the number of passes small.
 #
 # Usage:
 #   ./profile_cache.sh                          # all benchmarks
@@ -21,11 +21,12 @@ BIN_DIR="${BIN_DIR:-$HOME/accelwattch-ubenches-hip}"
 WORK_DIR="${WORK_DIR:-$PWD/cache_workloads}"
 ITERATIONS="${ITERATIONS:-1000 10000}"
 TIMEOUT_SEC="${TIMEOUT_SEC:-3600}"
-# 2.1 = System Speed-of-Light (headline hit rates), 16 = vL1D, 17 = L2/TCC.
-BLOCKS="${BLOCKS:-2.1 16 17}"
-# CHANGED: blocks to COLLECT. Defaults to the blocks you analyze. Some
-# rocprof-compute versions want hardware block names here instead, e.g.
-#   PROFILE_BLOCKS="SQ TCP TCC"
+# CHANGED: 16 = vL1D, 17 = L2/TCC. Both hit rates live in these blocks' own
+# speed-of-light subsections (16.1, 17.1), so the 2.1 system summary, which
+# pulls counters from nearly every hardware block, is no longer needed.
+BLOCKS="${BLOCKS:-16 17}"
+# Blocks to COLLECT. Defaults to the blocks you analyze. Some rocprof-compute
+# versions want hardware block names here instead, e.g. PROFILE_BLOCKS="TCP TCC"
 PROFILE_BLOCKS="${PROFILE_BLOCKS:-$BLOCKS}"
 
 log()  { printf '[%s] %s\n' "$(date +%T)" "$*"; }
@@ -34,7 +35,6 @@ warn() { printf '[%s] WARNING: %s\n' "$(date +%T)" "$*" >&2; }
 command -v rocprof-compute >/dev/null || { echo "rocprof-compute not in PATH" >&2; exit 1; }
 mkdir -p "$WORK_DIR"
 
-# CHANGED: only filter at profile time if this version supports it.
 block_args=()
 if rocprof-compute profile --help 2>&1 | grep -qE -- '(^|[[:space:]])(-b|--block)([[:space:],]|$)'; then
     block_args=(--block $PROFILE_BLOCKS)
@@ -56,8 +56,8 @@ for b in "${targets[@]}"; do
     for it in $ITERATIONS; do
         name="${b}_${it}"
         done_flag="$WORK_DIR/${name}.done"
-        # CHANGED: a killed or failed run leaves a partial workload directory
-        # behind, so skip only runs that finished. Partial ones are redone.
+        # A killed or failed run leaves a partial workload directory behind,
+        # so skip only runs that finished. Partial ones are redone.
         if [[ -f "$done_flag" ]]; then
             log "$name: already profiled, skipping"
             continue
@@ -70,14 +70,18 @@ for b in "${targets[@]}"; do
         log "profiling $name"
         start=$SECONDS
         timeout -k 30 -s KILL "$TIMEOUT_SEC" \
-            rocprof-compute profile -n "$name" --path "$WORK_DIR" --no-roof "${block_args[@]}" \
+            # rocprof-compute >= 3.x writes the workload INTO --path (no <name>/<arch>
+            # subdirectory), so each run needs its own directory or they overwrite.
+            rocprof-compute profile -n "$name" --path "$WORK_DIR/$name" --no-roof "${block_args[@]}" \
                 -- "$exe" "$it" \
             > "$WORK_DIR/${name}.profile.log" 2>&1
         rc=$?
         elapsed=$(( SECONDS - start ))
-        if (( rc == 0 )); then
+        if (( rc == 0 )) && [[ -f "$WORK_DIR/$name/pmc_perf.csv" ]]; then
             touch "$done_flag"
             log "$name: done in ${elapsed}s"
+        elif (( rc == 0 )); then
+            warn "$name: profile exited 0 but wrote no $WORK_DIR/$name/pmc_perf.csv"
         elif (( rc == 124 || rc == 137 )); then
             warn "$name: TIMED OUT after ${elapsed}s (raise TIMEOUT_SEC); workload is incomplete"
         else
@@ -91,9 +95,9 @@ log "analyzing"
 for b in "${targets[@]}"; do
     for it in $ITERATIONS; do
         name="${b}_${it}"
-        [[ -f "$WORK_DIR/${name}.done" ]] || continue      # CHANGED: complete workloads only
-        wl=$(find "$WORK_DIR/$name" -maxdepth 1 -mindepth 1 -type d 2>/dev/null | head -1)
-        [[ -n "$wl" ]] || continue
+        [[ -f "$WORK_DIR/${name}.done" ]] || continue
+        wl="$WORK_DIR/$name"
+        [[ -f "$wl/pmc_perf.csv" ]] || { warn "$name: no pmc_perf.csv in $wl, skipping analyze"; continue; }
         rocprof-compute analyze -p "$wl" --block $BLOCKS \
             > "$WORK_DIR/${name}.analyze.txt" 2>&1 \
             || warn "$name: analyze failed"
@@ -112,17 +116,22 @@ ROW = re.compile(
     rf"\s*([-\d.eE+]*)\s*{SEP}\s*([^|\u2502]*?)\s*{SEP}"
 )
 
-# Pick the two hit rates by NAME inside block 2.1, not by metric ID.
-# If rocprof-compute words them differently in your version, edit these.
+# CHANGED: each hit rate is taken from its block's speed-of-light subsection:
+# (metric-ID prefix, metric-name pattern). Edit if your version words or
+# numbers them differently -- the script prints what it finds if a pattern misses.
 HIT_RATES = {
-    "l1_hit": re.compile(r"^vL1D Cache Hit Rate$", re.I),
-    "l2_hit": re.compile(r"^L2 Cache Hit Rate$",   re.I),
+    "l1_hit": ("16.1.", re.compile(r"hit\s*rate", re.I)),   # vL1D
+    "l2_hit": ("17.1.", re.compile(r"hit\s*rate", re.I)),   # L2 / TCC
 }
+
+def is_percent(unit):                                        # CHANGED: wider unit check
+    u = unit.strip().lower()
+    return u.startswith("pct") or u.startswith("percent") or u == "%"
 
 data, names, units = {}, {}, {}
 for path in sorted(work.glob("*.analyze.txt")):
     bench = path.name[: -len(".analyze.txt")]          # <bench>_<iters>
-    if not (work / f"{bench}.done").exists():          # CHANGED: stale/partial runs
+    if not (work / f"{bench}.done").exists():
         continue
     vals = {}
     for line in path.read_text(errors="replace").splitlines():
@@ -151,12 +160,15 @@ with (work / "cache_metrics.csv").open("w", newline="") as f:
         w.writerow([bench] + [data[bench].get(c, "") for c in cols])
 
 chosen = {}
-for key, pat in HIT_RATES.items():
-    ids = [m for m in names if m.startswith("2.1.") and pat.search(names[m])]
+for key, (prefix, pat) in HIT_RATES.items():
+    ids = [m for m in names if m.startswith(prefix) and pat.search(names[m])]
     if len(ids) != 1:
-        cands = sorted(f"{m} {names[m]}" for m in names if m.startswith("2.1.") and "hit" in names[m].lower())
-        sys.exit(f"{key}: pattern {pat.pattern!r} matched {ids or 'nothing'} in block 2.1.\n"
-                 f"hit-rate metrics present: {cands}\nedit HIT_RATES and re-run (analyze is cheap).")
+        block = prefix.split(".")[0] + "."
+        cands = sorted(f"{m} {names[m]} ({units[m]})" for m in names
+                       if m.startswith(block) and "hit" in names[m].lower())
+        sys.exit(f"{key}: {pat.pattern!r} under {prefix} matched {ids or 'nothing'}.\n"
+                 f"hit-rate metrics in block {block[:-1]}: {cands}\n"
+                 f"edit HIT_RATES and re-run (analyze is cheap).")
     chosen[key] = ids[0]
     print(f"{key} <- {ids[0]} {names[ids[0]]} ({units[ids[0]]})")
 
@@ -169,7 +181,7 @@ with out.open("w", newline="") as f:
         row = []
         for key, mid in chosen.items():
             v = data[bench].get(mid)
-            if v is not None and units[mid].lower().startswith("pct"):
+            if v is not None and is_percent(units[mid]):
                 v /= 100.0
             if v is not None and not 0.0 <= v <= 1.0:
                 bad.append((bench, key, v))
@@ -190,7 +202,7 @@ for base in sorted(by_base):
     if len(its) < 2:
         continue
     lo, hi = data[by_base[base][its[0]]], data[by_base[base][its[-1]]]
-    d = {k: (hi.get(m, 0) - lo.get(m, 0)) / (100.0 if units[m].lower().startswith("pct") else 1.0)
+    d = {k: (hi.get(m, 0) - lo.get(m, 0)) / (100.0 if is_percent(units[m]) else 1.0)
          for k, m in chosen.items()}
     flag = "  <--" if any(abs(v) > 0.05 for v in d.values()) else ""
     print(f"  {base:28} " + "  ".join(f"{k} {v:+.3f}" for k, v in d.items()) + flag)

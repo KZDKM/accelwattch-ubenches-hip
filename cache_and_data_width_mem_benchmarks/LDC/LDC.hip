@@ -157,9 +157,9 @@ int main(int argc, char** argv)
 // Allocates an array with random float entries.
 void RandomInit(unsigned* data, int n)
 {
+  srand(1);
   for (int i = 0; i < n; ++i){
-  srand((unsigned)time(0));  
-  data[i] = rand() / RAND_MAX;
+    data[i] = (unsigned)rand();
   }
 }
 

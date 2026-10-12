@@ -250,9 +250,10 @@ void CleanupResources(void)
 // Allocates an array with random float entries.
 void RandomInit(unsigned* data, int n)
 {
+  static bool seeded = false;   // seed once so A and B get different data
+  if (!seeded) { srand(1); seeded = true; }
   for (int i = 0; i < n; ++i){
-	srand((unsigned)time(0));  
-	data[i] = rand() / RAND_MAX;
+    data[i] = (unsigned)rand();
   }
 }
 

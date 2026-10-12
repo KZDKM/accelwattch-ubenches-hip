@@ -181,8 +181,9 @@ void CleanupResources(void)
 // Allocates an array with random unsigned entries.
 void RandomInit(unsigned* data, int n)
 {
-  for (int i = 0; i < n; ++i){ 
-  data[i] = rand() / RAND_MAX;
+  srand(1);
+  for (int i = 0; i < n; ++i){
+    data[i] = (unsigned)rand();
   }
 }
 

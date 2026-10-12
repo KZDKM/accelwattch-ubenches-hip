@@ -239,8 +239,13 @@ void CleanupResources(void)
 // Allocates an array with random float entries.
 void RandomInit(float* data, int n)
 {
-  for (int i = 0; i < n; ++i){ 
-	data[i] = rand() / RAND_MAX;
+  static bool seeded = false;   // seed once so A and B get different data
+  if (!seeded) { srand(1); seeded = true; }
+  for (int i = 0; i < n; ++i){
+    // random mantissa bits with exponent of 1.0f -> [1,2), shifted to [0,1)
+    union { uint32_t u; float f; } v;
+    v.u = 0x3F800000u | ((uint32_t)rand() & 0x7FFFFFu);
+    data[i] = v.f - 1.0f;
   }
 }
 
