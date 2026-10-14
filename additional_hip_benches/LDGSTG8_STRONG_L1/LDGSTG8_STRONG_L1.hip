@@ -99,14 +99,14 @@ __global__ void PowerKernal2(uint8_t* A, uint8_t* B, unsigned long long N)
 #pragma unroll 100
 	  for(uint64_t j=0; j<100; ++j) {
         asm volatile (
-            "global_load_ubyte %0, %1, off sc0\n\t"   // ld.global.ca: workgroup scope, may hit in L1
+            "global_load_ubyte %0, %1, off sc0 nt\n\t"   // sc0 nt: bypass L1, hit in L2
             "s_waitcnt vmcnt(0)\n\t"
             : "=v"(sink)
             : "v"(inptr)
             : "memory"
         );
   	asm volatile (
-            "global_store_byte %0, %1, off sc0\n\t"
+            "global_store_byte %0, %1, off sc0 nt\n\t"
             "s_waitcnt vmcnt(0)\n\t"
             :
             : "v"(outptr), "v"(sink)

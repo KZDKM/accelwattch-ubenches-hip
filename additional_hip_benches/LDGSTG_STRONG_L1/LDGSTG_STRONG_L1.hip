@@ -97,7 +97,7 @@ __global__ void PowerKernal2(unsigned* A, unsigned* B, unsigned long long N)
 #pragma unroll 100
 	  for(uint64_t j=0; j<100; ++j) {
       asm volatile (
-      "global_load_dword %0, %1, off sc0\n\t"   // ld.global.ca: workgroup scope, may hit in L1
+      "global_load_dword %0, %1, off sc0 nt\n\t"   // sc0 nt: bypass L1, hit in L2
       "s_waitcnt vmcnt(0)\n\t"
         : "=v"(sink) : "v"(ptr) : "memory"
       );

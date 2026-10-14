@@ -97,7 +97,7 @@ __global__ void PowerKernal2(unsigned* A, unsigned* B, unsigned long long N)
 #pragma unroll 100
 	  for(uint64_t j=0; j<100; ++j) {
       asm volatile (
-      "global_load_dword %0, %1, off sc1\n\t"   // ld.global.cg: agent scope, misses L1 and is served by L2
+      "global_load_dword %0, %1, off sc0 sc1 nt\n\t"   // sc0 sc1 nt: bypass L1 and L2, go to memory
       "s_waitcnt vmcnt(0)\n\t"
         : "=v"(sink) : "v"(ptr) : "memory"
       );
