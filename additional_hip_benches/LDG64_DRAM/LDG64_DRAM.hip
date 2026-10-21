@@ -30,7 +30,7 @@
 //This code is a modification of L1 cache benchmark from 
 //"Dissecting the NVIDIA Volta GPU Architecture via Microbenchmarking": https://arxiv.org/pdf/1804.06826.pdf
 
-//This benchmark stresses the L1 cache
+//This benchmark stresses DRAM: strided pointer chasing with L1/L2-bypassing loads (sc0 sc1 nt)
 
 //This code have been tested on Volta V100 architecture
 
@@ -38,10 +38,12 @@
 #include <stdlib.h> 
 #include <hip/hip_runtime.h>
 
-// cache policy: sc0 sc1 nt (bypass L1 and L2, go to memory)
 #define THREADS_PER_BLOCK 256
 #define NUM_OF_BLOCKS (304 * 1024)
 #define WARP_SIZE 32
+
+#define ARRAY_SIZE 67108864 // 2^26
+#define STRIDE 163840//2^14 * 10
 
 // GPU error check
 #define checkCudaErrors(ans) { gpuAssert((ans), __FILE__, __LINE__); }
@@ -52,55 +54,42 @@ inline void gpuAssert(hipError_t code, const char *file, int line, bool abort=tr
         }
 }
 
-//BT: setting up pointers so they should do a lot of cache hits.
-__global__ void l1_pointers_init(uint64_t *posArray){
-
-  uint32_t tid = blockIdx.x*blockDim.x + threadIdx.x;
-  if(tid == 0){
-    for(uint32_t blk = 0; blk <NUM_OF_BLOCKS; blk++){
-      for (uint32_t i=0; i<(THREADS_PER_BLOCK-1); i++){
-        posArray[(blk*THREADS_PER_BLOCK)+i] = (uint64_t)(posArray + (blk*THREADS_PER_BLOCK) + i + 1);
-      }
-
-      posArray[((blk+1)*THREADS_PER_BLOCK)-1] = (uint64_t)(posArray + (blk*THREADS_PER_BLOCK));
-    }
-  }
+__global__ void pointers_init(uint64_t *posArray){
+  uint64_t i = (uint64_t)blockIdx.x * blockDim.x + threadIdx.x;
+  if (i < ARRAY_SIZE)
+    posArray[i] = (uint64_t)(posArray + (i + STRIDE) % ARRAY_SIZE);
 }
 
-__global__ void l1_stress(uint64_t *posArray, uint64_t *dsink, unsigned long long iterations){
+__global__ void dram_stress(uint64_t *posArray, uint64_t *dsink, unsigned long long iterations){
 
   // thread index
   uint32_t tid = blockIdx.x*blockDim.x + threadIdx.x;
 
-  if(tid < NUM_OF_BLOCKS*THREADS_PER_BLOCK){
+  if(tid < ARRAY_SIZE) {
   	// a register to avoid compiler optimization
   	uint64_t *ptr = posArray + tid;
   	uint64_t ptr1, ptr0;
 
   	// initialize the thread pointer with the start address of the array
-  	// use ca modifier to cache the in L1
-  	asm volatile ("{\t\n"
-  	  "global_load_dwordx2 %0, %1, off sc0 sc1 nt\n\t"
-      "s_waitcnt vmcnt(0)\n\t"
-  	  "}" : "=v"(ptr1) : "v"(ptr) : "memory"
-  	);
+  	asm volatile (
+  	    "global_load_dwordx2 %0, %1, off sc0 sc1 nt\n\t"   // sc0 sc1 nt: bypass L1 and L2, go to memory
+        "s_waitcnt vmcnt(0)\n\t"
+  	    : "=v"(ptr1) : "v"(ptr) : "memory"
+  	  );
 
   	// synchronize all threads
-  	//asm volatile ("bar.sync 0;");
     __syncthreads();
 
   	// pointer-chasing iterations times
-  	// use ca modifier to cache the load in L1
-  	for(unsigned long long i=0; i<iterations/100; ++i) { 
+  	for(unsigned long long i=0; i<iterations/100; ++i) {
   	#pragma unroll 100
-  	  for(unsigned long long j=0; j<100; ++j) { 
-  	  asm volatile ("{\t\n"
+  	  for(unsigned long long j=0; j<100; ++j) {
+  	  asm volatile (
   	    "global_load_dwordx2 %0, %1, off sc0 sc1 nt\n\t"
         "s_waitcnt vmcnt(0)\n\t"
-  	    "}" : "=v"(ptr0) : "v"((uint64_t*)ptr1) : "memory"
+  	    : "=v"(ptr0) : "v"((uint64_t*)ptr1) : "memory"
   	  );
   	  ptr1 = ptr0;    //swap the register for the next load
-
   	}
   	}
 
@@ -118,11 +107,14 @@ int main(int argc, char** argv){
   else {
     iterations = atoll(argv[1]);
   }
-  int total_threads = THREADS_PER_BLOCK*NUM_OF_BLOCKS;
+  int total_threads = ARRAY_SIZE; //THREADS_PER_BLOCK*NUM_OF_BLOCKS;
  printf("Power Microbenchmarks with iterations %llu\n",iterations);
 
-  uint64_t *dsink = (uint64_t*) malloc(total_threads*sizeof(uint64_t));
-  
+  //uint64_t *dsink = (uint64_t*) malloc(total_threads*sizeof(uint64_t));
+      // Use pinned (page-locked) memory for `dsink`
+    uint64_t *dsink;
+    checkCudaErrors(hipHostMalloc((void**)&dsink, total_threads * sizeof(uint64_t)));
+
 
   uint64_t *posArray_g;
   uint64_t *dsink_g;
@@ -135,9 +127,12 @@ int main(int argc, char** argv){
  checkCudaErrors(hipEventCreate(&start));  
  checkCudaErrors(hipEventCreate(&stop));
 
-    l1_pointers_init<<<1,1>>>(posArray_g);
+ int init_blocks = (ARRAY_SIZE + THREADS_PER_BLOCK - 1) / THREADS_PER_BLOCK;
+ pointers_init<<<init_blocks, THREADS_PER_BLOCK>>>(posArray_g);
+ checkCudaErrors(hipDeviceSynchronize());
+    
  checkCudaErrors(hipEventRecord(start));    
-  l1_stress<<<NUM_OF_BLOCKS,THREADS_PER_BLOCK>>>(posArray_g, dsink_g, iterations);
+  dram_stress<<<NUM_OF_BLOCKS,THREADS_PER_BLOCK>>>(posArray_g, dsink_g, iterations);
  checkCudaErrors(hipEventRecord(stop));               
  
  checkCudaErrors(hipEventSynchronize(stop));           

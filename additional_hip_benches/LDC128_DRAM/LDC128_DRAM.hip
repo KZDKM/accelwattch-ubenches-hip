@@ -27,144 +27,126 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
-// Includes
-#include <stdio.h>
-#include <stdlib.h>
+//This code is a modification of L1 cache benchmark from 
+//"Dissecting the NVIDIA Volta GPU Architecture via Microbenchmarking": https://arxiv.org/pdf/1804.06826.pdf
 
-// includes CUDA
-#include <hip/hip_runtime.h>
+//This benchmark stresses DRAM: strided pointer chasing with L1/L2-bypassing loads (sc0 sc1 nt)
+
+//This code have been tested on Volta V100 architecture
+
+#include <stdio.h>   
+#include <stdlib.h> 
 #include <hip/hip_runtime.h>
 
 #define THREADS_PER_BLOCK 256
-#define NUM_OF_BLOCKS (304*1024)
+#define NUM_OF_BLOCKS (304 * 1024)
+#define WARP_SIZE 32
 
-__constant__ uint4 ConstArray1[THREADS_PER_BLOCK];
+#define ARRAY_SIZE 67108864 // 2^26
+#define STRIDE 163840//2^14 * 10
 
-
-
-uint4* h_Value;
-uint4* d_Value;
-
-
-// Functions
-void CleanupResources(void);
-void RandomInit(uint4*, int);
-FILE *fp;
-
-
-////////////////////////////////////////////////////////////////////////////////
-// These are CUDA Helper functions
-
-// This will output the proper CUDA error strings in the event that a CUDA host call returns an error
-#define checkCudaErrors(err)  __checkCudaErrors (err, __FILE__, __LINE__)
-
-inline void __checkCudaErrors(hipError_t err, const char *file, const int line )
-{
-  if(hipSuccess != err){
-	fprintf(stderr, "%s(%i) : CUDA Runtime API error %d: %s.\n",file, line, (int)err, hipGetErrorString( err ) );
-	 exit(-1);
-  }
+// GPU error check
+#define checkCudaErrors(ans) { gpuAssert((ans), __FILE__, __LINE__); }
+inline void gpuAssert(hipError_t code, const char *file, int line, bool abort=true){
+        if (code != hipSuccess) {
+                fprintf(stderr,"GPUassert: %s %s %d\n", hipGetErrorString(code), file, line);
+                if (abort) exit(code);
+        }
 }
-
-// This will output the proper error string when calling hipGetLastError
-#define getLastCudaError(msg)      __getLastCudaError (msg, __FILE__, __LINE__)
-
-inline void __getLastCudaError(const char *errorMessage, const char *file, const int line )
-{
-  hipError_t err = hipGetLastError();
-  if (hipSuccess != err){
-	fprintf(stderr, "%s(%i) : getLastCudaError() CUDA error : %s : (%d) %s.\n",file, line, errorMessage, (int)err, hipGetErrorString( err ) );
-	exit(-1);
-  }
-}
-
-// end of CUDA Helper Functions
-
 
 typedef unsigned v4u32 __attribute__((ext_vector_type(4)));   // 128-bit VGPR tuple for inline asm
 
-__global__ void PowerKernal(uint4* Value, unsigned long long iterations)
-{
-	int tid = threadIdx.x;
-	int i = blockIdx.x*THREADS_PER_BLOCK + tid;
-	v4u32 Value1;
-    for(unsigned long long k=0; k<iterations/100;k++) {
-	#pragma unroll 100
-      for(unsigned long long j=0; j<100;j++) {
-		asm volatile(
-			"global_load_dwordx4 %0, %1, off sc0 sc1 nt\n\t"   // bypass L1 and L2, go to memory
-			"s_waitcnt vmcnt(0)\n\t"
-			: "=v"(Value1)
-			: "v"(ConstArray1)
-		);
-	}
-    }
-		Value[i] = make_uint4(Value1.x, Value1.y, Value1.z, Value1.w);
-}
-
-
-
-// Host code
-
-int main(int argc, char** argv) 
-{
-    unsigned long long iterations;
-    if (argc != 2){
-        fprintf(stderr,"usage: %s #iterations\n",argv[0]);
-        exit(1);
-    }
-    else{
-        iterations = atoll(argv[1]);
-    }
-
-    printf("Power Microbenchmark with iterations %llu\n",iterations);
-	uint4 array1[THREADS_PER_BLOCK];
-	int N = THREADS_PER_BLOCK*NUM_OF_BLOCKS;
-	size_t size = N * sizeof(uint4);
-	 h_Value = (uint4 *) malloc(size);
-
-	// Initialize input vectors
-	RandomInit(array1, THREADS_PER_BLOCK);
-
-	 hipMemcpyToSymbol(HIP_SYMBOL(ConstArray1), array1, sizeof(uint4) * THREADS_PER_BLOCK );
-	 
-	 checkCudaErrors( hipMalloc((void**)&d_Value, size ));
-	 //VecAdd<<<blocksPerGrid, threadsPerBlock>>>(d_A, d_B, d_C, N);
-	 dim3 dimGrid(NUM_OF_BLOCKS,1);
-	 dim3 dimBlock(THREADS_PER_BLOCK,1);
-
-	 hipEvent_t start, stop;
-	  float elapsedTime = 0;
-	  checkCudaErrors(hipEventCreate(&start));
-	  checkCudaErrors(hipEventCreate(&stop));
-
-	  checkCudaErrors(hipEventRecord(start));
-	  PowerKernal<<<dimGrid,dimBlock>>>(d_Value, iterations);
-	  checkCudaErrors(hipEventRecord(stop));
-	 
-	  checkCudaErrors(hipEventSynchronize(stop));
-	  checkCudaErrors(hipEventElapsedTime(&elapsedTime, start, stop));
-	  printf("gpu execution time = %.3f ms\n", elapsedTime);
-	  getLastCudaError("kernel launch failure");
-	  checkCudaErrors( hipMemcpy(h_Value, d_Value, size, hipMemcpyDeviceToHost) );
- 	  checkCudaErrors(hipEventDestroy(start));
-	  checkCudaErrors(hipEventDestroy(stop));
-	  return 0;
-}
-
-// Allocates an array with random float entries.
-void RandomInit(uint4* data, int n)
-{
-  srand(1);
-  for (int i = 0; i < n; ++i){
-    data[i].x = (unsigned)rand();
-    data[i].y = (unsigned)rand();
-    data[i].z = (unsigned)rand();
-    data[i].w = (unsigned)rand();
+// 128-bit elements: the next pointer is kept in the low 64 bits (.x = low, .y = high)
+__global__ void pointers_init(uint4 *posArray){
+  uint64_t i = (uint64_t)blockIdx.x * blockDim.x + threadIdx.x;
+  if (i < ARRAY_SIZE) {
+    uint64_t p = (uint64_t)(posArray + (i + STRIDE) % ARRAY_SIZE);
+    posArray[i] = make_uint4((unsigned)p, (unsigned)(p >> 32), 0, 0);
   }
 }
 
+__global__ void dram_stress(uint4 *posArray, uint64_t *dsink, unsigned long long iterations){
+
+  // thread index
+  uint32_t tid = blockIdx.x*blockDim.x + threadIdx.x;
+
+  if(tid < ARRAY_SIZE) {
+  	uint4 *ptr = posArray + tid;
+  	v4u32 data;
+
+  	// initialize the thread pointer with the start address of the array
+  	asm volatile (
+  	    "global_load_dwordx4 %0, %1, off sc0 sc1 nt\n\t"   // sc0 sc1 nt: bypass L1 and L2, go to memory
+        "s_waitcnt vmcnt(0)\n\t"
+  	    : "=v"(data) : "v"(ptr) : "memory"
+  	  );
+
+  	// synchronize all threads
+    __syncthreads();
+
+  	// pointer-chasing iterations times
+  	for(unsigned long long i=0; i<iterations/100; ++i) {
+  	#pragma unroll 100
+  	  for(unsigned long long j=0; j<100; ++j) {
+  	  ptr = (uint4*)(((uint64_t)data.y << 32) | data.x);   // next pointer from the low 64 bits
+  	  asm volatile (
+  	    "global_load_dwordx4 %0, %1, off sc0 sc1 nt\n\t"
+        "s_waitcnt vmcnt(0)\n\t"
+  	    : "=v"(data) : "v"(ptr) : "memory"
+  	  );
+  	}
+  	}
+
+  	// write data back to memory
+  	dsink[tid] = ((uint64_t)data.y << 32) | data.x;
+  }
+}
+
+int main(int argc, char** argv){
+  unsigned long long iterations;
+  if (argc != 2){
+    fprintf(stderr,"usage: %s #iterations #cores #ActiveThreadsperWarp\n",argv[0]);
+    exit(1);
+  }
+  else {
+    iterations = atoll(argv[1]);
+  }
+  int total_threads = ARRAY_SIZE; //THREADS_PER_BLOCK*NUM_OF_BLOCKS;
+ printf("Power Microbenchmarks with iterations %llu\n",iterations);
+
+  //uint64_t *dsink = (uint64_t*) malloc(total_threads*sizeof(uint64_t));
+      // Use pinned (page-locked) memory for `dsink`
+    uint64_t *dsink;
+    checkCudaErrors(hipHostMalloc((void**)&dsink, total_threads * sizeof(uint64_t)));
 
 
+  uint4 *posArray_g;
+  uint64_t *dsink_g;
+  
 
+  checkCudaErrors( hipMalloc(&posArray_g, total_threads*sizeof(uint4)) );
+  checkCudaErrors( hipMalloc(&dsink_g, total_threads*sizeof(uint64_t)) );
+ hipEvent_t start, stop;                   
+ float elapsedTime = 0;                     
+ checkCudaErrors(hipEventCreate(&start));  
+ checkCudaErrors(hipEventCreate(&stop));
 
+ int init_blocks = (ARRAY_SIZE + THREADS_PER_BLOCK - 1) / THREADS_PER_BLOCK;
+ pointers_init<<<init_blocks, THREADS_PER_BLOCK>>>(posArray_g);
+ checkCudaErrors(hipDeviceSynchronize());
+    
+ checkCudaErrors(hipEventRecord(start));    
+  dram_stress<<<NUM_OF_BLOCKS,THREADS_PER_BLOCK>>>(posArray_g, dsink_g, iterations);
+ checkCudaErrors(hipEventRecord(stop));               
+ 
+ checkCudaErrors(hipEventSynchronize(stop));           
+ checkCudaErrors(hipEventElapsedTime(&elapsedTime, start, stop));  
+ printf("gpu execution time = %.3f ms\n", elapsedTime);  
+  
+  
+  checkCudaErrors( hipPeekAtLastError() );
+
+  checkCudaErrors( hipMemcpy(dsink, dsink_g, total_threads*sizeof(uint64_t), hipMemcpyDeviceToHost) );
+
+  return 0;
+} 

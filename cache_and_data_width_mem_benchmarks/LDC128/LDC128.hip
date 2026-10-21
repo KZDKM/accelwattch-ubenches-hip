@@ -81,25 +81,28 @@ inline void __getLastCudaError(const char *errorMessage, const char *file, const
 // end of CUDA Helper Functions
 
 
+typedef unsigned v4u32 __attribute__((ext_vector_type(4)));   // 128-bit VGPR tuple for inline asm
+
 __global__ void PowerKernal(uint4* Value, unsigned long long iterations)
 {
 	int tid = threadIdx.x;
 	int i = blockIdx.x*THREADS_PER_BLOCK + tid;
 
-	uint4 Value1;
-    // uint4 sink=0;
+	v4u32 Value1=0;
+    v4u32 sink=0;
     for(unsigned long long k=0; k<iterations/100;k++) {
 	#pragma unroll 100
       for(unsigned long long j=0; j<100;j++) {
 		asm volatile(
-			"ld.const.v4.u32 {%0, %1, %2, %3}, [%4];\t"
-			: "=r"(Value1.x), "=r"(Value1.y), "=r"(Value1.z), "=r"(Value1.w) 
-			: "l"(ConstArray1)
+			"global_load_dwordx4 %0, %1, off\n\t"
+			"s_waitcnt vmcnt(0)\n\t"
+			: "=v"(Value1)
+			: "v"(ConstArray1)
 		);
+        sink += Value1;
 	}
     }
-		// Value[i] = sink;
-		Value[i] = Value1;
+		Value[i] = make_uint4(sink.x, sink.y, sink.z, sink.w);
 }
 
 

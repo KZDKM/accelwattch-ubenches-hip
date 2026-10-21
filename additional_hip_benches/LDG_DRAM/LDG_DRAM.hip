@@ -27,86 +27,63 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
-#include <stdio.h>
-#include <stdlib.h>
-//#include <cutil.h>
-//#include <mgp.h>
-// Includes
-//#include <stdio.h>
-//#include "../include/ContAcq-IntClk.h"
+//This code is a modification of L1 cache benchmark from 
+//"Dissecting the NVIDIA Volta GPU Architecture via Microbenchmarking": https://arxiv.org/pdf/1804.06826.pdf
 
-// includes, project
-//#include "../include/sdkHelper.h"  // helper for shared functions common to CUDA SDK samples
-//#include <shrQATest.h>
-//#include <shrUtils.h>
+//This benchmark stresses DRAM: strided pointer chasing with L1/L2-bypassing loads (sc0 sc1 nt)
 
-// includes CUDA
+//This code have been tested on Volta V100 architecture
+
+#include <stdio.h>   
+#include <stdlib.h> 
 #include <hip/hip_runtime.h>
-#include <hip/hip_runtime.h> //BT: Needed for uint32_t
+
 #define THREADS_PER_BLOCK 256
 #define NUM_OF_BLOCKS (304 * 1024)
-#define SCALING_ARRAY_SIZE 16
-// Variables
-unsigned* h_A;
-unsigned* h_B;
-unsigned* d_A;
-unsigned* d_B;
-//bool noprompt = false;
-//unsigned int my_timer;
+#define WARP_SIZE 32
 
-// Functions
-void CleanupResources(void);
-void RandomInit(unsigned*, int);
-//void ParseArguments(int, char**);
+#define ARRAY_SIZE 67108864 // 2^26
+#define STRIDE 163840//2^14 * 10
 
-////////////////////////////////////////////////////////////////////////////////
-// These are CUDA Helper functions
-
-// This will output the proper CUDA error strings in the event that a CUDA host call returns an error
-#define checkCudaErrors(err)  __checkCudaErrors (err, __FILE__, __LINE__)
-
-inline void __checkCudaErrors(hipError_t err, const char *file, const int line )
-{
-  if(hipSuccess != err){
-  fprintf(stderr, "%s(%i) : CUDA Runtime API error %d: %s.\n",file, line, (int)err, hipGetErrorString( err ) );
-   exit(-1);
-  }
+// GPU error check
+#define checkCudaErrors(ans) { gpuAssert((ans), __FILE__, __LINE__); }
+inline void gpuAssert(hipError_t code, const char *file, int line, bool abort=true){
+        if (code != hipSuccess) {
+                fprintf(stderr,"GPUassert: %s %s %d\n", hipGetErrorString(code), file, line);
+                if (abort) exit(code);
+        }
 }
 
-// This will output the proper error string when calling hipGetLastError
-#define getLastCudaError(msg)      __getLastCudaError (msg, __FILE__, __LINE__)
-
-inline void __getLastCudaError(const char *errorMessage, const char *file, const int line )
-{
-  hipError_t err = hipGetLastError();
-  if (hipSuccess != err){
-  fprintf(stderr, "%s(%i) : getLastCudaError() CUDA error : %s : (%d) %s.\n",file, line, errorMessage, (int)err, hipGetErrorString( err ) );
-  exit(-1);
-  }
-}
-
-// end of CUDA Helper Functions
-
-
+#define SCALING_ARRAY_SIZE 16   // words per node, loaded as 4 x dwordx4
+static_assert(STRIDE % SCALING_ARRAY_SIZE == 0, "nodes must stay aligned along the chain");
 
 typedef unsigned v4u32 __attribute__((ext_vector_type(4)));   // 128-bit VGPR tuple for inline asm
+
+// 32-bit elements: store the index of the element STRIDE ahead
+__global__ void pointers_init(unsigned *posArray){
+  uint64_t i = (uint64_t)blockIdx.x * blockDim.x + threadIdx.x;
+  if (i < ARRAY_SIZE)
+    posArray[i] = (unsigned)((i + STRIDE) % ARRAY_SIZE);
+}
 
 __global__ void PowerKernal2(unsigned* A, unsigned* B, unsigned long long N)
 {
     uint32_t uid = blockDim.x * blockIdx.x + threadIdx.x;
-    unsigned id = uid*SCALING_ARRAY_SIZE;
+    if (uid < ARRAY_SIZE / SCALING_ARRAY_SIZE) {
+    unsigned ia = uid*SCALING_ARRAY_SIZE;   // current node in A
+    unsigned ib = uid*SCALING_ARRAY_SIZE;   // current node in B
     unsigned sink = 0;
     v4u32 v0, v1, v2, v3;
 	for(uint64_t i=0; i<N/100; ++i) {
 #pragma unroll 100
 	  for(uint64_t j=0; j<100; ++j) {
-      asm volatile (   // 16 consecutive words as 4 x dwordx4, like the compiler emits for the original
-        "global_load_dwordx4 %0, %4, off sc0 sc1 nt\n\t"   // bypass L1 and L2, go to memory
+      asm volatile (   // 16 consecutive words of the current node as 4 x dwordx4
+        "global_load_dwordx4 %0, %4, off sc0 sc1 nt\n\t"   // sc0 sc1 nt: bypass L1 and L2, go to memory
         "global_load_dwordx4 %1, %4, off offset:16 sc0 sc1 nt\n\t"
         "global_load_dwordx4 %2, %4, off offset:32 sc0 sc1 nt\n\t"
         "global_load_dwordx4 %3, %4, off offset:48 sc0 sc1 nt\n\t"
         "s_waitcnt vmcnt(0)\n\t"
-        : "=&v"(v0), "=&v"(v1), "=&v"(v2), "=&v"(v3) : "v"(A + id) : "memory"
+        : "=&v"(v0), "=&v"(v1), "=&v"(v2), "=&v"(v3) : "v"(A + ia) : "memory"
       );
       sink += uid + v0.x;
       sink += uid + v0.y;
@@ -124,14 +101,15 @@ __global__ void PowerKernal2(unsigned* A, unsigned* B, unsigned long long N)
       sink += uid + v3.y;
       sink += uid + v3.z;
       sink += uid + v3.w;
-      A[id] = sink;
-      asm volatile (   // 16 consecutive words as 4 x dwordx4, like the compiler emits for the original
-        "global_load_dwordx4 %0, %4, off sc0 sc1 nt\n\t"   // bypass L1 and L2, go to memory
+      A[ia + 1] = sink;   // word 1: keeps the store without overwriting the chain in word 0
+      ia = v0.x;              // word 0 holds the index of the next node
+      asm volatile (   // 16 consecutive words of the current node as 4 x dwordx4
+        "global_load_dwordx4 %0, %4, off sc0 sc1 nt\n\t"   // sc0 sc1 nt: bypass L1 and L2, go to memory
         "global_load_dwordx4 %1, %4, off offset:16 sc0 sc1 nt\n\t"
         "global_load_dwordx4 %2, %4, off offset:32 sc0 sc1 nt\n\t"
         "global_load_dwordx4 %3, %4, off offset:48 sc0 sc1 nt\n\t"
         "s_waitcnt vmcnt(0)\n\t"
-        : "=&v"(v0), "=&v"(v1), "=&v"(v2), "=&v"(v3) : "v"(B + id) : "memory"
+        : "=&v"(v0), "=&v"(v1), "=&v"(v2), "=&v"(v3) : "v"(B + ib) : "memory"
       );
       sink += uid + v0.x;
       sink += uid + v0.y;
@@ -149,97 +127,52 @@ __global__ void PowerKernal2(unsigned* A, unsigned* B, unsigned long long N)
       sink += uid + v3.y;
       sink += uid + v3.z;
       sink += uid + v3.w;
-      B[id] = sink;
+      B[ib + 1] = sink;   // word 1: keeps the store without overwriting the chain in word 0
+      ib = v0.x;              // word 0 holds the index of the next node
     }
 	}
+    }
 }
 
+int main(int argc, char** argv){
+  unsigned long long iterations;
+  if (argc != 2){
+    fprintf(stderr,"usage: %s #iterations\n",argv[0]);
+    exit(1);
+  }
+  else {
+    iterations = atoll(argv[1]);
+  }
+ printf("Power Microbenchmarks with iterations %llu\n",iterations);
 
-int main(int argc, char** argv)
-{
- unsigned long long iterations;
- if(argc!=2) {
-   fprintf(stderr,"usage: %s #iterations\n",argv[0]);
-   exit(1);
- }
- else {
-   iterations = atoll(argv[1]);
- }
- 
- printf("Power Microbenchmarks with iterations %lld\n",iterations);
- 
- int N = THREADS_PER_BLOCK*NUM_OF_BLOCKS * SCALING_ARRAY_SIZE;
- size_t size = N * sizeof(unsigned);
- // Allocate input vectors h_A and h_B in host memory
- h_A = (unsigned*)malloc(size);
- if (h_A == 0) CleanupResources();
- h_B = (unsigned*)malloc(size);
- if (h_B == 0) CleanupResources();
+  unsigned *d_A;
+  unsigned *d_B;
+  checkCudaErrors( hipMalloc(&d_A, (size_t)ARRAY_SIZE*sizeof(unsigned)) );
+  checkCudaErrors( hipMalloc(&d_B, (size_t)ARRAY_SIZE*sizeof(unsigned)) );
 
-
- // Initialize input vectors
- RandomInit(h_A, N);
-
-
- // Allocate vectors in device memory
- checkCudaErrors( hipMalloc((void**)&d_A, size) );
- checkCudaErrors( hipMalloc((void**)&d_B, size) );
-
-
- // Copy vector from host memory to device memory
- checkCudaErrors( hipMemcpy(d_A, h_A, size, hipMemcpyHostToDevice) );
-
-
- hipEvent_t start, stop;                   
- float elapsedTime = 0;                     
- checkCudaErrors(hipEventCreate(&start));  
+ hipEvent_t start, stop;
+ float elapsedTime = 0;
+ checkCudaErrors(hipEventCreate(&start));
  checkCudaErrors(hipEventCreate(&stop));
 
- //VecAdd<<<blocksPerGrid, threadsPerBlock>>>(d_A, d_B, d_C, N);
- dim3 dimGrid(NUM_OF_BLOCKS,1);
- dim3 dimBlock(THREADS_PER_BLOCK,1);
+ int init_blocks = (ARRAY_SIZE + THREADS_PER_BLOCK - 1) / THREADS_PER_BLOCK;
+ pointers_init<<<init_blocks, THREADS_PER_BLOCK>>>(d_A);
+ pointers_init<<<init_blocks, THREADS_PER_BLOCK>>>(d_B);
+ checkCudaErrors(hipDeviceSynchronize());
 
+ checkCudaErrors(hipEventRecord(start));
+ PowerKernal2<<<NUM_OF_BLOCKS,THREADS_PER_BLOCK>>>(d_A, d_B, iterations);
+ checkCudaErrors(hipEventRecord(stop));
 
- checkCudaErrors(hipEventRecord(start));              
- PowerKernal2<<<dimGrid,dimBlock>>>(d_A, d_B,iterations);  
- checkCudaErrors(hipEventRecord(stop));               
- 
- checkCudaErrors(hipEventSynchronize(stop));           
- checkCudaErrors(hipEventElapsedTime(&elapsedTime, start, stop));  
- printf("gpu execution time = %.3f ms\n", elapsedTime);  
- getLastCudaError("kernel launch failure");              
+ checkCudaErrors(hipEventSynchronize(stop));
+ checkCudaErrors(hipEventElapsedTime(&elapsedTime, start, stop));
+ printf("gpu execution time = %.3f ms\n", elapsedTime);
 
- // Copy result from device memory to host memory
- // h_B contains the result in host memory
- checkCudaErrors( hipMemcpy(h_B, d_B, size, hipMemcpyDeviceToHost) );
+  checkCudaErrors( hipPeekAtLastError() );
   checkCudaErrors(hipEventDestroy(start));
- checkCudaErrors(hipEventDestroy(stop));
- CleanupResources();
+  checkCudaErrors(hipEventDestroy(stop));
+  checkCudaErrors(hipFree(d_A));
+  checkCudaErrors(hipFree(d_B));
 
- return 0;
-}
-
-void CleanupResources(void)
-{
-  // Free device memory
-  if (d_A)
-  hipFree(d_A);
-  if (d_B)
-  hipFree(d_B);
-
-  // Free host memory
-  if (h_A)
-  free(h_A);
-  if (h_B)
-  free(h_B);
-
-}
-
-// Allocates an array with random float entries.
-void RandomInit(unsigned* data, int n)
-{
-srand(1);  
-  for (int i = 0; i < n; ++i){
-  data[i] = rand();
-  }
+  return 0;
 }

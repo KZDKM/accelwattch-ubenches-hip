@@ -13,8 +13,8 @@ export ATT_LIBRARY_PATH="${ATT_LIBRARY_PATH:-$HOME/rocprof-trace-decoder/release
 set -euo pipefail
 
 BIN_DIR="${BIN_DIR:-/home1/kzdkm/accelwattch-ubenches-hip}"
-RESULTS_DIR="${RESULTS_DIR:-/home1/kzdkm/accelwattch_ubench_opcodes_10000_unrolled}"
-ITERATIONS="${ITERATIONS:-10000}"
+RESULTS_DIR="${RESULTS_DIR:-/home1/kzdkm/accelwattch_ubench_opcodes_1000_unrolled}"
+ITERATIONS="${ITERATIONS:-1000}"
 TIMEOUT_SEC="${TIMEOUT_SEC:-6000}"
 MCPU="${MCPU:-gfx942}"
 GPU_ID="${GPU_ID:-0}"

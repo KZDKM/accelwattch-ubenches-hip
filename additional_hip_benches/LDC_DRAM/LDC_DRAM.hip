@@ -27,144 +27,120 @@
 // CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
-// Includes
-#include <stdio.h>
-#include <stdlib.h>
+//This code is a modification of L1 cache benchmark from 
+//"Dissecting the NVIDIA Volta GPU Architecture via Microbenchmarking": https://arxiv.org/pdf/1804.06826.pdf
 
+//This benchmark stresses DRAM: strided pointer chasing with L1/L2-bypassing loads (sc0 sc1 nt)
 
-// includes CUDA
+//This code have been tested on Volta V100 architecture
+
+#include <stdio.h>   
+#include <stdlib.h> 
 #include <hip/hip_runtime.h>
 
-
-// cache policy: sc0 sc1 nt (bypass L1 and L2, go to memory)
 #define THREADS_PER_BLOCK 256
-#define NUM_OF_BLOCKS (304*1024)
+#define NUM_OF_BLOCKS (304 * 1024)
+#define WARP_SIZE 32
 
-__constant__ unsigned ConstArray1[THREADS_PER_BLOCK];
+#define ARRAY_SIZE 67108864 // 2^26
+#define STRIDE 163840//2^14 * 10
 
+// GPU error check
+#define checkCudaErrors(ans) { gpuAssert((ans), __FILE__, __LINE__); }
+inline void gpuAssert(hipError_t code, const char *file, int line, bool abort=true){
+        if (code != hipSuccess) {
+                fprintf(stderr,"GPUassert: %s %s %d\n", hipGetErrorString(code), file, line);
+                if (abort) exit(code);
+        }
+}
 
+// 32-bit elements: store the index of the next element instead of a pointer
+__global__ void pointers_init(unsigned *posArray){
+  uint64_t i = (uint64_t)blockIdx.x * blockDim.x + threadIdx.x;
+  if (i < ARRAY_SIZE)
+    posArray[i] = (unsigned)((i + STRIDE) % ARRAY_SIZE);
+}
 
-unsigned* h_Value;
-unsigned* d_Value;
+__global__ void dram_stress(unsigned *posArray, uint64_t *dsink, unsigned long long iterations){
 
+  // thread index
+  uint32_t tid = blockIdx.x*blockDim.x + threadIdx.x;
 
-// Functions
-void CleanupResources(void);
-void RandomInit(unsigned*, int);
-FILE *fp;
+  if(tid < ARRAY_SIZE) {
+  	uint32_t next;
 
+  	// initialize the thread index with its start element of the array
+  	asm volatile (
+  	    "global_load_dword %0, %1, off sc0 sc1 nt\n\t"   // sc0 sc1 nt: bypass L1 and L2, go to memory
+        "s_waitcnt vmcnt(0)\n\t"
+  	    : "=v"(next) : "v"(posArray + tid) : "memory"
+  	  );
 
-////////////////////////////////////////////////////////////////////////////////
-// These are CUDA Helper functions
+  	// synchronize all threads
+    __syncthreads();
 
-// This will output the proper CUDA error strings in the event that a CUDA host call returns an error
-#define checkCudaErrors(err)  __checkCudaErrors (err, __FILE__, __LINE__)
+  	// index-chasing iterations times
+  	for(unsigned long long i=0; i<iterations/100; ++i) {
+  	#pragma unroll 100
+  	  for(unsigned long long j=0; j<100; ++j) {
+  	  asm volatile (
+  	    "global_load_dword %0, %1, off sc0 sc1 nt\n\t"
+        "s_waitcnt vmcnt(0)\n\t"
+  	    : "=v"(next) : "v"(posArray + next) : "memory"
+  	  );
+  	}
+  	}
 
-inline void __checkCudaErrors(hipError_t err, const char *file, const int line )
-{
-  if(hipSuccess != err){
-	fprintf(stderr, "%s(%i) : CUDA Runtime API error %d: %s.\n",file, line, (int)err, hipGetErrorString( err ) );
-	 exit(-1);
+  	// write data back to memory
+  	dsink[tid] = next;
   }
 }
 
-// This will output the proper error string when calling hipGetLastError
-#define getLastCudaError(msg)      __getLastCudaError (msg, __FILE__, __LINE__)
-
-inline void __getLastCudaError(const char *errorMessage, const char *file, const int line )
-{
-  hipError_t err = hipGetLastError();
-  if (hipSuccess != err){
-	fprintf(stderr, "%s(%i) : getLastCudaError() CUDA error : %s : (%d) %s.\n",file, line, errorMessage, (int)err, hipGetErrorString( err ) );
-	exit(-1);
+int main(int argc, char** argv){
+  unsigned long long iterations;
+  if (argc != 2){
+    fprintf(stderr,"usage: %s #iterations #cores #ActiveThreadsperWarp\n",argv[0]);
+    exit(1);
   }
-}
-
-// end of CUDA Helper Functions
-
-
-__global__ void PowerKernal(unsigned* Value, unsigned long long iterations)
-{
-	int tid = threadIdx.x;
-	int i = blockIdx.x*THREADS_PER_BLOCK + tid;
-
-	unsigned Value1=0;
-    unsigned sink=0;
-    for(unsigned long long k=0; k<iterations/100;k++) {
-	#pragma unroll 100
-      for(unsigned long long j=0; j<100;j++) {
-		asm volatile(
-			"global_load_dword %0, %1, off sc0 sc1 nt\n\t"
-			"s_waitcnt vmcnt(0)\n\t"
-			: "=v"(Value1)
-			: "v"(ConstArray1)
-		);
-        sink += Value1;
-	}
-    }
-		Value[i] = sink;
-}
-
-
-
-// Host code
-
-int main(int argc, char** argv) 
-{
-    unsigned long long iterations;
-    if (argc != 2){
-        fprintf(stderr,"usage: %s #iterations\n",argv[0]);
-        exit(1);
-    }
-    else{
-        iterations = atoll(argv[1]);
-    }
-
-    printf("Power Microbenchmark with iterations %llu\n",iterations);
-	 unsigned array1[THREADS_PER_BLOCK];
-	int N = THREADS_PER_BLOCK*NUM_OF_BLOCKS;
-	size_t size = N * sizeof(unsigned);
-	 h_Value = (unsigned *) malloc(size);
-
-	// Initialize input vectors
-	RandomInit(array1, THREADS_PER_BLOCK);
-
-	 hipMemcpyToSymbol(HIP_SYMBOL(ConstArray1), array1, sizeof(unsigned) * THREADS_PER_BLOCK );
-	 
-	 checkCudaErrors( hipMalloc((void**)&d_Value, size ));
-	 //VecAdd<<<blocksPerGrid, threadsPerBlock>>>(d_A, d_B, d_C, N);
-	 dim3 dimGrid(NUM_OF_BLOCKS,1);
-	 dim3 dimBlock(THREADS_PER_BLOCK,1);
-
-	 hipEvent_t start, stop;
-	  float elapsedTime = 0;
-	  checkCudaErrors(hipEventCreate(&start));
-	  checkCudaErrors(hipEventCreate(&stop));
-
-	  checkCudaErrors(hipEventRecord(start));
-	  PowerKernal<<<dimGrid,dimBlock>>>(d_Value, iterations);
-	  checkCudaErrors(hipEventRecord(stop));
-	 
-	  checkCudaErrors(hipEventSynchronize(stop));
-	  checkCudaErrors(hipEventElapsedTime(&elapsedTime, start, stop));
-	  printf("gpu execution time = %.3f ms\n", elapsedTime);
-	  getLastCudaError("kernel launch failure");
-	  checkCudaErrors( hipMemcpy(h_Value, d_Value, size, hipMemcpyDeviceToHost) );
- 	  checkCudaErrors(hipEventDestroy(start));
-	  checkCudaErrors(hipEventDestroy(stop));
-	  return 0;
-}
-
-// Allocates an array with random float entries.
-void RandomInit(unsigned* data, int n)
-{
-  srand(1);
-  for (int i = 0; i < n; ++i){
-    data[i] = (unsigned)rand();
+  else {
+    iterations = atoll(argv[1]);
   }
-}
+  int total_threads = ARRAY_SIZE; //THREADS_PER_BLOCK*NUM_OF_BLOCKS;
+ printf("Power Microbenchmarks with iterations %llu\n",iterations);
+
+  //uint64_t *dsink = (uint64_t*) malloc(total_threads*sizeof(uint64_t));
+      // Use pinned (page-locked) memory for `dsink`
+    uint64_t *dsink;
+    checkCudaErrors(hipHostMalloc((void**)&dsink, total_threads * sizeof(uint64_t)));
 
 
+  unsigned *posArray_g;
+  uint64_t *dsink_g;
+  
 
+  checkCudaErrors( hipMalloc(&posArray_g, total_threads*sizeof(unsigned)) );
+  checkCudaErrors( hipMalloc(&dsink_g, total_threads*sizeof(uint64_t)) );
+ hipEvent_t start, stop;                   
+ float elapsedTime = 0;                     
+ checkCudaErrors(hipEventCreate(&start));  
+ checkCudaErrors(hipEventCreate(&stop));
 
+ int init_blocks = (ARRAY_SIZE + THREADS_PER_BLOCK - 1) / THREADS_PER_BLOCK;
+ pointers_init<<<init_blocks, THREADS_PER_BLOCK>>>(posArray_g);
+ checkCudaErrors(hipDeviceSynchronize());
+    
+ checkCudaErrors(hipEventRecord(start));    
+  dram_stress<<<NUM_OF_BLOCKS,THREADS_PER_BLOCK>>>(posArray_g, dsink_g, iterations);
+ checkCudaErrors(hipEventRecord(stop));               
+ 
+ checkCudaErrors(hipEventSynchronize(stop));           
+ checkCudaErrors(hipEventElapsedTime(&elapsedTime, start, stop));  
+ printf("gpu execution time = %.3f ms\n", elapsedTime);  
+  
+  
+  checkCudaErrors( hipPeekAtLastError() );
 
+  checkCudaErrors( hipMemcpy(dsink, dsink_g, total_threads*sizeof(uint64_t), hipMemcpyDeviceToHost) );
+
+  return 0;
+} 
