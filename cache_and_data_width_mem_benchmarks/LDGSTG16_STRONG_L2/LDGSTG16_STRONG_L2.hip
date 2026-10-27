@@ -88,26 +88,25 @@ inline void __getLastCudaError(const char *errorMessage, const char *file, const
 
 
 
-__global__ void PowerKernal2(volatile uint16_t* A, volatile uint16_t* B, unsigned long long N)
+__global__ void PowerKernal2(uint16_t* A, uint16_t* B, unsigned long long N)
 {
     uint32_t uid = blockDim.x * blockIdx.x + threadIdx.x;
-    volatile uint32_t sink = 0;
-    volatile uint16_t* inptr = A + uid;
-    volatile uint16_t* outptr = B + uid;
+    uint32_t sink = 0;
+    uint16_t* inptr = A + uid;
+    uint16_t* outptr = B + uid;
 
 	for(uint64_t i=0; i<N/100; ++i) {
 #pragma unroll 100
 	  for(uint64_t j=0; j<100; ++j) {
-        // Use inline PTX to load 128 bits (4 x 32-bit values) at once
         asm volatile (
-            "global_load_ushort %0, %1, off sc0\n\t"
+            "global_load_ushort %0, %1, off sc0 sc1 nt\n\t"   // sc0 sc1 nt: bypass L1 and L2, go to memory
             "s_waitcnt vmcnt(0)\n\t"
             : "=v"(sink)
             : "v"(inptr)
             : "memory"
-        );  
+        );
   	asm volatile (
-            "global_store_short %0, %1, off sc0\n\t"
+            "global_store_short %0, %1, off sc0 sc1 nt\n\t"
             "s_waitcnt vmcnt(0)\n\t"
             :
             : "v"(outptr), "v"(sink)

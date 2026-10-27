@@ -42,7 +42,7 @@
 #define NUM_OF_BLOCKS (304 * 1024)
 #define WARP_SIZE 32
 
-#define ARRAY_SIZE 67108864 // 2^26
+#define ARRAY_SIZE 134217728 // 2^27, 1 gb: well past the 256 mb infinity cache, and >= launched threads
 #define STRIDE 163840//2^14 * 10
 
 // GPU error check
@@ -107,7 +107,7 @@ int main(int argc, char** argv){
   else {
     iterations = atoll(argv[1]);
   }
-  int total_threads = ARRAY_SIZE; //THREADS_PER_BLOCK*NUM_OF_BLOCKS;
+  int total_threads = THREADS_PER_BLOCK*NUM_OF_BLOCKS;
  printf("Power Microbenchmarks with iterations %llu\n",iterations);
 
   //uint64_t *dsink = (uint64_t*) malloc(total_threads*sizeof(uint64_t));
@@ -120,7 +120,7 @@ int main(int argc, char** argv){
   uint64_t *dsink_g;
   
 
-  checkCudaErrors( hipMalloc(&posArray_g, total_threads*sizeof(uint64_t)) );
+  checkCudaErrors( hipMalloc(&posArray_g, (size_t)ARRAY_SIZE*sizeof(uint64_t)) );
   checkCudaErrors( hipMalloc(&dsink_g, total_threads*sizeof(uint64_t)) );
  hipEvent_t start, stop;                   
  float elapsedTime = 0;                     

@@ -77,7 +77,7 @@ if out.exists() and not full:
             previous[r["benchmark"]] = (r, prev_mtime)
 
 # Helper kernels that are not the benchmark itself.
-AUX_KERNEL = re.compile(r"^(__amd_rocclr_|convertFp32ToFp16|.*pointers_init)")
+AUX_KERNEL = re.compile(r"^(__amd_rocclr_|convertFp32ToFp16|.*pointers_init|fill_bytes)")
 
 SEP = r"[|│]"
 ROW = re.compile(rf"^\s*{SEP}\s*([\d.]+)\s*{SEP}\s*([^|│]+?)\s*{SEP}\s*([-\d.eE+]*)\s*{SEP}")

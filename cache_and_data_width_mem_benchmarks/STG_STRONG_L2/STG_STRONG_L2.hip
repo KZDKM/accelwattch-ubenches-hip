@@ -91,28 +91,37 @@ inline void __getLastCudaError(const char *errorMessage, const char *file, const
 __global__ void PowerKernal2(unsigned* A, unsigned* B, unsigned long long N)
 {
     uint32_t uid = blockDim.x * blockIdx.x + threadIdx.x;
-    volatile unsigned sink;
+    uint32_t sink;
    
     unsigned* A_ptr = A + uid;
     unsigned* B_ptr = B + uid;
     
-    asm volatile ("{\t\n"
-      "global_load_dword %0, %1, off sc0\n\t"
-      "}" : "=v"(sink) : "v"(A_ptr) : "memory"
+    asm volatile (
+        "global_load_dword %0, %1, off sc1\n\t"
+        "s_waitcnt vmcnt(0)\n\t"
+        : "=v"(sink) 
+        : "v"(A_ptr) 
+        : "memory"
     );
 	for(uint64_t i=0; i<N/100; ++i) {
 #pragma unroll 100
 	  for(uint64_t j=0; j<100; ++j) {
-    asm volatile (
-      "global_store_dword %1, %0, off sc0\n\t"
-      : 
-      : "v"(sink), "v"(B_ptr) : "memory"
-    );
-    asm volatile (
-      "global_store_dword %1, %0, off sc0\n\t"
-      : 
-      : "v"(sink), "v"(A_ptr) : "memory"
-    );    }
+    	asm volatile (
+            "global_store_dword %0, %1, off sc1\n\t"
+            "s_waitcnt vmcnt(0)\n\t" 
+            : 
+            : "v"(B_ptr), "v"(sink)
+            : "memory"
+        );
+    
+        asm volatile (
+            "global_store_dword %0, %1, off sc1\n\t"
+            "s_waitcnt vmcnt(0)\n\t"
+            : 
+            : "v"(A_ptr), "v"(sink) 
+            : "memory"
+        );
+	}
 	}
     B[uid] = sink;
 }

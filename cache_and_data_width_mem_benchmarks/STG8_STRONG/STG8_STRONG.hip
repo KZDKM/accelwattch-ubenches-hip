@@ -88,24 +88,22 @@ inline void __getLastCudaError(const char *errorMessage, const char *file, const
 
 
 
-__global__ void PowerKernal2(volatile uint8_t* A, volatile uint8_t* B, unsigned long long N)
+__global__ void PowerKernal2(uint8_t* A, uint8_t* B, unsigned long long N)
 {
     uint32_t uid = blockDim.x * blockIdx.x + threadIdx.x;
-    volatile uint8_t sink = A[uid];
-//    volatile uint8_t* outptr = B + uid;
+    uint32_t sink = A[uid];
+    uint8_t* outptr = B + uid;
 
 	for(uint64_t i=0; i<N/100; ++i) {
 #pragma unroll 100
 	  for(uint64_t j=0; j<100; ++j) {
-	B[uid] = sink;
-/*  	asm volatile (
-            "{\n\t"
-            "st.global.u16 [%0], %1;\n\t"
-            "}"
+  	asm volatile (
+            "global_store_byte %0, %1, off sc0 sc1\n\t"   // volatile store: system scope
+            "s_waitcnt vmcnt(0)\n\t"
             :
-            : "l"(outptr), "h"(sink)
+            : "v"(outptr), "v"(sink)
             : "memory"
-        );//*/
+        );
     }
 	}
 }

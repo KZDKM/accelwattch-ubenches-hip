@@ -11,6 +11,11 @@ CORES=608
 # Location of rocprofwrap-lt tool.
 ROCPROFWRAP_DIR=/home1/kzdkm/rocprofwrap
 
+sleep_time=5 #Seconds waiting between pinging for power
+max_wait_iterations=20  # 100 seconds waiting in total
+threshold_power_diff=1  # Threshold above starting power allowed, adjust as needed
+read_power() { amd-smi metric -p -g 0 --csv | awk -F, 'NR==1{for(i=1;i<=NF;i++) if($i=="socket_power") c=i} NR==2{print $c}'; }
+
 if [ $# -lt 1 ]; then
     echo "Usage: $0 <ubench-name>"
     exit 1
@@ -40,6 +45,7 @@ for run in {1..5}; do
         --
         "$exe" "$ITERATIONS"
     )
+    idle_power=$(read_power)
     echo "Running ${ubench} (run ${run}/5)"
     # measure runtime of bench
     start=$(date +%s)
@@ -56,13 +62,23 @@ for run in {1..5}; do
     fi
     echo "Run $run succeeded, duration ${duration}s"
     echo "Output to ${RESULTS_DIR}/${ubench}_profiled_run${run}.csv"
-    if [ $run -lt 5 ]; then
-        if [ $duration -lt 5 ]; then
-            echo "Duration <5s, waiting 10 secs before next run..."
-            sleep 10
+    #Adaptive sleeping mechanism
+    wait_counter=0
+    while true; do
+        current_power=$(read_power)
+        [[ $current_power =~ ^[0-9.]+$ ]] || break
+        if (( $(echo "$current_power > $idle_power + $threshold_power_diff" | bc -l) )); then
+            sleep $sleep_time
+            ((wait_counter++))
         else
-            echo "Waiting 30 seconds before next run..."
-            sleep 30
+            sleep $sleep_time
+            break
         fi
-    fi
+
+        # Check if max wait iterations are reached
+        if [ $wait_counter -ge $max_wait_iterations ]; then
+            sleep $sleep_time
+            break
+        fi
+    done
 done

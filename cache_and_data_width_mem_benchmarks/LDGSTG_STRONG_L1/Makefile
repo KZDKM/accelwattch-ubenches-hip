@@ -36,7 +36,7 @@
 # # Add source files here
   EXECUTABLE      := LDGSTG_STRONG_L1
 # # Cuda source files (compiled with cudacc)
-  CUFILES         := LDGSTG_STRONG_L1.cu
+  CUFILES         := LDGSTG_STRONG_L1.hip
 # # C/C++ source files (compiled with gcc / c++)
   CCFILES         := \
 	#
